@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header</title>
+    <style>
+        .icon-btn {
+            background:none; border:1px solid #000; cursor:pointer;
+            width:40px; height:40px; display:grid; place-items:center;
+        }
+
+        /* 1) 스크림(배경) - 화면 전체 덮음 + 블러 */
+        .overlay {
+            position: fixed; inset: 0;
+            background: rgba(255,255,255,0.28);      /* 반투명이어야 blur 보임 */
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px); /* 사파리용 */
+            opacity: 0; 
+            pointer-events: none;
+            transition: opacity .25s ease;
+            z-index: 1000;
+        }
+        .overlay.open { opacity: 1; pointer-events: auto; }
+
+        /* 2) 왼쪽에서 나오는 패널 */
+        .overlay__panel {
+            position: absolute; top:0; left:0;
+            width: 50vw;                 /* 화면 절반 */
+            max-width: 900px;            /*(선택) 최대 폭 제한 */
+            height: 100%;
+            background: white;         /* 패널 자체는 불투명해도 OK */
+            transform: translateX(-100%); /* 화면 밖에서 시작 */
+            transition: transform .35s ease;
+            will-change: transform;
+            display: flex; flex-direction: column;
+        }
+        .overlay.open .overlay__panel { transform: translateX(0); }
+
+        /* 상단 닫기 버튼과 로고 영역 */
+        .overlay__top {
+            display:flex; align-items:center; gap:24px;
+            padding:20px;
+        }
+        .overlay__close {
+            background:none; border:1px solid; width:100px; height:50px; cursor:pointer;
+            position:relative;
+            border:none;
+            margin-left:0.3%;
+        }
+        .overlay__close::before,
+        .overlay__close::after{
+            content:""; position:absolute; left:15px; right:10px; top:25px; height:2px; background:#000;
+        }
+        .overlay__close::before{ transform:rotate(45deg); }
+        .overlay__close::after { transform:rotate(-45deg); }
+
+        /* 메뉴 그리드 */
+        .overlay__menu {
+            display:grid; grid-template-columns: 1fr 1fr; gap:24px;
+            padding:40px 20px; font-size:16px;
+        }
+        .overlay__menu a {
+            text-decoration:none; color:#000; display:block; padding:8px 0;
+        }
+        .overlay__menu strong { font-weight:700; }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="margin-left:2%; width:98%; box-sizing: border-box; margin-top:2%; display:flex;">
+            <button style="border:none;" id="menuBtn" class="icon-btn" aria-controls="menuOverlay" aria-expanded="false" aria-label="메뉴 열기">
+                <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="12" width="64" height="1" fill="black"/>
+                    <rect y="30" width="64" height="1" fill="black"/>
+                    <rect y="48" width="64" height="1" fill="black"/>
+                </svg>
+            </button>
+            <div style="margin-left:3%;">
+                <img src="로고" alt="">이미지 넣을 공간
+            </div>
+            <div style="margin-top:27px; margin-left:auto; margin-right:3%; flex:1; max-width:30%;">
+                <ul style="list-style-type: none; padding: 0; margin:0; display:flex; gap:40px;">
+                    <li style="flex:1; min-width: 100px;">
+                        <form action="" method="" style="width:100%;">
+                            <input type="text" style="border:none; border-bottom:1px solid; padding-bottom:10px; width:80%;" value="검색"
+                            onfocus="this.style.outline='none';" 
+                            onblur="this.style.outline='none';">
+                        </form>
+                    </li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">로그인</a></li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">도움말</a></li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">바스켓백 [0]</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 전체 화면 오버레이 메뉴 -->
+  <aside id="menuOverlay" class="overlay" aria-hidden="true">
+    <div class="overlay__panel">
+        <div class="overlay__top">
+            <button id="closeBtn" class="overlay__close" aria-label="메뉴 닫기"></button>
+            <div style="font-size:72px; font-weight:800; letter-spacing:4px;">MY BRAND</div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-right:25%; margin-top:1%;">
+            <nav class="overlay__menu" style="width:70%;">
+                <div >
+                    <a href="#">여성</a>
+                    <a href="#">남성</a>
+                    <a href="#">아동</a>
+                    <a href="#">MY BRAND HOME</a>
+                    <a href="#"><strong>10주년</strong></a>
+                    <a href="#">향수</a>
+                    <a href="#">TRAVEL MODE</a>
+                </div>
+                <div>
+                    <a href="#">경험</a>
+                    <a href="#">THE GIFT SHOP</a>
+                    <a href="#">THE FILM</a>
+                    <a href="#">컬렉션</a>
+                    <a href="#">MY BRAND 스토리</a>
+                    <a href="#">MY BRAND 최초의 매장</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+  </aside>
+
+    <script>
+    const body     = document.body;
+    const menuBtn  = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay  = document.getElementById('menuOverlay');
+
+    function openMenu(){
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        body.style.overflow = 'hidden'; // 뒤 스크롤 잠금
+    }
+    function closeMenu(){
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', (e) => {
+        // 빈 배경 클릭 시 닫기 (메뉴 콘텐츠 클릭은 무시)
+        if(e.target === overlay) closeMenu();
+    });
+    // Esc 키로 닫기
+    window.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+    });
+    </script>
+</body>
+</html>
+
+
