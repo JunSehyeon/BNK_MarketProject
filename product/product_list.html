@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product_list</title>
+    <style>
+        html{ scrollbar-gutter: stable; }
+        .icon-btn {
+            background:none; border:1px solid #000; cursor:pointer;
+            width:40px; height:40px; display:grid; place-items:center;
+        }
+
+        /* 1) 스크림(배경) - 화면 전체 덮음 + 블러 */
+        .overlay {
+            position: fixed; inset: 0;
+            background: rgba(255,255,255,0.28);      /* 반투명이어야 blur 보임 */
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px); /* 사파리용 */
+            opacity: 0; 
+            pointer-events: none;
+            transition: opacity .25s ease;
+            z-index: 1000;
+        }
+        .overlay.open { opacity: 1; pointer-events: auto; }
+
+        /* 2) 왼쪽에서 나오는 패널 */
+        .overlay__panel {
+            position: absolute; top:0; left:0;
+            width: 50vw;                 /* 화면 절반 */
+            max-width: 900px;            /*(선택) 최대 폭 제한 */
+            height: 100%;
+            background: white;         /* 패널 자체는 불투명해도 OK */
+            transform: translateX(-100%); /* 화면 밖에서 시작 */
+            transition: transform .35s ease;
+            will-change: transform;
+            display: flex; flex-direction: column;
+        }
+        .overlay.open .overlay__panel { transform: translateX(0); }
+
+        /* 상단 닫기 버튼과 로고 영역 */
+        .overlay__top {
+            display:flex; align-items:center; gap:24px;
+            padding:20px;
+        }
+        .overlay__close {
+            background:none; border:1px solid; width:100px; height:50px; cursor:pointer;
+            position:relative;
+            border:none;
+            margin-left:0.3%;
+        }
+        .overlay__close::before,
+        .overlay__close::after{
+            content:""; position:absolute; left:15px; right:10px; top:25px; height:2px; background:#000;
+        }
+        .overlay__close::before{ transform:rotate(45deg); }
+        .overlay__close::after { transform:rotate(-45deg); }
+
+        /* 메뉴 그리드 */
+        .overlay__menu {
+            display:grid; grid-template-columns: 1fr 1fr; gap:24px;
+            padding:40px 20px; font-size:16px;
+        }
+        .overlay__menu a {
+            text-decoration:none; color:#000; display:block; padding:8px 0;
+        }
+        .overlay__menu strong { font-weight:700; }
+
+        /* Header Sticky 및 background 적용 */
+        :root{
+            --glass-bg: rgba(255,255,255,.55); /* 호버 시 배경 투명도 */
+            --glass-blur: 8px;                 /* 블러 정도 */
+        }
+        *{ box-sizing: border-box; }
+        body{ margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+        a{ color:inherit; text-decoration:none; }
+        ul{ margin:0; padding:0; list-style:none; }
+
+        /* ===== 헤더 (처음엔 투명, hover 시 반투명) ===== */
+        .site-header{
+            position: sticky;      /* 스크롤해도 상단 고정 */
+            top: 0;
+            z-index: 900;          /* 오버레이(1000)보다 낮게 */
+        }
+        .site-header::before{
+            content:"";
+            position:absolute; inset:0;
+            background: rgba(255,255,255,0);            /* 기본 완전 투명 */
+            transition: background 0.4s ease;
+            z-index: -1;
+            pointer-events: none;                        /* 클릭 방해 금지 */
+        }
+        .site-header:hover::before{
+            background: rgba(255,255,255,0.7);                /* 마우스 올리면 반투명 */
+        }
+        .site-header .inner{
+            position: relative; z-index: 1;             /* ::before 아래로 깔리게 */
+            display:flex; align-items:center; gap:24px;
+            padding: 16px 24px;
+            border-bottom: 1px solid #000;              /* 필요 없으면 제거 */
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: 300;
+            color:black;
+        }
+
+        /* 페이지네이션 */
+        /* 게시판 아래버튼 부분 */
+        .prev-page{
+            background-color: white;
+            border: none;
+            margin-right: 15px;
+            width: 50px;
+            height: 30px;
+        }
+        .next-page{
+            background-color: white;
+            border: none;
+            margin-left: 15px;
+            width: 50px;
+            height: 30px;
+            margin-right:3px;
+        }
+        
+        /* 게시판 아래버튼 부분 끝 */
+    </style>
+</head>
+<body>
+    <header class="site-header" style="">
+        <div style="margin-left:2%; width:98%; box-sizing: border-box; margin-top:2%; display:flex; height:230px;">
+            <button style="border:none;" id="menuBtn" class="icon-btn" aria-controls="menuOverlay" aria-expanded="false" aria-label="메뉴 열기">
+                <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="12" width="64" height="1" fill="black"/>
+                    <rect y="30" width="64" height="1" fill="black"/>
+                    <rect y="48" width="64" height="1" fill="black"/>
+                </svg>
+            </button>
+            <div style="margin-left:3%;">
+                <img src="로고" alt="">이미지 넣을 공간
+            </div>
+            <div style="margin-top:27px; margin-left:auto; margin-right:3%; flex:1; max-width:30%;">
+                <ul style="list-style-type: none; padding: 0; margin:0; display:flex; gap:40px;">
+                    <li style="flex:1; min-width: 100px;">
+                        <form action="" method="" style="width:100%;">
+                            <input type="text" style="background: transparent;border:none; border-bottom:1px solid; padding-bottom:10px; width:80%;" value="검색"
+                            onfocus="this.style.outline='none';" 
+                            onblur="this.style.outline='none';">
+                        </form>
+                    </li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">로그인</a></li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">도움말</a></li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">바스켓백 [0]</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 전체 화면 오버레이 메뉴 -->
+  <aside id="menuOverlay" class="overlay" aria-hidden="true">
+    <div class="overlay__panel">
+        <div class="overlay__top">
+            <button id="closeBtn" class="overlay__close" aria-label="메뉴 닫기"></button>
+            <div style="font-size:72px; font-weight:800; letter-spacing:4px;">MY BRAND</div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-right:25%; margin-top:1%;">
+            <nav class="overlay__menu" style="width:70%;">
+                <div >
+                    <a href="">히트상품</a>
+                    <a href="">추천상품</a>
+                    <a href="">최신상품</a>
+                    <a href="">인기상품</a>
+                    <a href="">할인상품</a>
+                </div>
+                <div style="">
+                    <a href="#">여성</a>
+                    <a href="#">남성</a>
+                    <a href="#">아동</a>
+                    <a href="#">MY BRAND HOME</a>
+                    <a href="#"><strong>10주년</strong></a>
+                    <a href="#">향수</a>
+                    <a href="#">TRAVEL MODE</a>
+                </div>
+                <div></div>
+                <div style="">
+                    <a href="#">경험</a>
+                    <a href="#">THE GIFT SHOP</a>
+                    <a href="#">THE FILM</a>
+                    <a href="#">컬렉션</a>
+                    <a href="#">MY BRAND 스토리</a>
+                    <a href="#">MY BRAND 최초의 매장</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+  </aside>
+
+    <script>
+    const body     = document.body;
+    const menuBtn  = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay  = document.getElementById('menuOverlay');
+
+    function openMenu(){
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        body.style.overflow = 'hidden'; // 뒤 스크롤 잠금
+    }
+    function closeMenu(){
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', (e) => {
+        // 빈 배경 클릭 시 닫기 (메뉴 콘텐츠 클릭은 무시)
+        if(e.target === overlay) closeMenu();
+    });
+    // Esc 키로 닫기
+    window.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+    });
+    </script>
+    
+    <div style="height:100%;">
+        <div style="display: flex;">
+            <div style="flex:1; margin-left:7.6%; font-size:18px;"><b>상품목록</b></div>
+            <div style="margin-right:7.5%;">HOME > 패션 · 의류 · 뷰티 > <b>남성의류</b></div>
+        </div>
+        <hr style="border:none; border-top:1px solid black;">
+        <div style="color:gray; margin-left:7.6%; margin-bottom:30px;">
+            <a href="#">판매많은순</a>&nbsp;&nbsp;|&nbsp;
+            <a href="#">낮은가격순</a>&nbsp;&nbsp;|&nbsp;
+            <a href="#">높은가격순</a>&nbsp;&nbsp;|&nbsp;
+            <a href="#">평점높은순</a>&nbsp;&nbsp;|&nbsp;
+            <a href="#">후기많은순</a>&nbsp;&nbsp;|&nbsp;
+            <a href="#">최근등록순</a>
+        </div>
+        <div style="display:flex; gap:80px; justify-content: center;">
+            <a href="#" style="">
+                <img src="/images/product_list1.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 콘트라스트 파카</span>
+                        <span style="font-size:10px;">올겨울도 따뜻하게</span>
+                        <span style="font-size:18px;">₩ 135,000</span>
+                        <span style="color:gray;"><s>₩ 150,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>   
+            <a href="#" style="">
+                <img src="/images/product_list3.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 티셔츠</span>
+                        <span style="font-size:10px;">깔끔한 핏</span>
+                        <span style="font-size:18px;">₩ 144,000</span>
+                        <span style="color:gray;"><s>₩ 160,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>                
+        </div>
+        <div style="display:flex; gap:80px; justify-content: center; margin-top:150px;">
+            <a href="#" style="">
+                <img src="/images/product_list4.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 콘트라스트 파카</span>
+                        <span style="font-size:10px;">올겨울도 따뜻하게</span>
+                        <span style="font-size:18px;">₩ 135,000</span>
+                        <span style="color:gray;"><s>₩ 150,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>   
+            <a href="#" style="">
+                <img src="/images/product_list5.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 티셔츠</span>
+                        <span style="font-size:10px;">깔끔한 핏</span>
+                        <span style="font-size:18px;">₩ 144,000</span>
+                        <span style="color:gray;"><s>₩ 160,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>                
+        </div>
+        <div style="display:flex; gap:80px; justify-content: center; margin-top:150px;">
+            <a href="#" style="">
+                <img src="/images/product_list6.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 콘트라스트 파카</span>
+                        <span style="font-size:10px;">올겨울도 따뜻하게</span>
+                        <span style="font-size:18px;">₩ 135,000</span>
+                        <span style="color:gray;"><s>₩ 150,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>   
+            <a href="#" style="">
+                <img src="/images/product_list7.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 티셔츠</span>
+                        <span style="font-size:10px;">깔끔한 핏</span>
+                        <span style="font-size:18px;">₩ 144,000</span>
+                        <span style="color:gray;"><s>₩ 160,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>                
+        </div>
+        <div style="display:flex; gap:80px; justify-content: center; margin-top:150px;">
+            <a href="#" style="">
+                <img src="/images/product_list8.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 콘트라스트 파카</span>
+                        <span style="font-size:10px;">올겨울도 따뜻하게</span>
+                        <span style="font-size:18px;">₩ 135,000</span>
+                        <span style="color:gray;"><s>₩ 150,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>   
+            <a href="#" style="">
+                <img src="/images/product_list9.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 티셔츠</span>
+                        <span style="font-size:10px;">깔끔한 핏</span>
+                        <span style="font-size:18px;">₩ 144,000</span>
+                        <span style="color:gray;"><s>₩ 160,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>                
+        </div>
+        <div style="display:flex; gap:80px; justify-content: center; margin-top:150px;">
+            <a href="#" style="">
+                <img src="/images/product_list10.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 콘트라스트 파카</span>
+                        <span style="font-size:10px;">올겨울도 따뜻하게</span>
+                        <span style="font-size:18px;">₩ 135,000</span>
+                        <span style="color:gray;"><s>₩ 150,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>   
+            <a href="#" style="">
+                <img src="/images/product_list2.jpg" alt="" style="width:40vw;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%;">
+                    <div style="flex:1; display:flex;flex-direction:column;">
+                        <span style="font-size:18px;">ZW 컬렉션 티셔츠</span>
+                        <span style="font-size:10px;">깔끔한 핏</span>
+                        <span style="font-size:18px;">₩ 144,000</span>
+                        <span style="color:gray;"><s>₩ 160,000</s><font color="red">&nbsp;&nbsp;10%↓</font></span>
+                    </div>
+                    <div style="background-color: #99a1a9; border:1px solid #778ba3; font-weight:300; width:100px; height:30px; display: flex; justify-content: center; align-items: center; margin-bottom:27px;">
+                        무료배송
+                    </div>
+                    <div style="margin-left:auto; display:flex; flex-direction:column; padding-left:65px; margin-bottom:10px; width:200px;">
+                            <img src="홈" alt="">🏠판매자
+                            <img src="메달" alt="">🏅고객만족우수
+                            <span>상품평 ★★★★☆</span>
+                    </div>
+                </div>
+            </a>                
+        </div>
+    </div>
+    <div style=" height: 100px; margin-top:100px;">
+        <form action="" method="" style="text-align: center; display:flex; justify-content: center;">
+
+            <input type="button" class="prev-page" value="< 이전">
+
+            <input type="button" value="1" style="border: 1px #eaeaea solid; background-color: #ffffff; color: red; height: 32px; width: 34px; margin-right:7px;">
+            <input type="button" value="2" style="border: 1px #eaeaea solid; background-color: #ffffff; height: 32px; width: 34px; margin-right:7px;">
+            <input type="button" value="3" style="border: 1px #eaeaea solid; background-color: #ffffff; height: 32px; width: 34px;">
+
+            <input type="button" class="next-page" value="다음 >">
+        </form>
+    </div>
+    <footer style="margin-top:100px;">
+        <div style="">
+            <ul style=" margin-left:40px;display: flex; gap:20px; list-style-type: none;">
+                <li><a href="#">TIKTOK</a></li>
+                <li><a href="#">INSTAGRAM</a></li>
+                <li><a href="#">FACEBOOK</a></li>
+                <li><a href="#">X</a></li>
+                <li><a href="#">PINTEREST</a></li>
+                <li><a href="#">KAKAO</a></li>
+                <li><a href="#">YOUTUBE</a></li>
+                <li><a href="#">SPOTIFY</a></li>
+            </ul>
+        </div>
+        <div style="width:870px; margin-top:90px; margin-left:40px;">
+            <span>
+            아이티엑스코리아 주식회사 &nbsp;|&nbsp; 사업자등록번호: 120-88-14733 &nbsp;|&nbsp; 대표자 : ROMAY DE LA COLINA JOSE MANUEL &nbsp;|&nbsp; 서울특별시
+            강남구 영동대로 511 20층 2002호 (삼성동, 트레이드타워) &nbsp;|&nbsp; 대표번호: 080-479-0880 &nbsp;|&nbsp; 호스팅 서비스 사업자: 
+            ITX MERKEN, B. V. &nbsp;|&nbsp; 통신판매업신고 : 제2014-서울강남-02297 (<a herf="#" style="font-weight:800; text-decoration-line: underline;">사업자정보확인</a>)
+             &nbsp;|&nbsp; <a href="#" style="font-weight: 800; text-decoration-line: underline;">개인정보처리방침</a> &nbsp;|&nbsp; <a href="#" style="font-weight: 800; text-decoration-line: underline;">위치기반서비스 이용약관</a>
+             &nbsp;|&nbsp; <a href="#" style="font-weight: 800; text-decoration-line: underline;">이용약관</a> &nbsp;|&nbsp; <a href="#" style="font-weight: 800; text-decoration-line: underline;">지급보증안내</a>
+            </span>
+        </div>
+    </footer>
+</body>
+</html>
