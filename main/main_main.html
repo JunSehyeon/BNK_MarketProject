@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MainPage</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .slider {
+            width: 40vw;
+            overflow: hidden;
+            margin: auto;
+            position: relative;
+        }
+
+        .slides{
+            display: flex;
+            width: 500%;
+            animation: slider 15s infinite;
+        }
+
+        .slides img{
+            width: 40vw;
+            flex-shrink: 0;
+        }
+
+        button.prev,
+        button.next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        button.prev { left: 0; }   /* 왼쪽 끝 */
+        button.next { right: 0; }  /* 오른쪽 끝 */
+
+        button.prev::before,
+        button.next::before {
+            content: '';
+            display: inline-block;
+            border-top: 1px solid #000;  /* 얇은 선 */
+            border-right: 1px solid #000;
+            width: 12px;
+            height: 12px;
+        }
+
+        button.prev::before {
+            transform: rotate(-135deg); /* ← */
+        }
+
+        button.next::before {
+            transform: rotate(45deg);   /* → */
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+    <main>
+        <!--베너슬라이드5장--> 
+        <section class="slider">
+            <div class="slides">
+                <img src="/images/product_list1.jpg" alt="배너1" style="width:40vw;">
+                <img src="/images/product_list2.jpg" alt="배너2" style="width:40vw;">
+                <img src="/images/product_list3.jpg" alt="배너3" style="width:40vw;">
+                <img src="/images/product_list4.jpg" alt="배너4" style="width:40vw;">
+                <img src="/images/product_list5.jpg" alt="배너5" style="width:40vw;">
+            </div>
+        </section>
+        <button class="prev" style="margin: 10px;"></button>
+        <button class="next" style="margin: 10px;"></button>
+
+        <script>
+            const slides = document.querySelector(".slides");
+            const slideImages = document.querySelectorAll(".slides img");
+            const prevBtn = document.querySelector(".prev");
+            const nextBtn = document.querySelector(".next");
+
+            let currentIndex = 0;
+            const totalSlides = slideImages.length;
+
+            function updateSlide(){
+                slides.style.transform = `translateX(-${currentIndex * 40}vw)`;
+            }
+
+            nextBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlide();
+            });
+
+            prevBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlide();
+            });
+        </script>
+        <!--베스트상품 5건(판매순)-->
+        <section></section>
+        <!--히트상품 8건-->
+        <section></section>
+        <!--추천상품 8건-->
+        <section></section>
+        <!--최신상품 8건-->
+        <section></section>
+        <!--할인상품 8건-->
+        <section></section>
+    </main>
+    <footer></footer>
+</body>
+</html>
