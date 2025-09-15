@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+
+    html, body { margin: 0; }
+    a{
+        text-decoration: none;
+        color: #000;
+    }
+    body { font-family: system-ui, sans-serif; 
+         font-size: clamp(14px, 1.2vw, 16px); /* 글자 크기 자동 조정 */
+         color: #000;
+    }
+
+    /* 1) 전체 레이아웃: 화면 높이 채우되, 내용 폭은 제한 */
+    .main-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;  
+        min-height: 100dvh; 
+        min-height: 100vh;   
+    }
+
+    /* 2) 왼쪽(로그인) 영역: 중앙 정렬 + 내부 폭 제한 */
+    .login-side {
+        display: grid;
+        place-items: center;      /* 가로/세로 중앙 정렬 */
+        padding: 24px; 
+        background: #fff;
+    }
+
+    .header-logo{
+        margin-bottom: 40px;
+        width: 300px;
+    }
+    .header-logo-text{
+        font-size:72px; 
+        font-weight:800; 
+        letter-spacing:4px;
+    }
+
+    .login-panel {
+        width: min(620px, 100%);   /* 폭 제한: 420px을 넘지 말고, 화면이 좁으면 90%까지만 */
+    }
+    
+
+    .form-field { margin-top: 16px; }
+    .form-field input {
+        box-sizing: border-box;
+        width: 100%; 
+        padding-top: 26px; 
+        padding-bottom: 7px;
+        border: none;
+        border-bottom: 1px solid #000;
+    }
+    .form-field input:focus {
+        outline: none; /* 브라우저 기본 아웃라인 제거 */
+    }
+
+    .find-pw{
+        margin-top: 8px;
+        font-size: 13px
+        ;
+    }
+    .btn-log {
+        display: block;
+        box-sizing: border-box;
+        width: 100%; 
+        margin-top: 40px; 
+        padding: 8px;
+        background: #000; color: #fff; border: 0; cursor: pointer;
+    }
+    .btn-reg {
+        display: block;
+        box-sizing: border-box;
+        width: 100%; 
+        margin-top: 16px; 
+        padding: 7px;
+        background: #fff; color: #000; border: 1px solid #000; cursor: pointer;
+    }
+
+    .help-link{
+        font-size: 13px;
+        margin-top: 64px;
+    }
+
+    /* 3) 오른쪽(이미지) 영역: 가득 채우되 왜곡 없이 */
+    .image-side {
+        background: url("https://images.unsplash.com/photo-1520975661595-6453be3f7070?q=80&w=1887&auto=format&fit=crop") center/cover no-repeat;
+    }
+
+    .site-max {
+        max-width: none;                 
+        width: 100%;
+        margin-inline: auto;               /* 가운데 정렬 */
+    }
+    /* grid 전체를 이 wrapper로 감싸도 되고, login-panel만 감싸도 됩니다. */
+
+    /* 5) 반응형: 태블릿/모바일에서는 위아래로 쌓기 */
+    @media (max-width: 960px) {
+        .main-layout { grid-template-columns: 1fr; }
+        .image-side { display: none; } 
+    }
+    </style>
+</head>
+<body>
+    <div class="main-layout site-max">
+        <section class="login-side"><!--좌측 로그인 -->
+            <div class="login-panel"><!--로그인 패널-->
+                <div class="header-logo">
+                    <div class="header-logo-text">MY BRAND</div>
+                </div>
+                <div class="login-text">로그인</div>
+                <div>
+                    <div class="login-form">
+                        <div class="form-field">
+                            <input type="email" placeholder="이메일" />
+                        </div>
+                        <div class="form-field">
+                            <input type="password" placeholder="비밀번호" />
+                        </div>
+                        <div class="find-pw">
+                            <a href="#">비밀번호를 잊으셨나요?</a>
+                        </div>
+                        <div class="form-field">
+                            <button class="btn-log">로그인</button>
+                        </div>
+                        <div class="form-field">
+                            <button class="btn-reg">등록</button>
+                        </div>
+                        <div class="help-link">
+                            <a href="#">도움말</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <aside class="image-side"></aside><!--우측 이미지-->
+    </div>
+</body>
+</html>
