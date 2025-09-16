@@ -332,15 +332,15 @@
     showPanel('fashion');
     </script>
 
-    <div style="height:100%;">
+    <div style="height:100%; display: flex; flex-direction: column; justify-content: center; align-items: center;  margin: 0 auto;">
         <div style="display: flex;">
-            <div style="flex:1; margin-left:7.6%; font-size:18px;"><b>상품목록</b></div>
-            <div style="margin-right:7.5%;">HOME > 패션 · 의류 · 뷰티 > <b>남성의류</b></div>
+            <div style="font-size:18px; margin-right:916px;"><b>상품목록</b></div>
+            <div style="margin-right:8px;">HOME > 패션 · 의류 · 뷰티 > <b>남성의류</b></div>
         </div>
-        <hr style="border:none; border-top:1px solid black; margin-bottom:40px;">
-        <div style="display: flex; border:1px solid; margin-left: 7%; gap:100px;">
-            <img src="/images/product_list1.jpg" alt="" style="width:40vw;">
-            <div style="border:1px solid; width:463px;">
+        <hr style="border:none; border-top:1px solid black; margin-bottom:40px; width:100%;">
+        <div style="display: flex; gap:100px; width:1270px;">
+            <img src="/images/product_list1.jpg" alt="" style="width:700px;">
+            <div style=" width:463px; margin-top:100px;">
                 <div style="margin-top:10px;">
                     <span style="font-size:14px; font-weight:800; letter-spacing: -1px; color:gray;">상품번호 : 10010118412</span>
                     <span style="float:right; font-weight: 800;">(주)상호명</span>
@@ -387,8 +387,17 @@
                             <div id="linePrice" style="display:flex; align-items:center; margin-left:auto; font-size:12px;">135,000</div> <button style="border:none; background-color: white;">X</button>
                         </div>
                         <div id="totalPrice" style="float:right; font-size:14px; font-weight:600; margin-top:7px;">총 상품금액 ₩ 135,000</div>
+                        <br>
+                        <div style="display: flex; width:100%; gap:10px; margin-top:10px;">
+                            <button style="color:white; height:35px; background-color: #bfbfbf; border:none; font-size: 13px; font-weight: 300; width:47%;">장바구니</button>
+                            <button style="margin-left:auto; color:white; background-color: #5e8fd7; border:none; font-size: 13px; font-weight: 300; width:47%;">구매하기</button>
+                        </div>
+                        <div style="width:100%; height:64px; background-color: gray; margin-top:5px;">
+                            배너 광고 이미지 필요
+                        </div>
                     </form>
                 </div>
+
             </div>
                 <style>
                 .select-box{
@@ -475,9 +484,89 @@
                     render();
                 </script>
             </div>
+            <div style=" width:1265px; margin-top:5px; margin-bottom:5px;">
+                <span style="font-size: 16px; font-weight:600; display: block;">상품정보</span>
+                <hr style="border:none; border-top:1px solid gray;">
+                <div style="background-color: gray; color:black; height:300px; margin-top:5px;">
+                    <img src="#" alt="이미지 넣기" style="width:100%">
+                </div>
+                <div style="display: flex; margin-top:5px; margin-bottom:5px;">
+                    <div style="letter-spacing:-1px;font-size: 16px; font-weight:600;">상품정보 제공고시 </div>
+                    <div style="letter-spacing:-1px;font-size:14px; color:gray; margin-left:20px;padding-top:4px; ">[전자상거래에 관한 상품정보 제공에 관한 고시] 항목에 의거 등록된 정보입니다.</div>
+                </div>
+                <hr style="border:none; border-top:1px solid gray;">
+                <table style="border-collapse: collapse; border:1px solid; width:1200px; font-size:14px; ">
+                    <tr style="border:1px solid; height:35px; ">
+                        <td style="border-right:1px solid; width:250px; padding-left:11px;">상품번호</td>
+                        <td style=" padding-left:11px;">10010118412</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">상품상태</td>
+                        <td style="padding-left:11px;">새상품</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">부가세면세여부</td>
+                        <td style="padding-left:11px;">과세상품</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">영수증발행</td>
+                        <td style="padding-left:11px;">발행가능신용카드전표, 온라인현금영수증</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">사업자구분</td>
+                        <td style="padding-left:11px;">통신판매업자</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">브랜드</td>
+                        <td style="padding-left:11px;">블루포스</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">원산지</td>
+                        <td style="padding-left:11px;">국내생산</td>
+                    </tr>
+                </table>
+                <hr style="border:none; border-top:1px solid gray; margin-top:2px;margin-bottom:2px;">
+                <table style="border-collapse: collapse; border:1px solid; width:1200px; font-size:14px;">
+                    <tr style="border:1px solid;">
+                        <td style="border-right:1px solid; width:250px; height:35px; padding-left:11px;">제조자 / 수입국</td>
+                        <td style="padding-left:11px;">상세정보 직접입력</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">제조국</td>
+                        <td style="padding-left:11px;">상세정보 직접입력</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">취급 시 주의사항</td>
+                        <td style="padding-left:11px;">상세정보 직접입력</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">제조연월</td>
+                        <td style="padding-left:11px;">상세정보 직접입력</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">품질보증기준</td>
+                        <td style="padding-left:11px;">상세정보 직접입력</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">A/S 책임자</td>
+                        <td style="padding-left:11px;">상세정보 직접입력</td>
+                    </tr>
+                    <tr style="border:1px solid; height:35px;">
+                        <td style="border-right:1px solid; padding-left:11px;">전화번호</td>
+                        <td style="padding-left:11px;">상세정보 직접입력</td>
+                    </tr>
+                </table>
+                <div style="background-color: white; width:100%; margin-top:10px; padding-top:20px; line-height:1.8;">
+                    소비자가 전자상거래등에서 소비자 보호에 관한 법률 제 17조 제 1항 또는 제 3항에 따라 청약철회를 하고
+                    동 법 제 18조 제 1항에 따라 청약철회한 물품을 판매자에게 반환하였음에도 불구하고 결제 대금의 현금이
+                    3영업일을 넘게 지연된 경우, 소비자는 전자상거래등에서 소비자 보호에 관한 법률 제 18조 제 2항
+                    및 동 법 시행령 제 21조 2에 따라 지연일수에 대하여 전상 법 시행령으로 정하는 이율을 곱하여
+                    산정한 지연이자 ("지연배상금")을 신청할 수 있습니다. 아울러, 교환 반품 보증 및 결제대금의
+                    환급신청은 [나의쇼핑정보]에서 하실 수 있으며, 자세한 문의는 개별 판매자에게 연락하여 주시기 바랍니다.
+                </div>
+            </div>
         </div>
-    </div>
-
+        
     <footer>
         <div style="">
             <ul style="display: flex; gap:20px; margin-left:40px; list-style-type: none;">
