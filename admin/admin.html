@@ -1,0 +1,330 @@
+운영<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    html { scrollbar-gutter: stable; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* 버튼 */
+    .icon-btn {
+      background: none;
+      border: 1px solid #000;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+    }
+
+    /* 오버레이 */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(1px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+      z-index: 1000;
+    }
+    .overlay.open { opacity: 1; pointer-events: auto; }
+    .overlay__panel {
+      position: absolute; top: 0; left: 0;
+      width: 50vw; max-width: 900px; height: 100%;
+      background: white;
+      transform: translateX(-100%);
+      transition: transform .35s ease;
+      display: flex; flex-direction: column;
+    }
+    .overlay.open .overlay__panel { transform: translateX(0); }
+    .overlay__top { display: flex; align-items: center; gap: 24px; padding: 20px; }
+    .overlay__close {
+      background: none; width: 40px; height: 40px; cursor: pointer;
+      position: relative; border: none;
+    }
+    .overlay__close::before,
+    .overlay__close::after {
+      content: ""; position: absolute;
+      left: 8px; right: 8px; top: 20px;
+      height: 2px; background: #000;
+    }
+    .overlay__close::before { transform: rotate(45deg); }
+    .overlay__close::after  { transform: rotate(-45deg); }
+    .overlay__menu {
+      display: grid; grid-template-columns: 180px auto;
+      gap: 24px; padding: 20px; font-size: 16px;
+    }
+    .overlay__menu a { display: block; padding: 8px 0; }
+
+    /* 헤더 */
+    .site-header { position: sticky; top: 0; z-index: 900; }
+    .site-header .inner {
+      position: relative; display: flex; align-items: center; gap: 24px;
+      padding: 16px 24px; border-bottom: 1px solid #000;
+    }
+
+    /* 메인 타이틀 & 집계현황 라인 */
+    .title-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 7.6%;
+    }
+    .title-line h3 { font-size: 18px; }
+
+    /* 차트 */
+    .container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin: 20px 7.6%;
+    }
+    .chart-box {
+      flex: 1;
+      min-width: 0;
+      height: 350px;
+    }
+    canvas { width: 100% !important; height: 100% !important; }
+    .chart-legend { font-size: 12px !important; }
+
+    /* 운영현황 */
+    .status-table {
+      width: 85%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-left: 7.6%;
+      table-layout: fixed;
+    }
+    .status-table th,
+    .status-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .status-table th {
+      background: #f9f9f9;
+    }
+    .status-table td.value {
+      color: #d0021b;
+      font-weight: bold;
+    }
+    .status-gap { height: 5px; background: #fff; border: none; }
+
+    /* 세로줄 - 오늘/어제 */
+    .status-sub td {      
+      table-layout: fixed;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 5px;
+    }
+    .status-sub td:last-child { border-right: none; }
+
+    /* footer */
+    footer a { text-decoration: none; font-weight: 300; color: black; }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="site-header">
+    <div style="margin-left:2%; width:98%; box-sizing:border-box; margin-top:2%; display:flex; height:230px;">
+      <button style="border:none;" id="menuBtn" class="icon-btn" aria-controls="menuOverlay" aria-expanded="false" aria-label="메뉴 열기">
+        <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <rect y="12" width="64" height="1" fill="black"/>
+          <rect y="30" width="64" height="1" fill="black"/>
+          <rect y="48" width="64" height="1" fill="black"/>
+        </svg>
+      </button>
+      <div style="margin-left:3%;"><img src="로고" alt="">이미지 넣을 공간</div>
+      <div style="margin-top:27px; margin-left:auto; margin-right:3%; flex:1; max-width:30%;">
+        <ul style="display:flex; gap:40px;">
+          <li style="flex:1; min-width:100px;">
+            <form>
+              <input type="text" style="background:transparent; border:none; border-bottom:1px solid; padding-bottom:10px; width:80%;" value="검색">
+            </form>
+          </li>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">로그아웃</a></li>
+          <li><a href="#">고객센터</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- 전체 화면 오버레이 메뉴 -->
+  <aside id="menuOverlay" class="overlay" aria-hidden="true">
+    <div class="overlay__panel">
+      <div class="overlay__top">
+        <button id="closeBtn" class="overlay__close" aria-label="메뉴 닫기"></button>
+        <div style="font-size:32px; font-weight:800;">MY BRAND</div>
+      </div>
+      <nav class="overlay__menu">
+        <div>
+          <a href="#">환경설정</a>
+          <a href="#">상점관리</a>
+          <a href="#">회원관리</a>
+          <a href="#">상품관리</a>
+          <a href="#">주문관리</a>
+          <a href="#">고객센터</a>
+        </div>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- 메인 콘텐츠 -->
+  <div class="title-line">
+    <h3><b>관리자메인</b></h3>
+    <div>HOME > <b>관리자 메인</b></div>
+  </div>
+  <hr style="border:none; border-top:1px solid black; margin:20px;">
+
+  <!-- 집계현황 -->
+  <div class="title-line">
+    <h3>집계현황</h3>
+  </div>
+  <div class="container">
+    <div class="chart-box"><canvas id="barChart"></canvas></div>
+    <div class="chart-box"><canvas id="pieChart"></canvas></div>
+  </div>
+
+  <!-- 운영현황 -->
+  <div class="title-line">
+    <h3>운영현황</h3>
+  </div>
+  <table class="status-table">
+    <tr>
+      <th>입금대기</th>
+      <th>배송준비</th>
+      <th>취소요청</th>
+      <th>교환요청</th>
+      <th>반품요청</th>
+    </tr>
+    <tr>
+      <td class="value" >101</td>
+      <td class="value">124</td>
+      <td class="value">14</td>
+      <td class="value">7</td>
+      <td class="value">24</td>
+    </tr>
+    <tr class="status-gap"><td colspan="5"></td></tr>
+    <tr>
+      <th>주문건수</th>
+      <th>주문금액</th>
+      <th>회원가입</th>
+      <th>방문자 수</th>
+      <th>문의 게시물</th>
+    </tr>
+    <tr>
+      <td class="value">131</td>
+      <td class="value">3,700,000</td>
+      <td class="value">232</td>
+      <td class="value">2,500</td>
+      <td class="value">25</td>
+    </tr>
+    <tr>
+      <td colspan="5" style="padding:0;">
+        <table  style="width:100%; border-collapse:collapse; text-align:center; table-layout: fixed;" >
+          <tr>
+            <td>오늘</td><td>60</td>
+            <td>오늘</td><td>1,200,000</td>
+            <td>오늘</td><td>102</td>
+            <td>오늘</td><td>1,200</td>
+            <td>오늘</td><td>12</td>
+          </tr>
+          <tr>
+            <td>어제</td><td>71</td>
+            <td>어제</td><td>2,500,000</td>
+            <td>어제</td><td>130</td>
+            <td>어제</td><td>1,300</td>
+            <td>어제</td><td>13</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- 푸터 -->
+  <footer style="margin-top:100px; padding:20px;">
+    <ul style="display:flex; gap:20px; list-style:none;">
+      <li><a href="#">TIKTOK</a></li>
+      <li><a href="#">INSTAGRAM</a></li>
+      <li><a href="#">FACEBOOK</a></li>
+      <li><a href="#">X</a></li>
+      <li><a href="#">PINTEREST</a></li>
+      <li><a href="#">KAKAO</a></li>
+      <li><a href="#">YOUTUBE</a></li>
+      <li><a href="#">SPOTIFY</a></li>
+    </ul>
+    <div style="margin-top:40px; max-width:870px;">
+      <span>
+        아이티엑스코리아 주식회사 | 사업자등록번호: 120-88-14733 | 대표자: ROMAY DE LA COLINA JOSE MANUEL |
+        서울특별시 강남구 영동대로 511 20층 2002호 (삼성동, 트레이드타워) | 대표번호: 080-479-0880 |
+        호스팅 서비스 사업자: ITX MERKEN, B. V. | 통신판매업신고 : 제2014-서울강남-02297
+      </span>
+    </div>
+  </footer>
+
+  <!-- 스크립트 -->
+  <script>
+    // 메뉴 오픈/클로즈
+    const body = document.body;
+    const menuBtn = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay = document.getElementById('menuOverlay');
+    menuBtn.addEventListener('click', () => {
+      overlay.classList.add('open'); body.style.overflow = 'hidden';
+    });
+    closeBtn.addEventListener('click', () => {
+      overlay.classList.remove('open'); body.style.overflow = '';
+    });
+
+    // 바 차트
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: ['10-10', '10-11', '10-12', '10-13', '10-14'],
+        datasets: [
+          { label: '주문', data: [5, 10, 6, 7, 8], backgroundColor: '#4A90E2' },
+          { label: '결제', data: [4, 7, 5, 6, 6], backgroundColor: '#D0021B' },
+          { label: '취소', data: [2, 3, 2, 2, 3], backgroundColor: '#7ED321' }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { 
+          legend: { labels: { boxWidth: 12, boxHeight: 12 } }, // 범례 박스 작게
+          title: { display: true, text: '결제현황' }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 10, ticks: { stepSize: 1 } } // 1~10 눈금
+        }
+      }
+    });
+
+    // 파이 차트
+    new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: {
+        labels: ['가전', '식품', '의류', '기타'],
+        datasets: [{
+          data: [55, 25, 10, 10],
+          backgroundColor: ['#4A90E2', '#D0021B', '#7ED321', '#F5A623']
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { 
+          title: { display: true, text: '주요매출' },
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
