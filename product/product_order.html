@@ -404,17 +404,36 @@
         </table>
         <div style="border:1px solid; display:flex; gap: 58px;">
             <div style="border:1px solid; width:910px;">
-                <div style="font-size:18px; padding-top:12px;">
-                    <b>배송정보</b>
-                    <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
+                <div style="border:1px solid; width:450px;">
+                    <div style="border:1px solid;font-size:18px; padding-top:12px; width:450px;">
+                        <b>배송정보</b>
+                        <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
+                    </div>
+                    <div style="padding-left:14px;">
+                        <div style="margin-top:6px;"><span style="margin-right:100px;">수령자</span><input type="text" style="width:160px; border:none; border-bottom:1px solid #dddddd;outline: none;"></div>
+                        <div style="margin-top:6px;"><span style="margin-right:100px;">휴대폰</span><input type="text" style="width:160px; border:none; border-bottom:1px solid #dddddd;outline: none;"></div>
+                        <div style="margin-top:6px;"><span style="margin-right:85px;">우편번호</span><input type="text" style="width:160px; border:none; border-bottom:1px solid #dddddd;outline: none;"><button style="border:1px solid #dddddd; width:60px; margin-left:10px;">검색</button></div>
+                        <div style="margin-top:6px;"><span style="margin-right:85px;">기본주소</span><input type="text" style="width:270px; border:none; border-bottom:1px solid #dddddd;outline: none;"></div>
+                        <div style="margin-top:6px;"><span style="margin-right:85px;">상세주소</span><input type="text" style="width:270px; border:none; border-bottom:1px solid #dddddd;outline: none;"></div>
+                        <div style="margin-top:6px;display: flex; align-items: top;"><span style="margin-right:118px;">기타</span><textarea name="" id="" style="width:270px; height:50px;  border:1px solid #dddddd; resize:none;outline: none;"></textarea></div>
+                    </div>
                 </div>
-                <div style="border:1px solid; padding-left:10px;">
-                    <div><span style="margin-right:100px;">수령자</span><input type="text"></div>
-                    <div><span style="margin-right:100px;">휴대폰</span><input type="text"></div>
-                    <div><span style="margin-right:100px;">우편번호</span><input type="text"></div>
-                    <div><span style="margin-right:100px;">기본주소</span><input type="text"></div>
-                    <div><span style="margin-right:100px;">상세주소</span><input type="text"></div>
-                    <div><span style="margin-right:100px;">기타</span><textarea name="" id=""></textarea></div>
+                <div style="border:1px solid; width:450px;">
+                    <div style="border:1px solid;font-size:18px; padding-top:12px; width:450px;">
+                        <b>할인정보</b>
+                        <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
+                    </div>
+                    <div style="padding-left:14px;">
+                        <div>현재포인트 : 7200점 <input type="text" style="border:1px solid #dddddd; width:80px;"><button style="border:1px solid #dddddd; margin-left:7px; width:80px;">사용하기</button></div>
+                        <div style="color:gray; font-size: 13px; margin-top:3px; margin-bottom:10px;">포인트 5,000점 이상이면 현금처럼 사용 가능</div>
+                        <div>쿠폰적용
+                            <select name="쿠폰선택" id="">
+                                <option value="50%할인"></option>
+                                <option value="30%할인"></option>
+                                <option value="20%할인"></option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="border:1px solid #dddddd; width:300px; margin-top:14px;">
