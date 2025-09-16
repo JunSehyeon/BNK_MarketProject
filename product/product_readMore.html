@@ -103,6 +103,25 @@
             font-weight: 300;
             color:black;
         }
+        /* 페이지네이션 */
+        /* 게시판 아래버튼 부분 */
+        .prev-page{
+            background-color: white;
+            border: none;
+            margin-right: 15px;
+            width: 50px;
+            height: 30px;
+        }
+        .next-page{
+            background-color: white;
+            border: none;
+            margin-left: 15px;
+            width: 50px;
+            height: 30px;
+            margin-right:3px;
+        }
+        
+        /* 게시판 아래버튼 부분 끝 */
     </style>
 </head>
 <body>
@@ -490,12 +509,12 @@
                 <div style="background-color: gray; color:black; height:300px; margin-top:5px;">
                     <img src="#" alt="이미지 넣기" style="width:100%">
                 </div>
-                <div style="display: flex; margin-top:5px; margin-bottom:5px;">
+                <div style="display: flex; margin-top:5px; margin-bottom:5px; ">
                     <div style="letter-spacing:-1px;font-size: 16px; font-weight:600;">상품정보 제공고시 </div>
                     <div style="letter-spacing:-1px;font-size:14px; color:gray; margin-left:20px;padding-top:4px; ">[전자상거래에 관한 상품정보 제공에 관한 고시] 항목에 의거 등록된 정보입니다.</div>
                 </div>
                 <hr style="border:none; border-top:1px solid gray;">
-                <table style="border-collapse: collapse; border:1px solid; width:1200px; font-size:14px; ">
+                <table style="border-collapse: collapse; border:1px solid; width:1252px; font-size:14px;  margin-left:7px; ">
                     <tr style="border:1px solid; height:35px; ">
                         <td style="border-right:1px solid; width:250px; padding-left:11px;">상품번호</td>
                         <td style=" padding-left:11px;">10010118412</td>
@@ -526,7 +545,7 @@
                     </tr>
                 </table>
                 <hr style="border:none; border-top:1px solid gray; margin-top:2px;margin-bottom:2px;">
-                <table style="border-collapse: collapse; border:1px solid; width:1200px; font-size:14px;">
+                <table style="border-collapse: collapse; border:1px solid; width:1252px; font-size:14px;  margin-left:7px;">
                     <tr style="border:1px solid;">
                         <td style="border-right:1px solid; width:250px; height:35px; padding-left:11px;">제조자 / 수입국</td>
                         <td style="padding-left:11px;">상세정보 직접입력</td>
@@ -556,13 +575,114 @@
                         <td style="padding-left:11px;">상세정보 직접입력</td>
                     </tr>
                 </table>
-                <div style="background-color: white; width:100%; margin-top:10px; padding-top:20px; line-height:1.8;">
+                <div style="background-color: white; width:100%; margin-top:10px; padding-top:20px; margin-bottom:10px; line-height:1.8;">
                     소비자가 전자상거래등에서 소비자 보호에 관한 법률 제 17조 제 1항 또는 제 3항에 따라 청약철회를 하고
                     동 법 제 18조 제 1항에 따라 청약철회한 물품을 판매자에게 반환하였음에도 불구하고 결제 대금의 현금이
                     3영업일을 넘게 지연된 경우, 소비자는 전자상거래등에서 소비자 보호에 관한 법률 제 18조 제 2항
                     및 동 법 시행령 제 21조 2에 따라 지연일수에 대하여 전상 법 시행령으로 정하는 이율을 곱하여
                     산정한 지연이자 ("지연배상금")을 신청할 수 있습니다. 아울러, 교환 반품 보증 및 결제대금의
                     환급신청은 [나의쇼핑정보]에서 하실 수 있으며, 자세한 문의는 개별 판매자에게 연락하여 주시기 바랍니다.
+                </div>
+                <div style="display: block;">
+                    <span style="font-size: 16px; font-weight:600; display: block;">상품리뷰</span>
+                    <hr style="border:none; border-top:1px solid gray;">
+                    <div style="margin-left:7px; margin-right:7px;">
+                        <div>★★★★☆</div>
+                        <div style="margin-top:10px;">상품명 <span style="float:right;">seo******* 0000-07-10</span></div>
+                        <div style="margin-top:10px;">
+                            <div style="display:flex; margin-top:5px;">
+                                <div style="width:135px; height:75px; background-color: gray;">
+                                    <img src="#" alt="이미지">
+                                </div>
+                                <div style="margin-left:15px; color:gray; letter-spacing: 0px;">
+                                    가격 대비 정말 괜찮은 옷이라 생각되네요. 핏은 음... 제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
+                                    아주 약간 루즈한 정도...? 그래도 이만한 옷은 없다고 봅니다. 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
+                                    제품들을 구매하고 싶네요. 정말 만족하고 후기 남깁니다. 많이 파시길 바래요~
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border:none; border-top:1px solid gray; margin-top:13px;">
+                    <div style="margin-left:7px; margin-right:7px;">
+                        <div>★★★★☆</div>
+                        <div style="margin-top:10px;">상품명 <span style="float:right;">seo******* 0000-07-10</span></div>
+                        <div style="margin-top:10px;">
+                            <div style="display:flex; margin-top:5px;">
+                                <div style="width:135px; height:75px; background-color: gray;">
+                                    <img src="#" alt="이미지">
+                                </div>
+                                <div style="margin-left:15px; color:gray; letter-spacing: 0px;">
+                                    가격 대비 정말 괜찮은 옷이라 생각되네요. 핏은 음... 제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
+                                    아주 약간 루즈한 정도...? 그래도 이만한 옷은 없다고 봅니다. 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
+                                    제품들을 구매하고 싶네요. 정말 만족하고 후기 남깁니다. 많이 파시길 바래요~
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border:none; border-top:1px solid gray; margin-top:13px;">
+                    <div style="margin-left:7px; margin-right:7px;">
+                        <div>★★★★☆</div>
+                        <div style="margin-top:10px;">상품명 <span style="float:right;">seo******* 0000-07-10</span></div>
+                        <div style="margin-top:10px;">
+                            <div style="display:flex; margin-top:5px;">
+                                <div style="width:135px; height:75px; background-color: gray;">
+                                    <img src="#" alt="이미지">
+                                </div>
+                                <div style="margin-left:15px; color:gray; letter-spacing: 0px;">
+                                    가격 대비 정말 괜찮은 옷이라 생각되네요. 핏은 음... 제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
+                                    아주 약간 루즈한 정도...? 그래도 이만한 옷은 없다고 봅니다. 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
+                                    제품들을 구매하고 싶네요. 정말 만족하고 후기 남깁니다. 많이 파시길 바래요~
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border:none; border-top:1px solid gray; margin-top:13px;">
+                    <div style="margin-left:7px; margin-right:7px;">
+                        <div>★★★★☆</div>
+                        <div style="margin-top:10px;">상품명 <span style="float:right;">seo******* 0000-07-10</span></div>
+                        <div style="margin-top:10px;">
+                            <div style="display:flex; margin-top:5px;">
+                                <div style="width:135px; height:75px; background-color: gray;">
+                                    <img src="#" alt="이미지">
+                                </div>
+                                <div style="margin-left:15px; color:gray; letter-spacing: 0px;">
+                                    가격 대비 정말 괜찮은 옷이라 생각되네요. 핏은 음... 제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
+                                    아주 약간 루즈한 정도...? 그래도 이만한 옷은 없다고 봅니다. 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
+                                    제품들을 구매하고 싶네요. 정말 만족하고 후기 남깁니다. 많이 파시길 바래요~
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border:none; border-top:1px solid gray; margin-top:13px;">
+                    <div style="margin-left:7px; margin-right:7px;">
+                        <div>★★★★☆</div>
+                        <div style="margin-top:10px;">상품명 <span style="float:right;">seo******* 0000-07-10</span></div>
+                        <div style="margin-top:10px;">
+                            <div style="display:flex; margin-top:5px;">
+                                <div style="width:135px; height:75px; background-color: gray;">
+                                    <img src="#" alt="이미지">
+                                </div>
+                                <div style="margin-left:15px; color:gray; letter-spacing: 0px;">
+                                    가격 대비 정말 괜찮은 옷이라 생각되네요. 핏은 음... 제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
+                                    아주 약간 루즈한 정도...? 그래도 이만한 옷은 없다고 봅니다. 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
+                                    제품들을 구매하고 싶네요. 정말 만족하고 후기 남깁니다. 많이 파시길 바래요~
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border:none; border-top:1px solid gray; margin-top:13px;">
+                    <div style=" height: 100px; margin-top:100px;">
+                        <form action="" method="" style="text-align: center; display:flex; justify-content: center;">
+
+                            <input type="button" class="prev-page" value="< 이전">
+
+                            <input type="button" value="1" style="border: 1px #eaeaea solid; background-color: #ffffff; color: red; height: 32px; width: 34px; margin-right:7px;">
+                            <input type="button" value="2" style="border: 1px #eaeaea solid; background-color: #ffffff; height: 32px; width: 34px; margin-right:7px;">
+                            <input type="button" value="3" style="border: 1px #eaeaea solid; background-color: #ffffff; height: 32px; width: 34px;">
+
+                            <input type="button" class="next-page" value="다음 >">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
