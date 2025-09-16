@@ -161,7 +161,6 @@
         width: 100%;
         margin-inline: auto;               /* 가운데 정렬 */
     }
-    /* grid 전체를 이 wrapper로 감싸도 되고, login-panel만 감싸도 됩니다. */
 
     /* 5) 반응형: 태블릿/모바일에서는 위아래로 쌓기 */
     @media (max-width: 960px) {
@@ -178,46 +177,52 @@
                     <img class="header-logo-img" src="../images/brand-logo.jpg" alt="logo" >
                 </div>
                 <div class="login-text">로그인</div>
-                    <!-- NEW: form 요소로 감싸기 (HTML5 검증이 폼 단위로 작동) -->
                     <form id="loginForm" class="login-form" novalidate>
-                    <!-- NEW: required + type=email 로 기본 제약 추가 -->
-                    <div class="form-field-email">
-                        <input id="email" name="email" type="email" placeholder="이메일" required />
-                        <p class="error-msg"></p> <!-- 메시지 비워두고 JS가 채움 -->
-                    </div>
-                    <div class="form-field-pw">
-                        <input id="password" name="password" type="password" placeholder="비밀번호" minlength="4" required />
-                        <p class="error-msg"></p>
-                    </div>
-                    <div class="login-assist">
-                        <div class="find-pw">
-                            <a href="#">아이디 찾기 |</a>
-                            <a href="#">비밀번호 찾기</a>
+                        <div class="form-field-email">
+                            <input id="email" name="email" type="email" placeholder="이메일" required />
+                            <p class="error-msg"></p> 
                         </div>
-                        <div class="auto-login">
-                            <input type="checkbox" id="remember"> 
-                            <label for="remember">자동 로그인</label>
+                        <div class="form-field-pw">
+                            <input id="password" name="password" type="password" placeholder="비밀번호" minlength="4" required />
+                            <p class="error-msg"></p>
                         </div>
-                    </div>
-                    <div>
-                        <div class="form-field">
-                            <button class="btn-log" type="submit">LOGIN</button>
+                        <div class="login-assist">
+                            <div class="find-pw">
+                                <a href="#">아이디 찾기 |</a>
+                                <a href="#">비밀번호 찾기</a>
+                            </div>
+                            <div class="auto-login">
+                                <input type="checkbox" id="remember"> 
+                                <label for="remember">자동 로그인</label>
+                            </div>
                         </div>
-                        
-                        <div class="form-field-social">
-                            <button class="btn-social" type="button">카카오</button>
-                            <button class="btn-social" type="button">네이버</button>
-                            <button class="btn-social" type="button">구글</button>
+                        <div>
+                            <div class="form-field">
+                                <button class="btn-log" type="submit">LOGIN</button>
+                            </div>
+                            
+                            <div class="form-field-social">
+                                <button class="btn-social" type="button">
+                                    <a href="#">카카오</a>
+                                </button>
+                                <button class="btn-social" type="button">
+                                    <a href="#">네이버</a>
+                                </button>
+                                <button class="btn-social" type="button">
+                                    <a href="#">구글</a>
+                                </button>
+                            </div>
+                            <div class="form-field">
+                                <button class="btn-reg" type="button">
+                                    <a href="#">REGISTER</a>
+                                </button>
+                            </div>
                         </div>
-                        <div class="form-field">
-                            <button class="btn-reg" type="button">REGISTER</button>
+                        <div class="help-link">
+                            <a href="#">도움말</a>
                         </div>
-                    </div>
-
-                    <div class="help-link"><a href="#">도움말</a></div>
                     </form>
-                    <!-- /form -->
-            </div>
+                </div>
         </section>
         <aside class="image-side"></aside><!--우측 이미지-->
     </div>
