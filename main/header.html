@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>header</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
     <style>
         html{ scrollbar-gutter: stable; }
         .icon-btn {
@@ -98,6 +101,16 @@
             padding: 16px 24px;
             border-bottom: 1px solid #000;              /* 필요 없으면 제거 */
         }
+         .title-didone{
+            text-align:center;
+            font-family: 'Bodoni Moda','Didot','Bodoni 72','Times New Roman',serif;
+            margin-left:45px;
+            font-weight:400;                 
+            letter-spacing:.02em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .title-didone.ko{font-family: 'Noto Serif KR','Bodoni Moda',serif; font-weight:300;}
     </style>
 </head>
 <body>
@@ -111,7 +124,7 @@
                 </svg>
             </button>
             <div style="margin-left:3%;">
-                <img src="로고" alt="">이미지 넣을 공간
+                <img src="/images/logo.png" alt="" style="width:270px;">
             </div>
             <div style="margin-top:27px; margin-left:auto; margin-right:3%; flex:1; max-width:30%;">
                 <ul style="list-style-type: none; padding: 0; margin:0; display:flex; gap:40px;">
@@ -132,9 +145,9 @@
     <!-- 전체 화면 오버레이 메뉴 -->
   <aside id="menuOverlay" class="overlay" aria-hidden="true">
     <div class="overlay__panel">
-        <div class="overlay__top">
+        <div class="overlay__top"  style="margin-top:20px;">
             <button id="closeBtn" class="overlay__close" aria-label="메뉴 닫기"></button>
-            <div style="font-size:72px; font-weight:800; letter-spacing:4px;">MY BRAND</div>
+            <div style="font-size:72px; font-weight:800; letter-spacing:-10px; "class="title-didone">BAEKYA</div>
         </div>
         <style>
             /* 우측 서브항목 기본은 숨김 + 페이드 트랜지션 준비 */
