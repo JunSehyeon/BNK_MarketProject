@@ -402,10 +402,10 @@
                 </tr>
             </form>
         </table>
-        <div style="border:1px solid; display:flex; gap: 58px;">
-            <div style="border:1px solid; width:910px;">
-                <div style="border:1px solid; width:450px;">
-                    <div style="border:1px solid;font-size:18px; padding-top:12px; width:450px;">
+        <div style=" display:flex; gap: 58px;  margin-top:40px;">
+            <div style=" width:910px;">
+                <div style=" width:450px;">
+                    <div style="font-size:18px; padding-top:12px; width:450px;">
                         <b>배송정보</b>
                         <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
                     </div>
@@ -418,8 +418,8 @@
                         <div style="margin-top:6px;display: flex; align-items: top;"><span style="margin-right:118px;">기타</span><textarea name="" id="" style="width:270px; height:50px;  border:1px solid #dddddd; resize:none;outline: none;"></textarea></div>
                     </div>
                 </div>
-                <div style="border:1px solid; width:450px;">
-                    <div style="border:1px solid;font-size:18px; padding-top:12px; width:450px;">
+                <div style="width:450px; margin-top:30px;">
+                    <div style="font-size:18px; padding-top:12px; width:450px;">
                         <b>할인정보</b>
                         <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
                     </div>
@@ -427,16 +427,45 @@
                         <div>현재포인트 : 7200점 <input type="text" style="border:1px solid #dddddd; width:80px;"><button style="border:1px solid #dddddd; margin-left:7px; width:80px;">사용하기</button></div>
                         <div style="color:gray; font-size: 13px; margin-top:3px; margin-bottom:10px;">포인트 5,000점 이상이면 현금처럼 사용 가능</div>
                         <div>쿠폰적용
-                            <select name="쿠폰선택" id="">
-                                <option value="50%할인"></option>
-                                <option value="30%할인"></option>
-                                <option value="20%할인"></option>
+                            <select name="쿠폰선택" id="" style="border:1px solid #dddddd;">
+                                <option value="select">쿠폰 선택</option>
+                                <option value="50%">50%할인</option>
+                                <option value="30%">30%할인</option>
+                                <option value="20%">20%할인</option>
                             </select>
+                            <button style="border:1px solid #dddddd; width:80px;">사용하기</button>
+                        </div>
+                    </div>
+                </div>
+                <div style=" width:450px; margin-bottom:100px; margin-top:40px;">
+                    <div style="font-size:18px; padding-top:12px; width:450px;">
+                        <b>결제방법</b>
+                        <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
+                    </div>
+                    <div style="padding-left:14px;">
+                        
+                        <div>
+                            <form>
+                                <div style="margin-bottom:10px;">
+                                    <label style="margin-right:35px;"><input type="radio" name="pay" value="신용카드" style="transform: scale(1.5);"> 신용카드</label>
+                                    <label><input type="radio" name="pay" value="체크카드" style="transform: scale(1.5);"> 체크카드</label>
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="margin-right:35px;"><input type="radio" name="pay" value="계좌이체" style="transform: scale(1.5);"> 계좌이체</label>
+                                    <label><input type="radio" name="pay" value="무통장입금" style="transform: scale(1.5);"> 무통장입금</label>
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="margin-right:35px;"><input type="radio" name="pay" value="휴대폰결제" style="transform: scale(1.5);"> 휴대폰결제</label>
+                                    <label><input type="radio" name="pay" value="카카오페이" style="transform: scale(1.5);"> 카카오페이
+                                        <img src="#" alt="카카오페이이미지" style="margin-left:10px;">
+                                    </label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="border:1px solid #dddddd; width:300px; margin-top:14px;">
+            <div style="border:1px solid #dddddd; width:300px; margin-top:14px; height:345px;">
                 <div style="font-size:18px; padding-top:12px;">
                     <b>최종결제정보</b>
                     <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
