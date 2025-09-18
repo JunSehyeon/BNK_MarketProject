@@ -1,0 +1,66 @@
+.cs_faq_list_wrap {
+    overflow: hidden;
+}
+
+.cs_faq_list_wrap .faq_list_area {
+    float: right;
+    width: 980px;
+}
+
+.cs_faq_list_wrap .faq_section {
+    margin-bottom: 30px;
+}
+
+.cs_faq_list_wrap .faq_section h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.cs_faq_list_wrap .faq_item {
+    border-bottom: 1px solid #ddd;
+}
+
+.cs_faq_list_wrap .faq_item .faq_q {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    background-color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+}
+
+.cs_faq_list_wrap .faq_item .faq_q:before {
+    content: 'Q.';
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.cs_faq_list_wrap .faq_item .faq_q:after {
+    content: '+';
+    position: absolute;
+    right: 15px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.cs_faq_list_wrap .faq_item.active .faq_q:after {
+    content: '-';
+}
+
+.cs_faq_list_wrap .faq_item .faq_a {
+    padding: 20px 15px;
+    background-color: #f9f9f9;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.cs_faq_list_wrap .faq_item .faq_a p {
+    margin: 0;
+}
