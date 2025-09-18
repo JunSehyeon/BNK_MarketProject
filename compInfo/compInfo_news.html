@@ -345,8 +345,8 @@
     showPanel('fashion');
     </script>
 
-    <main style="border:1px solid;margin:0 auto; max-width:1000px;">
-        <div style="border:1px solid;">
+    <main style="margin:0 auto; max-width:1000px;">
+        <div style="">
             <div style="font-size:25px; margin-bottom:8px;">NICHIYA를 더 알고 싶다면!</div>
             <div style="font-size:20px; letter-spacing: -1px; color:gray;">우리의 다양한 이야기를 소개합니다.</div>
             <div style="margin-top:35px;">
@@ -357,55 +357,72 @@
                 <a href="#" style="">보도자료</a>
                 <a href="#" style="">ESG</a>
             </div>
-            <div style="border:1px solid; display: grid; grid-template-columns: repeat(3, 360px); gap:10px;">
-                <div class="news-card">
+            <div style="display: grid; grid-template-columns: repeat(3, 327px); gap:10px;">
+                <div class="news-card" style="">
                     <!-- div 위에 겹치는 라벨 -->
-                    <span class="corner-label">브랜드는 ?</span>
+                    <span class="corner-label">브랜드는 NICHIYA</span>
 
                     <div class="thumb"></div> <!-- 이미지는 없어도 되고, 배경 넣어도 됨 -->
-                    <div class="card-body">
-                        <div class="title">봄스타일링 완선 시킬 데님</div>
-                        <div class="subtitle">브랜드 '야르' 75% 할인</div>
-                        <div class="desc">NICHIYA에서만 보이는 인기!</div>
+                    <div class="card-body" style="padding:20px;">
+                        <div class="title" style="margin-bottom:8px;">봄스타일링 완선 시킬 데님</div>
+                        <div class="subtitle" style="margin-bottom:30px;">브랜드 'NICHIYA' 75% 할인</div>
+                        <div class="desc" style="font-size:12px; color:gray;">NICHIYA에서만 보이는 인기!</div>
                     </div>
-                    <style>
-                        /* 카드 틀 */
-/* 카드 틀 */
-.news-card{
-  position:relative;
-  width:360px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  /* overflow:hidden;  ← 이 줄 제거! */
-  background:#fff;
-}
-
-/* 이미지 영역만 라운드+클리핑 */
-.news-card .thumb{
-  height:280px;
-  background:#f3f3f3 url('/images/sample.jpg') center/cover no-repeat;
-  border-top-left-radius:12px;
-  border-top-right-radius:12px;
-  overflow:hidden;              /* 이미지만 잘라줌 */
-}
-
-/* 라벨 */
-.corner-label{
-  position:absolute;
-  top:-10px;                    /* 이제 안 잘림 */
-  left:12px;
-  padding:4px 8px;
-  font-size:13px;
-  color:#777;
-  background:#fff;
-  z-index:2;
-  line-height:1;                /* 줄간격 줄여서 깔끔 */
-}
-
-
-
-                    </style>
                 </div>
+                <div class="news-card">
+                    <!-- div 위에 겹치는 라벨 -->
+                    <span class="corner-label">브랜드는 NICHIYA</span>
+
+                    <div class="thumb"></div> <!-- 이미지는 없어도 되고, 배경 넣어도 됨 -->
+                    <div class="card-body" style="padding:20px;">
+                        <div class="title" style="margin-bottom:8px;">봄스타일링 완선 시킬 데님</div>
+                        <div class="subtitle" style="margin-bottom:30px;">브랜드 'NICHIYA' 75% 할인</div>
+                        <div class="desc" style="font-size:12px; color:gray;">NICHIYA에서만 보이는 인기!</div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <!-- div 위에 겹치는 라벨 -->
+                    <span class="corner-label">브랜드는 NICHIYA</span>
+
+                    <div class="thumb"></div> <!-- 이미지는 없어도 되고, 배경 넣어도 됨 -->
+                    <div class="card-body" style="padding:20px;">
+                        <div class="title" style="margin-bottom:8px;">봄스타일링 완선 시킬 데님</div>
+                        <div class="subtitle" style="margin-bottom:30px;">브랜드 'NICHIYA' 75% 할인</div>
+                        <div class="desc" style="font-size:12px; color:gray;">NICHIYA에서만 보이는 인기!</div>
+                    </div>
+                </div>
+                <style>
+                        /* 카드 틀 */
+                        .news-card{
+                            position:relative;
+                            width:320px;
+                            border:1px solid #ddd;
+                            border-radius:12px;
+                            background:#fff;
+                        }
+
+                        /* 이미지 영역만 라운드+클리핑 */
+                        .news-card .thumb{
+                            height:210px;
+                            background:#f3f3f3 url('/images/product_list5.jpg') center/cover no-repeat;
+                            border-top-left-radius:12px;
+                            border-top-right-radius:12px;
+                            overflow:hidden;              /* 이미지만 잘라줌 */
+                        }
+
+                        /* 라벨 */
+                        .corner-label{
+                            position:absolute;
+                            top:335px;                    /* 이제 안 잘림 */
+                            left:10px;
+                            padding:4px 8px;
+                            font-size:13px;
+                            color:#777;
+                            background:#fff;
+                            z-index:2;
+                            line-height:1;                /* 줄간격 줄여서 깔끔 */
+                        }
+                    </style>
             </div>
         </div>
         <div style="margin-top:100px;"></div>
