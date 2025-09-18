@@ -365,14 +365,14 @@
     showPanel('fashion');
     </script>
 
-    <div style="height:100%; display: flex; flex-direction: column; justify-content: center; align-items: center;  margin: 0 auto;">
+    <div style=" height:100%; display: flex; flex-direction: column; justify-content: center; align-items: center;  margin: 0 auto;">
         <div style="display: flex;">
             <div style="font-size:18px; margin-right:1200px;"><b>주문완료</b></div>
         </div>
         <hr style="border:none; border-top:1px solid black; margin-bottom:40px; width:100%;">
-        <div>고객님의 주문이 정상적으로 완료되었습니다.</div>
-        <div>즐거운 쇼핑이 되셨나요? 항상 고객님을 위한 일야가 되겠습니다.</div>
-        <table style="border-collapse: collapse; border:none; width:1270px; text-align: center;">
+        <div style="font-size:20px; margin-bottom:8px;">고객님의 주문이 정상적으로 완료되었습니다.</div>
+        <div style="margin-bottom:20px;">즐거운 쇼핑이 되셨나요? 항상 고객님을 위한 일야가 되겠습니다.</div>
+        <table style="border-collapse: collapse; border:none; width:1270px; text-align: center; ">
             <form action="" method="">
                 <tr style="height:50px;border-top: 4px solid black; border-bottom: 1px solid #dddddd;">
                     <td style="width:50px;"><input type="checkbox"></td>
@@ -399,39 +399,57 @@
                 </tr>
             </form>
         </table>
-        <div style="border:1px solid #dddddd; width:300px; margin-top:14px; height:345px;">
-                <div style="font-size:18px; padding-top:12px;">
-                    <b>최종결제정보</b>
-                    <hr style="border:none; border-top:1px solid #dddddd; margin-top:7px; margin-bottom:19px;">
+        <div style="border:1px solid #f2f2f2; width:300px;margin-left:970px; height:148px; padding:20px; background-color: #f2f2f2;">
+            <div style="padding-left:7px;padding-right:7px;">
+                <div style="margin-bottom:6px;">
+                    <div>총 상품금액<span style="float:right;">27,000 원</span></div>
                 </div>
-                
-                <div style="padding-left:7px;padding-right:7px;">
-                    <div style="margin-bottom:6px;">
-                        <div>상품수<span style="float:right;">1</span></div>
-                    </div>
-                    <div style="margin-bottom:6px;">
-                        <div>상품금액<span style="float:right;">27,000</span></div>
-                    </div>
-                    <div style="margin-bottom:6px;">
-                        <div>할인금액<span style="float:right;">-1,350</span></div>
-                    </div>
-                    <div style="margin-bottom:6px;">
-                        <div>배송비<span style="float:right;">0</span></div>
-                    </div>
-                    <div style="margin-bottom:6px;">
-                        <div>할인<span style="float:right;">-1,000</span></div>
-                    </div>
-                    <div style="margin-bottom:6px;">
-                        <div>전체주문금액<span style="float:right; color:red;">24,650</span></div>
-                    </div>
-                    <div style="margin-bottom:25px;">
-                        <div>적립 포인트<span style="float:right;">270</span></div>
-                    </div>
-                    <div style="display: flex; justify-content: center; margin-bottom:25px;">
-                        <input type="button" value="결제하기" style="height: 40px; background-color: black; color:white; font-size: 20px; font-weight:300; border:none; width:190px;">
-                    </div>
+                <div style="margin-bottom:6px;">
+                    <div>총 할인금액<span style="float:right;">-1,350 원</span></div>
+                </div>
+                <div style="margin-bottom:6px;">
+                    <div>배송비<span style="float:right;">0 원</span></div>
+                </div>
+                <div style="margin-bottom:6px;">
+                    <div>총 결제금액<span style="float:right; color:red;">25,650 원</span></div>
                 </div>
             </div>
+        </div>
+        <div style="display: flex; margin-top:14px; margin-bottom:10px;">
+            <div style="font-size:18px; margin-right:1200px;"><b>주문정보</b></div>
+        </div>
+        <div style="border-top:4px solid; width:1270px;  display: flex; border-bottom: 1px solid #dddddd;">
+            <div style=" width:150px; padding:17px; background-color: #f2f2f2;">
+                <div style="margin-bottom:6px;">주문정보</div>
+                <div style="margin-bottom:6px;">결제방법</div>
+                <div style="margin-bottom:6px;">주문자</div>
+                <div style="">연락처</div>
+            </div>
+            <div style="padding-left:19px;  display: flex; justify-content: center; flex-direction:column;">
+                <div style="margin-bottom:7px;">1000121121</div>
+                <div style="margin-bottom:7px;">신용카드</div>
+                <div style="margin-bottom:7px;">홍길동</div>
+                <div style="margin-bottom:4px;">010-1234-1234</div>
+            </div>
+            <div style="display: flex; align-items: end; margin-left: auto;">
+                <div style="width:210px; margin-right:45px; margin-bottom:8px;"><span>총 결제금액</span><span style="float:right;">원</span><span style="color:red; float:right;">24,650</span></div>
+            </div>
+        </div>
+        <div style="display: flex; margin-top:14px;margin-bottom:10px; ">
+            <div style="font-size:18px; margin-right:1200px;"><b>배송정보</b></div>
+        </div>
+        <div style="border-top:4px solid; width:1270px;  display: flex; border-bottom: 1px solid #dddddd; margin-bottom:60px;">
+            <div style=" width:150px; padding:17px; background-color: #f2f2f2;">
+                <div style="margin-bottom:6px;">수취인</div>
+                <div style="margin-bottom:6px;">연락처</div>
+                <div >배송지 주소</div>
+            </div>
+            <div style="padding-left:19px;  display: flex; justify-content: center; flex-direction:column;">
+                <div style="margin-bottom:7px;">홍길동</div>
+                <div style="margin-bottom:7px;">010-1234-1234</div>
+                <div >부산 금정구 123-11 10층</div>
+            </div>
+        </div>
     </div>
     <footer>
         <div style="">
