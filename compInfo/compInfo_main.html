@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <style>
         html{ scrollbar-gutter: stable; }
         .icon-btn {
@@ -74,7 +75,7 @@
             --glass-blur: 8px;                 /* 블러 정도 */
         }
         *{ box-sizing: border-box; }
-        body{ margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+        body{ overflow-x: hidden;margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
         a{ color:inherit; text-decoration:none; }
         ul{ margin:0; padding:0; list-style:none; }
 
@@ -111,6 +112,12 @@
             -moz-osx-font-smoothing: grayscale;
         }
         .title-didone.ko{font-family: 'Noto Serif KR','Bodoni Moda',serif; font-weight:300;}
+        .nanum-myeongjo-regular {
+            font-family: "Nanum Myeongjo", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
     </style>
 </head>
 <body>
@@ -339,33 +346,520 @@
     </script>
 
     <main style="margin:0 auto; max-width:1000px;">
-        <div style="border:1px solid; line-height: 1.8; width:1000px;">
+        <div style="line-height: 1.8; width:1000px;">
             <div style="display: flex; flex-direction: column; align-items: center; font-size:20px;">
-                <div style="display:relative; display:inline-block;">
-                    <img src="/images/companyIntroduction_main1.png" alt="" style="width:1000px;">
-                    <div style="position: absolute; color:black;">취향을, 브랜드를, 혜택을 발견하는 즐거움</div>
-                    <div>지금 일야에서 만나요</div>
+                <div style="position:relative; display:inline-block; width:1000px;">
+                    <img src="/images/companyIntroduction_main1.png" alt="" style="width:100%;">
+                    <div style="position: absolute; color:white; left:100px;top:480px; font-weight: 550; font-size:25px;" class="nanum-myeongjo-regular">NICHIYA와 함께 새로운 라이프스타일</div>
+                    <div style="position: absolute; color:white; left:100px;top:520px; font-weight: 550; font-size:25px;" class="nanum-myeongjo-regular">브랜드를 넘어, 경험을 만나다</div>
                 </div>
                 <div style="margin-top:40px;">쇼핑좀 해본 사람들이 만든 플랫폼,</div>
-                <div>일야는 풍부한 오프라인 쇼핑 인프라, 온라인 쇼핑 노하우,</div>
+                <div>NICHIYA는 풍부한 오프라인 쇼핑 인프라, 온라인 쇼핑 노하우,</div>
                 <div>IT 기술로 세상에 없던 새로운 쇼핑 경험을 제공하고</div>
                 <div>꼭 이용하고 싶은 온라인 쇼핑 플랫폼으로 발전하고 있어요.</div>
             </div>
-            <div style="font-size:25px;">쇼핑을 새롭게, 세상을 이롭게 만들어 나가요.</div>
-            <div style="display: grid; grid-template-columns: repeat(2, 200px); gap:20px;">
-                <div>
-                    <img src="#" alt="이미지1" style="width:200px; height:150px;">
-                    <div>고객이 원하고 만족하는</div>
-                    <div>서비스를 만들어요</div>
+            <div style="font-size:25px; margin-left:135px; margin-top:50px; margin-bottom:25px;">쇼핑을 새롭게, 세상을 이롭게 만들어 나가요.</div>
+            <div class="carousel" id="featCarousel">
+            <button class="car-btn prev" aria-label="이전 슬라이드">‹</button>
 
-                    <div>일야는 단순히 상품만을 판매하는</div>
-                    <div>플랫폼이 아니라, 상품에 대한 경험을</div>
-                    <div>함께 제공할 수 있는 플랫폼을 목표로 하고</div>
-                    <div>있어요. 해외직구, 뷰티, 그로서리</div>
+            <div class="car-viewport">
+                <div class="car-track">
+                <!-- slide 1 -->
+                <section class="slide">
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지1"></div>
+                    <div class="meta">
+                        <h4>고객이 원하며 만족하는</h4>
+                        <p class="subtitle">서비스를 만들어요</p>
+                        <p class="desc">
+                        NICHIYA는 단순히 상품만을 파는 곳이 아니라, ‘입고 싶은 순간’을 만들어 줍니다. 취향·사이즈·예산을 반영한 개인 맞춤 추천으로 실패를 줄여요. 낮엔 실용, 밤엔 무드를 살린 코디까지 한 번에 제안합니다.
+                        </p>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지2"></div>
+                    <div class="meta">
+                        <h4>빠르고 믿을 수 있는</h4>
+                        <p class="subtitle">당일·새벽 배송</p>
+                        <p class="desc">
+                        주문부터 출고까지 자동화된 풀필먼트로 수도권 당일/새벽 배송을 기본으로 제공합니다. 실시간 배송 추적과 안전 포장으로 마지막 순간까지 책임져요. 급할 땐 퀵 픽업도 선택할 수 있어요.
+                        </p>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- slide 2 (예시: 필요 없으면 삭제, 더 만들면 도트 자동 증가) -->
+                <section class="slide">
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지3"></div>
+                    <div class="meta">
+                        <h4>취향을 배우는 AI 추천과</h4>
+                        <p class="subtitle">스타일리스트 케어</p>
+                        <p class="desc">착용 내역·선호 컬러·계절 데이터를 바탕으로 AI가 코디를 추천합니다. 라이브 챗 스타일리스트가 체형·기장까지 세밀히 컨설팅해요. 중요한 날엔 ‘룩 예약’으로 미리 준비해 드립니다.</p>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지4"></div>
+                    <div class="meta">
+                        <h4>해외직구를 더 쉽고,</h4>
+                        <p class="subtitle">더 합리적으로</p>
+                        <p class="desc">전 세계 셀렉숍과의 직매입/공동구매로 좋은 가격을 만듭니다. 관·부가세/통관 걱정 없이 원스톱 처리, 결제부터 AS까지 NICHIYA가 책임져요. 희귀 사이즈·한정판도 부탁하세요.</p>
+                    </div>
+                    </div>
+                </section>
+
+                <section class="slide">
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지5"></div>
+                    <div class="meta">
+                        <h4>지구를 생각하는</h4>
+                        <p class="subtitle">지속가능 패키징</p>
+                        <p class="desc">재사용 가능한 포장재, 종이 완충재, 분리형 라벨을 도입했습니다. 필요 없는 포장은 줄이고, 반품 회수 시에도 동일 자재를 재활용해요. 고객의 선택 한 번이 지구의 내일을 바꿉니다.</p>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지6"></div>
+                    <div class="meta">
+                        <h4>리뷰가 코디가 되는</h4>
+                        <p class="subtitle">실전 사용자 콘텐츠</p>
+                        <p class="desc">키/몸무게/사이즈가 표시된 실착 리뷰로 ‘내게 맞는 핏’을 바로 확인해요. 좋아요가 많은 코디는 바로 장바구니에 담을 수 있는 ‘원클릭 룩’으로 제공됩니다. 실패 확률을 낮추세요.</p>
+                    </div>
+                    </div>
+                </section>
+
+                <section class="slide">
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지7"></div>
+                    <div class="meta">
+                        <h4>팝업·컬래버로 만나는</h4>
+                        <p class="subtitle">오프라인 경험</p>
+                        <p class="desc">도심 팝업스토어에서 한정 캡슐 라인과 커스텀 서비스를 제공합니다. 온라인 구매 상품도 현장에서 픽업/교환 가능해요. 브랜드와 아티스트의 협업으로 새로운 영감을 전해 드립니다.</p>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <div class="thumb"><img src="#" alt="이미지8"></div>
+                    <div class="meta">
+                        <h4>패션을 넘어 뷰티·그로서리까지</h4>
+                        <p class="subtitle">라이프스타일을 완성</p>
+                        <p class="desc">데일리 코디에 맞춘 향수·메이크업, 홈카페를 위한 그로서리까지 한곳에서. ‘룩+아이템+푸드’ 번들 추천으로 하루의 무드를 완성해 보세요. 생활 전반의 만족을 높여 드립니다.</p>
+                    </div>
+                    </div>
+                </section>
                 </div>
-                <div></div>
             </div>
+            <button class="car-btn next" aria-label="다음 슬라이드">›</button>
+            <div class="car-dots" aria-label="슬라이드 페이지"></div>
+            </div>
+            <style>
+                /* === Carousel 기본 === */
+.carousel{ position:relative; width:1000px; margin:0 auto 28px; }
+.car-viewport{ overflow:hidden; }
+.car-track{ display:flex; transition:transform .45s cubic-bezier(.2,.7,.2,1); }
+
+/* 한 장(슬라이드) = 100% 폭. 슬라이드 안에서 카드 2개 그리드 */
+.slide{ flex: 0 0 100%; padding: 6px 32px 18px; }
+.slide{ display:grid; grid-template-columns: repeat(2, 330px); gap:35px; justify-content:center; }
+
+/* 카드 모양(원래 스타일 유지해도 됨) */
+.card .thumb{ width:330px; height:200px; background:#aaa; }
+.card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.card .meta{ padding-left:10px; }
+.card h4{ margin:18px 0 2px; font-weight:700; }
+.card .subtitle{ margin:0 0 14px; }
+.card .desc{ font-size:14px; line-height:1.6; margin:0; }
+
+/* 좌우 버튼 */
+.car-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:40px; height:40px; border:none; border-radius:20px;
+  background:#f2f2f2; box-shadow:0 1px 3px rgba(0,0,0,.15);
+  font-size:28px; line-height:40px; text-align:center; cursor:pointer;
+}
+.car-btn.prev{ left:-16px; }
+.car-btn.next{ right:-16px; }
+.car-btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+/* 도트 */
+.car-dots{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
+.car-dots button{
+  width:8px; height:8px; border-radius:50%; border:none; background:#d0d0d0; cursor:pointer;
+}
+.car-dots button.is-active{ background:#333; }
+
+/* 반응형(작아지면 카드 1열로) */
+@media (max-width: 760px){
+  .slide{ grid-template-columns: 1fr; gap:14px; padding: 6px 16px 18px; }
+  .card .thumb{ width:100%; height:180px; }
+  .car-btn.prev{ left:4px; } .car-btn.next{ right:4px; }
+  .carousel{ width:100%; }
+}
+            </style>
+            <script>
+(function(){
+  const root = document.getElementById('featCarousel');
+  if(!root) return;
+
+  const track = root.querySelector('.car-track');
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  const prev = root.querySelector('.car-btn.prev');
+  const next = root.querySelector('.car-btn.next');
+  const dotsWrap = root.querySelector('.car-dots');
+
+  let i = 0;                       // 현재 슬라이드 인덱스
+  const n = slides.length;
+
+  // 도트 생성
+  const dots = slides.map((_, idx)=>{
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.addEventListener('click', ()=>{ i = idx; sync(); });
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  function sync(){
+    track.style.transform = `translateX(${ -i * 100 }%)`;
+    dots.forEach((b, idx)=> b.classList.toggle('is-active', idx===i));
+    prev.disabled = (i === 0);
+    next.disabled = (i === n-1);
+  }
+
+  // 버튼 동작
+  prev.addEventListener('click', ()=>{ if(i>0){ i--; sync(); }});
+  next.addEventListener('click', ()=>{ if(i<n-1){ i++; sync(); }});
+
+  // 키보드 좌우
+  root.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowLeft')  prev.click();
+    if(e.key === 'ArrowRight') next.click();
+  });
+  root.tabIndex = 0; // 포커스 가능
+
+  // 터치 스와이프(가벼운 버전)
+  let sx = 0, dx = 0;
+  root.addEventListener('touchstart', e=>{ sx = e.touches[0].clientX; dx = 0; }, {passive:true});
+  root.addEventListener('touchmove',  e=>{ dx = e.touches[0].clientX - sx; }, {passive:true});
+  root.addEventListener('touchend',   ()=>{
+    if(Math.abs(dx) > 50){
+      if(dx < 0 && i < n-1) i++;
+      if(dx > 0 && i > 0)   i--;
+      sync();
+    }
+  });
+
+  // 초기 상태
+  sync();
+})();
+</script>
+
+            <div style="font-size:25px; margin-left:135px; margin-top:50px; margin-bottom:23px;">NICHIYA는 이렇게 성장하고 있어요.</div>
+            <div style="margin-left:150px;">
+                <div style="font-size:18px;">2025.03</div>
+                <div style="margin-bottom:10px;">
+                    <a href="#" style="color:blue; font-weight: 800; text-decoration: none;">'월간 NICHIYA 3월호에서 만나는 50원 도넛, 1천원 양념감자!</a>
+                    <a href="#" style="margin-left:160px;"><button>이미지버튼</button></a>
+                </div>
+                <div style="font-size:18px;">2025.03</div>
+                <div style="margin-bottom:10px;">
+                    <a href="#" style="color:blue; font-weight: 800;">'월간 NICHIYA 3월호에서 만나는 50원 도넛, 1천원 양념감자!</a>
+                    <a href="#" style="margin-left:160px;"><button>이미지버튼</button></a>
+                </div>
+                <div style="font-size:18px;">2025.03</div>
+                <div style="margin-bottom:10px;">
+                    <a href="#" style="color:blue; font-weight: 800;">'월간 NICHIYA 3월호에서 만나는 50원 도넛, 1천원 양념감자!</a>
+                    <a href="#" style="margin-left:160px;"><button>이미지버튼</button></a>
+                </div>
+                <div style="font-size:18px;">2025.03</div>
+                <div style="margin-bottom:10px;">
+                    <a href="#" style="color:blue; font-weight: 800;">'월간 NICHIYA 3월호에서 만나는 50원 도넛, 1천원 양념감자!</a>
+                    <a href="#" style="margin-left:160px;"><button>이미지버튼</button></a>
+                </div>
+                <div style="font-size:18px;">2025.03</div>
+                <div style="margin-bottom:10px;">
+                    <a href="#" style="color:blue; font-weight: 800;">'월간 NICHIYA 3월호에서 만나는 50원 도넛, 1천원 양념감자!</a>
+                    <a href="#" style="margin-left:160px;"><button>이미지버튼</button></a>
+                </div>
+            </div>
+            <div style="font-size:25px; margin-left:135px;margin-bottom:150px; margin-top:50px; line-height: 1.4;">
+                <div>국내 최초의 온라인 종합 쇼핑몰로 출발해</div>
+                <div>쇼핑 경험의 변화를 이끌어 내고 있어요.</div>
+            </div>
+            <div class="timeline-wrap">
+                <div class="timeline timeline--line">
+                    <div class="tl-viewport">
+                        <!-- 여기 목록을 아래로 통째로 교체 -->
+                        <button class="year-btn" data-year="1977">1977</button>
+                        <button class="year-btn" data-year="1984">1984</button>
+                        <button class="year-btn" data-year="1988">1988</button>
+                        <button class="year-btn" data-year="1989">1989</button>
+                        <button class="year-btn" data-year="1990s">1990s</button>
+                        <button class="year-btn" data-year="2000s">2000s</button>
+                        <button class="year-btn" data-year="2007">2007</button>
+                        <button class="year-btn" data-year="2008">2008</button>
+                        <button class="year-btn" data-year="2010">2010</button>
+                        <button class="year-btn" data-year="2014">2014</button>
+                        <button class="year-btn" data-year="2018">2018</button>
+                        <button class="year-btn" data-year="2024">2024</button>
+                    </div>
+                </div>
+            </div>
+                <div class="history">
+                    <div class="history-item" id="y1977">
+                        <h2>1977</h2>
+                        <p>라 코루냐의 작은 공방에서 시작. 낮에는 제작, 밤에는 길거리 판매로 첫 고객을 만났습니다.</p>
+                    </div>
+                    <div class="history-item" id="y1984">
+                        <h2>1984</h2>
+                        <p>첫 대형 생산 스튜디오 구축. ‘낮과 밤, 다른 무드’ 컬렉션으로 자체 디자인 체계를 만들었습니다.</p>
+                    </div>
+                    <div class="history-item" id="y1988">
+                        <h2>1988</h2>
+                        <p>포르투갈 포르투에 첫 해외 매장 오픈. 여행자와 로컬을 잇는 ‘데이&나이트’ 콘셉트를 도입했습니다.</p>
+                    </div>
+                    <div class="history-item" id="y1989">
+                        <h2>1989</h2>
+                        <p>주문-제작 리드타임을 절반으로 단축. 매주 신상품을 선보이는 ‘위클리 드롭’이 시작되었습니다.</p>
+                    </div>
+                    <div class="history-item" id="y1990s">
+                        <h2>1990s</h2>
+                        <p>카탈로그·전화주문 전성기. 야간 주문 픽업 서비스로 ‘밤에도 도착하는 패션’을 실현했습니다.</p>
+                    </div>
+                    <div class="history-item" id="y2000s">
+                        <h2>2000s</h2>
+                        <p>국내 최초 온라인 종합 패션몰 론칭. ‘낮엔 베이직, 밤엔 시그니처’ 추천 큐레이션을 도입했습니다.</p>
+                    </div>
+                    <div class="history-item" id="y2007">
+                        <h2>2007</h2>
+                        <p>모바일 웹 베타 오픈. 출퇴근 시간대에 맞춘 타임딜과 출고 자동화로 당일 발송률을 끌어올렸습니다.</p>
+                    </div>
+                    <div class="history-item" id="y2008">
+                        <h2>2008</h2>
+                        <p>첫 자체 물류센터 가동. 리사이클 포장재와 분리형 라벨로 친환경 풀필먼트를 시작했습니다.</p>
+                    </div>
+                    <div class="history-item" id="y2010">
+                        <h2>2010</h2>
+                        <p>스타일리스트 라이브 챗 도입. 체형·기장·무드에 맞춘 1:1 코디 제안을 밤 11시까지 확장했습니다.</p>
+                    </div>
+                    <div class="history-item" id="y2014">
+                        <h2>2014</h2>
+                        <p>NICHIYA 앱 출시. ‘데이 룩 ↔ 나이트 룩’ 스위치 기능과 AR 피팅으로 전환율을 크게 높였습니다.</p>
+                    </div>
+                    <div class="history-item" id="y2018">
+                        <h2>2018</h2>
+                        <p>마켓플레이스 개편. 디자이너 브랜드와 협업해 ‘Night Capsule’ 한정 라인을 연중 선보였습니다.</p>
+                    </div>
+                    <div class="history-item" id="y2024">
+                        <h2>2024</h2>
+                        <p>스타일 업그레이드. 날씨·취향을 반영한 코디 추천과 당일·새벽 배송을 전국으로 확대했습니다.</p>
+                    </div>
+                </div>
+            <style>
+                /* ====== 긴 선 + 센터링 뷰포트 ====== */
+                .timeline-wrap{ display:flex; align-items:center; gap:12px; margin:40px 0 24px; }
+
+                .timeline.timeline--line{ width:100%; }
+                .timeline.timeline--line .tl-viewport{
+                position:relative; width:100%; height:140px;  /* 살짝 높여 여유 */
+                overflow: visible;
+                }
+                .timeline.timeline--line .tl-inner{
+                position:absolute; inset:0 auto 0 0;
+                height:100%;
+                will-change: transform;
+                transition: transform .45s cubic-bezier(.2,.7,.2,1);
+                }
+                .tl-inner::after{
+                content:""; position:absolute; left:0; right:0; bottom:20px; height:2px; background:#000;
+                }
+
+                /* 점(마커) */
+                .tl-dot{
+                position:absolute; bottom:19px; width:8px; height:8px; border-radius:50%; background:#000; transform:translateX(-50%);
+                }
+
+                /* 연도 타이포 상태 */
+                :root{
+                --year-base: 48px;   /* 이전/다음 기본 크기 */
+                --year-active: 96px; /* 현재 크게 */
+                }
+
+                .year-btn{
+                position:absolute; bottom:44px; transform:translateX(-50%) scale(1);
+                border:none; background:none; cursor:pointer;
+                font:700 var(--year-base)/1 "Bodoni Moda","Noto Serif KR",serif;
+                letter-spacing:.01em;
+                color:#000;
+                opacity:.25;                              /* 기본은 희미 */
+                transition:
+                    opacity .35s ease,
+                    transform .35s ease,
+                    font-size .35s ease,
+                    filter .35s ease;
+                filter:blur(.15px);
+                pointer-events:none;
+                z-index:1;
+                }
+
+                /* 이전/다음(보이게만) */
+                .year-btn.is-near{
+                opacity:.45;
+                transform:translateX(-50%) scale(1);      /* base 그대로 */
+                pointer-events:auto;
+                }
+
+                /* 현재(더 크게) */
+                .year-btn.is-active{
+                opacity:1;
+                font-size: clamp(120px, 14vw, 170px); /* 최소 120px ~ 최대 170px */
+                line-height: 1;
+                transform:translateX(-50%) scale(1);      /* 글자 크기로 키움 */
+                filter:none;
+                pointer-events:auto;
+                z-index:2;                                /* 겹칠 때 위로 */
+                }
+
+                /* (나머지는 뷰포트 밖으로 밀려서 자연히 안 보임) */
+
+                /* 본문 페이드 그대로 */
+                .history .history-item{ display:none; }
+                .history .history-item.is-active{ display:block; animation:fadeIn .35s ease; }
+                /* 히스토리(타임라인 아래) 중앙 정렬 */
+                .history{
+                text-align: center;
+                }
+                .history .history-item h2{
+                display:none;
+                margin: 8px 0 10px;
+                font-weight: 700;
+                }
+                .history .history-item p{
+                margin: 0 auto;
+                max-width: 720px; /* 필요시 600~800px 사이로 조절 */
+                line-height: 1.7;
+                }
+                @keyframes fadeIn{ from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none} }
+                /* 타임라인 바깥까지(뷰포트 밖) 이어지는 풀블리드 라인 */
+                .timeline-wrap{ position: relative; }                 /* 기준점 */
+                .timeline-wrap::after{
+                content:"";
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);                       /* 가운데 정렬 */
+                bottom: 20px;                                       /* 점/선 높이와 맞춤 (tl-inner::after와 동일) */
+                width: 300vw;                                       /* 화면 3배 길이 → 화면 밖까지 뻗게 */
+                height: 2px;
+                background: #000;
+                pointer-events: none;
+                z-index: 0;                                         /* 요소들 아래로 */
+                }
+
+                /* 기존 트랙(안쪽) 요소들이 라인 위로 보이도록 */
+                .timeline.timeline--line .tl-viewport{ position: relative; z-index: 1; }
+                /* 안쪽 라인은 겹치지 않게 투명 처리(선택) */
+                .tl-inner::after{ background: transparent; }
+
+            </style>
+            <script>
+                // ===== 긴 선 타임라인(현재/전/후만 보이고, 이웃 글자 안 잘리게) =====
+                (function(){
+                const root = document.querySelector('.timeline.timeline--line');
+                if(!root) return;
+
+                const viewport = root.querySelector('.tl-viewport');
+                const origBtns = Array.from(viewport.querySelectorAll('.year-btn'));
+                const items    = Array.from(document.querySelectorAll('.history .history-item'));
+                const prev     = document.getElementById('tlPrev');
+                const next     = document.getElementById('tlNext');
+
+                // 내부 트랙 생성 후 버튼 이사
+                const inner = document.createElement('div');
+                inner.className = 'tl-inner';
+                viewport.appendChild(inner);
+                origBtns.forEach(b => inner.appendChild(b));
+
+                const btns = Array.from(inner.querySelectorAll('.year-btn'));
+                const n = btns.length;
+
+                // 간격/여백
+                const STEP = 520;                     // 연도 간 간격(px)
+                const PADDING = Math.max(100, STEP*0.6);
+                const pos = btns.map((_, idx) => PADDING + idx * STEP);
+                const totalWidth = PADDING*2 + (n-1)*STEP;
+                inner.style.width = totalWidth + 'px';
+
+                // 위치 지정 + 점
+                btns.forEach((b, idx) => {
+                    b.style.left = pos[idx] + 'px';
+                    const dot = document.createElement('span');
+                    dot.className = 'tl-dot';
+                    dot.style.left = pos[idx] + 'px';
+                    inner.appendChild(dot);
+                });
+
+                let i = 0;                             // 현재 인덱스
+                const NEIGHBOR_SAFE = 140;             // 이웃 글자 안전여백(px)
+
+                function sync(){
+                // 상태 클래스
+                btns.forEach((b, idx)=>{
+                    b.classList.remove('is-active','is-near');
+                    if (idx === i) b.classList.add('is-active');
+                    else if (Math.abs(idx - i) === 1) b.classList.add('is-near');
+                });
+                items.forEach((el, idx)=> el.classList.toggle('is-active', idx === i));
+
+                // === 핵심: 무조건 중앙 정렬 ===
+                const vw = viewport.clientWidth;
+                const center = vw / 2;
+                const offset = center - pos[i];
+                inner.style.transform = `translateX(${offset}px)`;
+
+                prev && (prev.disabled = (i===0));
+                next && (next.disabled = (i===n-1));
+                }
+
+                // 클릭 이동
+                btns.forEach((b, idx)=> b.addEventListener('click', ()=>{ i = idx; sync(); }));
+
+                // 트랙 아무 곳 클릭 → 최근접 연도
+                viewport.addEventListener('click', (e)=>{
+                    if (e.target.closest('.year-btn')) return;
+                    const rect = viewport.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const m = new DOMMatrixReadOnly(getComputedStyle(inner).transform);
+                    const currentOffset = m.m41 || 0;              // 현재 translateX
+                    const trackX = clickX - currentOffset;
+                    let closest = 0, best = Infinity;
+                    pos.forEach((x, idx)=>{
+                    const d = Math.abs(x - trackX);
+                    if (d < best){ best = d; closest = idx; }
+                    });
+                    i = closest; sync();
+                });
+
+                // 좌/우 키보드, 네비 버튼
+                function goPrev(){ if(i>0){ i--; sync(); } }
+                function goNext(){ if(i<n-1){ i++; sync(); } }
+                prev && prev.addEventListener('click', goPrev);
+                next && next.addEventListener('click', goNext);
+                window.addEventListener('keydown', (e)=>{
+                    if(e.key === 'ArrowLeft')  goPrev();
+                    if(e.key === 'ArrowRight') goNext();
+                });
+
+                // 시작 연도 (원하면 변경)
+                i = 2;   // 1988부터
+                sync();
+                window.addEventListener('resize', sync);
+                })();
+            </script>
+
         </div>
+        <div style="margin-top:100px;"></div>
     </main>
 
     <footer>
@@ -379,6 +873,9 @@
                 <li><a href="#">KAKAO</a></li>
                 <li><a href="#">YOUTUBE</a></li>
                 <li><a href="#">SPOTIFY</a></li>
+                <li><a href="/main/main_main.html">HOME</a></li>
+                <li><a href="#">기업문화</a></li>
+                <li><a href="#">소식과 이야기</a></li>
             </ul>
         </div>
         <div style="width:870px; margin-top:90px; margin-left:40px;">
