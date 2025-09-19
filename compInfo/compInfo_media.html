@@ -407,20 +407,28 @@
 
             // 미디어 데이터 예시 (videoId만 바꾸면 자동 썸네일)
                 const MEDIA = [
-                {id:'ScMzIvxBSi4', title:'# 영상제목 1', sub:'#부제목 EP.201 | Campaign Film | NICHIYA 2025년 09월 19일 방송', date:'2025.09.19'},
-                {id:'dQw4w9WgXcQ', title:'# 영상제목 2', sub:'#인터뷰 | Creative Director | NICHIYA 2025년 08월 25일 방송', date:'2025.08.25'},
-                {id:'9bZkp7q19f0', title:'# 영상제목 3', sub:'#룩북 | 25 S/S | NICHIYA 2024년 09월 19일 방송', date:'2024.09.19'},
-                {id:'3JZ_D3ELwOQ', title:'# 영상제목 4', sub:'#콜라보 | Artist Talk | NICHIYA 2023년 01월 10일 방송', date:'2023.01.10'},
-                {id:'kXYiU_JCYtU', title:'# 영상제목 5', sub:'#쇼케이스 | Pop-up | NICHIYA 2022년 10월 19일 방송', date:'2022.10.19'},
-                {id:'60ItHLz5WEA', title:'# 영상제목 6', sub:'#다큐 | Making Film | NICHIYA 2020년 12월 20일 방송', date:'2020.12.20'},
-                {id:'hY7m5jjJ9mM', title:'# 영상제목 7', sub:'#캠페인 | Denim Line | NICHIYA 2021년 02월 10일 방송', date:'2021.02.10'},
-                {id:'oHg5SJYRHA0', title:'# 영상제목 8', sub:'#에디토리얼 | Night City | NICHIYA 2017년 04월 10일 방송', date:'2017.04.10'},
-                {id:'CevxZvSJLk8', title:'# 영상제목 9', sub:'#런웨이 | Capsule | NICHIYA 2015년 09월 19일 방송', date:'2015.09.19'},
+                    {id:'ScMzIvxBSi4', title:'2025 F/W 캠페인 필름 EP.201 — NICHIYA', sub:'#부제목 EP.201 | Campaign Film | NICHIYA 2025년 09월 19일 방송', date:'2025.09.19'},
+                    {id:'dQw4w9WgXcQ', title:'크리에이티브 디렉터 인터뷰: NICHIYA의 2025 비전', sub:'#인터뷰 | Creative Director | NICHIYA 2025년 08월 25일 방송', date:'2025.08.25'},
+                    {id:'9bZkp7q19f0', title:'25 S/S 룩북 — Light & Structure', sub:'#룩북 | 25 S/S | NICHIYA 2024년 09월 19일 방송', date:'2024.09.19'},
+                    {id:'3JZ_D3ELwOQ', title:'아티스트 토크: 컬래버레이션의 비하인드', sub:'#콜라보 | Artist Talk | NICHIYA 2023년 01월 10일 방송', date:'2023.01.10'},
+                    {id:'kXYiU_JCYtU', title:'팝업 쇼케이스 하이라이트 — Seoul', sub:'#쇼케이스 | Pop-up | NICHIYA 2022년 10월 19일 방송', date:'2022.10.19'},
+                    {id:'60ItHLz5WEA', title:'메이킹 다큐: NICHIYA 스튜디오의 하루', sub:'#다큐 | Making Film | NICHIYA 2020년 12월 20일 방송', date:'2020.12.20'},
+                    {id:'hY7m5jjJ9mM', title:'데님 라인 캠페인 — Timeless Blue', sub:'#캠페인 | Denim Line | NICHIYA 2021년 02월 10일 방송', date:'2021.02.10'},
+                    {id:'oHg5SJYRHA0', title:'에디토리얼: Night City, After Hours', sub:'#에디토리얼 | Night City | NICHIYA 2017년 04월 10일 방송', date:'2017.04.10'},
+                    {id:'CevxZvSJLk8', title:'런웨이 캡슐 컬렉션 — Archive', sub:'#런웨이 | Capsule | NICHIYA 2015년 09월 19일 방송', date:'2015.09.19'},
+                    {id:'tAGnKpE4NCI', title:'2025 S/S 런웨이 하이라이트 — Flowing Future', sub:'#런웨이 | NICHIYA 2025년 03월 05일 방송', date:'2025.03.05'},
+                    {id:'uelHwf8o7_U', title:'브랜드 스토리 다큐 — Origins', sub:'#다큐 | Brand Story | NICHIYA 2024년 06월 11일 방송', date:'2024.06.11'},
+                    {id:'JGwWNGJdvx8', title:'캠페인 필름: Summer Escape', sub:'#캠페인 | NICHIYA 2023년 07월 20일 방송', date:'2023.07.20'},
+                    {id:'RgKAFK5djSk', title:'디렉터스 컷 — Behind the Scene', sub:'#비하인드 | Making Film | NICHIYA 2022년 11월 14일 방송', date:'2022.11.14'},
+                    {id:'L_jWHffIx5E', title:'콜라보 에디션 공개 — Art & Fashion', sub:'#콜라보 | Capsule | NICHIYA 2021년 09월 01일 방송', date:'2021.09.01'},
+                    {id:'fJ9rUzIMcZQ', title:'클래식 아카이브 — 10주년 리마스터', sub:'#아카이브 | Special | NICHIYA 2020년 05월 10일 방송', date:'2020.05.10'},
                 ];
+
+
 
                 const list = document.getElementById('mediaList');
                 const more = document.getElementById('mediaMore');
-                let shown = 6; // 6개씩
+                let shown = 5; // 5개씩
 
                 function cardHTML(v){
                     const url = `https://www.youtube.com/watch?v=${v.id}`;
@@ -445,12 +453,13 @@
                 }
 
                 more.addEventListener('click', () => {
-                    shown += 6;            // 6개씩 추가
+                    shown += 5;            // 5개씩 추가
                     render();
                 });
 
                 render(true);
         </script>
+        <div style="margin-top:160px;"></div>
     </main>
 
     <footer>
