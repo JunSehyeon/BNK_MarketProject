@@ -9,13 +9,43 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
+    <!--헤더푸터 연결-->
+    <script>
+        fetch("../main/header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+
+            // header.html 안의 스크립트 실행 강제
+            const scripts = document.getElementById("header").querySelectorAll("script");
+            scripts.forEach(oldScript => {
+            const newScript = document.createElement("script");
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+            } else {
+                newScript.textContent = oldScript.textContent;
+            }
+            document.body.appendChild(newScript);
+            });
+          });
+
+       
+        fetch("../main/footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+    </script>
+    <div id="header"></div>
+
     <div id="content" class="cs_main_wrap">
-        <h1>케이마켓 이 도와드려요 !</h1>
+
+        <h1>⊙ASK NICHIYA⊙</h1>
 
         <div class="cs_section notice_section">
             <h2 class="section_title">
-                공지사항
-                <a href="/cs/notice/list" class="more_link">전체보기</a>
+                NOTICE
+                <a href="notice/list.html" class="more_link">All</a>
             </h2>
             <div class="section_list">
                 <ul>
@@ -30,8 +60,8 @@
         
         <div class="cs_section faq_section">
             <h2 class="section_title">
-                자주하는 질문
-                <a href="/cs/faq/list" class="more_link">전체보기</a>
+                FAQ
+                <a href="faq/list.html" class="more_link">All</a>
             </h2>
             <div class="faq_category">
                 <a href="/cs/faq/list">
@@ -63,8 +93,8 @@
 
         <div class="cs_section qna_section">
             <h2 class="section_title">
-                문의하기
-                <a href="/cs/qna/list" class="more_link">전체보기</a>
+                ASK NICHIYA
+                <a href="qna/list.html" class="more_link">All</a>
             </h2>
             <div class="section_list">
                 <ul>
@@ -75,10 +105,10 @@
                 </ul>
             </div>
             <div class="btn_area">
-                <a href="/cs/qna/write" class="btn_write">문의글 작성</a>
+                <a href="/cs/qna/write" class="btn_write">write</a>
             </div>
         </div>
     </div>
-    
+    <div id="footer"></div>
     </body>
 </html>

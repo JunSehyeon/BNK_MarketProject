@@ -8,8 +8,37 @@
     
 </head>
 <body>
+<!--헤더푸터 연결-->
+    <script>
+        fetch("../../main/header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+
+            // header.html 안의 스크립트 실행 강제
+            const scripts = document.getElementById("header").querySelectorAll("script");
+            scripts.forEach(oldScript => {
+            const newScript = document.createElement("script");
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+            } else {
+                newScript.textContent = oldScript.textContent;
+            }
+            document.body.appendChild(newScript);
+            });
+          });
+
+       
+        fetch("../../main/footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+    </script>
+    <div id="header"></div>
+
     <div id="content" class="cs_notice_list_wrap">
-        <h1>공지사항</h1>
+        <h1>NOTICE</h1>
         <div class="cs_sub_nav">
             <ul>
                 <li class="on"><a href="#">전체</a></li>
@@ -37,27 +66,27 @@
                 <tbody>
                     <tr>
                         <td>[안내]</td>
-                        <td class="title"><a href="/cs/notice/view">해외결제사 정기점검주의</a></td>
+                        <td class="title"><a href="view.html">해외결제사 정기점검주의</a></td>
                         <td>22.10.31</td>
                     </tr>
                     <tr>
                         <td>[안내]</td>
-                        <td class="title"><a href="/cs/notice/view">해외결제사 정기점검주의</a></td>
+                        <td class="title"><a href="view.html">해외결제사 정기점검주의</a></td>
                         <td>22.10.31</td>
                     </tr>
                     <tr>
                         <td>[안내]</td>
-                        <td class="title"><a href="/cs/notice/view">해외결제사 정기점검주의</a></td>
+                        <td class="title"><a href="view.html">해외결제사 정기점검주의</a></td>
                         <td>22.10.31</td>
                     </tr>
                     <tr>
                         <td>[안내]</td>
-                        <td class="title"><a href="/cs/notice/view">해외결제사 정기점검주의</a></td>
+                        <td class="title"><a href="view.html">해외결제사 정기점검주의</a></td>
                         <td>22.10.31</td>
                     </tr>
                     <tr>
                         <td>[안내]</td>
-                        <td class="title"><a href="/cs/notice/view">해외결제사 정기점검주의</a></td>
+                        <td class="title"><a href="view.html">해외결제사 정기점검주의</a></td>
                         <td>22.10.31</td>
                     </tr>
                 </tbody>
@@ -73,5 +102,6 @@
             <a href="#" class="next">다음</a>
         </div>
     </div>
+<div id="footer"></div>
 </body>
 </html>
