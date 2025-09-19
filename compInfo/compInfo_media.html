@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>compInfo_emp</title>
+    <title>compInfo_media</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
@@ -141,8 +141,8 @@
                     <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">HOME</a></li>
                     <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">기업문화</a></li>
                     <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">소식과 이야기</a></li>
-                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px; font-weight: 800;">채용</a></li>
-                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">미디어</a></li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px;">채용</a></li>
+                    <li><a href="#" style="text-decoration: none; color:black; font-size:14px; font-weight: 800;">미디어</a></li>
                 </ul>
             </div>
         </div>
@@ -346,109 +346,107 @@
     </script>
 
     <main style="margin:0 auto; max-width:1000px;">
-        <div style="width:1000px;">
-            <section style="max-width:800px; margin:80px auto; text-align:center; line-height:1.8;">
-                <h2 style="font-size:28px; font-weight:700; margin-bottom:16px;">
-                    NICHIYA와 함께 새로운 가치를 만들어갈 동료를 기다립니다
-                </h2>
-                <p style="font-size:16px; color:#444; margin-bottom:12px;">
-                    우리는 패션과 라이프스타일을 넘어, 고객 경험을 새롭게 디자인합니다.  
-                    안정성과 혁신을 동시에 추구하며,<br> 유연하고 열린 문화를 만들어가고 있습니다.
-                </p>
-                <p style="font-size:16px; color:#444; margin-bottom:12px;">
-                    구성원 각자의 전문성과 창의성을 존중하고, 함께 성장하는 과정을 중시합니다.  
-                    빠르게 변하는 시장 속에서,<br> 도전을 즐기며 한 걸음 더 나아갈 수 있는 분들을 찾습니다.
-                </p>
-                <p style="font-size:16px; color:#444;">
-                    NICHIYA와 함께 내일을 디자인할 준비가 되셨나요?
-                </p>
-                <div style="margin-top:70px;">
-                    <img src="/images/companyInformation_employment.jpg" alt="" style="width:700px;">
-                </div>
-            </section>
-            <div style="display: flex; justify-content: center;">
-                <table style="font-size:14px; border-collapse: collapse; border:none; border-top:2px solid gray; width:900px; text-align: center;">
-                    <tr style=" height:60px; font-weight: 800; border-bottom: 1px solid #dddddd;">
-                        <th style="width:70px;">번호</th>
-                        <th style="width:100px;">채용부서</th>
-                        <th style="width:180px;">경력사항</th>
-                        <th style="width:60px;">채용형태</th>
-                        <th style="width:210px;">제목</th>
-                        <th style="width:60px;">상태</th>
-                        <th>모집기간</th>
-                    </tr>
-                    <tr style=" height:65px;border-bottom: 1px solid #dddddd;">
-                        <td>4</td>
-                        <td>광고사업</td>
-                        <td>경력 4 ~ 15년</td>
-                        <td>정규직</td>
-                        <td>광고 플랫폼 기획</td>
-                        <td style="color:red;">모집중</td>
-                        <td>0000-00-00 ~ 0000-00-00</td>
-                    </tr>
-                    <tr style=" height:65px;border-bottom: 1px solid #dddddd;">
-                        <td>3</td>
-                        <td>IT</td>
-                        <td>경력 2 ~ 15년</td>
-                        <td>정규직</td>
-                        <td>IT 인재 상시 영입(경력)</td>
-                        <td style="color:red;">모집중</td>
-                        <td>0000-00-00 ~ 0000-00-00</td>
-                    </tr>
-                    <tr style=" height:65px;border-bottom: 1px solid #dddddd;">
-                        <td>2</td>
-                        <td>경영</td>
-                        <td>신입</td>
-                        <td>계약직</td>
-                        <td>경영지원 직원 채용 공고</td>
-                        <td style="color:gray">종료</td>
-                        <td>0000-00-00 ~ 0000-00-00</td>
-                    </tr>
-                    <tr style=" height:65px;border-bottom: 1px solid #dddddd;">
-                        <td>1</td>
-                        <td>운영</td>
-                        <td>무관</td>
-                        <td>계약직</td>
-                        <td>단기 아르바이트 모집</td>
-                        <td style="color:gray;">종료</td>
-                        <td>0000-00-00 ~ 0000-00-00</td>
-                    </tr>
-                </table>
+        <section id="media" style="max-width:1000px;margin:40px auto;">
+            <h2 style="font-size:24px;margin:0 0 12px;">NICHIYA in Media</h2>
+            <p style="color:#555;margin:0 0 24px;">컬렉션 룩북, 캠페인 영상, 인터뷰를 한 곳에 모았습니다.</p>
+
+            <div id="mediaList" class="media-list"></div>
+
+            <div style="text-align:center;margin-top:24px;">
+                <button id="mediaMore" class="btn-more">더보기</button>
             </div>
-        </div>
-        <div style=" height: 100px; margin-top:100px; ">
-            <form action="" method="" style="text-align: center; display:flex; justify-content: center;">
+        </section>
+        <style>
+            .media-list{
+                display:grid;
+                grid-auto-rows:auto;
+                row-gap:18px;                  /* 세로 리스트 간격 */
+            }
+            .media-card{
+                display:grid;
+                grid-template-columns: 180px 1fr;  /* 썸네일 / 텍스트 */
+                gap:16px;
+                padding:12px;
+                border:1px solid #eaeaea;
+                border-radius:12px;
+                background:#fff;
+            }
+            .media-card img {
+                width: 200px;      /* 첫 번째 사진 크기 정도 (원하는 값으로 조절) */
+                height: 120px;     /* 비율 맞춰서 고정 */
+                object-fit: cover; /* 이미지가 영역에 꽉 차게 */
+                border-radius: 0;  /* 모서리 둥글게 제거 → 네모 */
+            }
+            .media-thumb{
+                width:100%; aspect-ratio:16/9; border-radius:8px; overflow:hidden;
+                background:#f5f5f5;
+            }
+            .media-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+            .media-meta{ font-size:12px; color:#888; margin:4px 0 10px; }
+            .media-title{ font-weight:700; margin:2px 0 6px; }
+            .media-sub{ color:#444; line-height:1.5; }
+            .btn-more{
+                background:#f3f3f3; border:none; border-radius:30px; padding:10px 24px;
+                cursor:pointer; font-size:14px;
+            }
+            /* 반응형 */
+            @media(max-width:768px){
+                .media-card{ grid-template-columns:1fr; }
+            }
+        </style>
+        <script>
+            // 유튜브 썸네일 URL 생성 (maxres → hq 순서로 시도)
+            function ytThumb(id, quality='max'){
+                const Q = {max:'maxresdefault.jpg', hq:'hqdefault.jpg', sd:'sddefault.jpg', mq:'mqdefault.jpg'};
+                return `https://img.youtube.com/vi/${id}/${Q[quality]||Q.max}`;
+            }
 
-                <input type="button" class="prev-page" value="< 이전">
+            // 미디어 데이터 예시 (videoId만 바꾸면 자동 썸네일)
+                const MEDIA = [
+                {id:'ScMzIvxBSi4', title:'# 영상제목 1', sub:'#부제목 EP.201 | Campaign Film | NICHIYA 2025년 09월 19일 방송', date:'2025.09.19'},
+                {id:'dQw4w9WgXcQ', title:'# 영상제목 2', sub:'#인터뷰 | Creative Director | NICHIYA 2025년 08월 25일 방송', date:'2025.08.25'},
+                {id:'9bZkp7q19f0', title:'# 영상제목 3', sub:'#룩북 | 25 S/S | NICHIYA 2024년 09월 19일 방송', date:'2024.09.19'},
+                {id:'3JZ_D3ELwOQ', title:'# 영상제목 4', sub:'#콜라보 | Artist Talk | NICHIYA 2023년 01월 10일 방송', date:'2023.01.10'},
+                {id:'kXYiU_JCYtU', title:'# 영상제목 5', sub:'#쇼케이스 | Pop-up | NICHIYA 2022년 10월 19일 방송', date:'2022.10.19'},
+                {id:'60ItHLz5WEA', title:'# 영상제목 6', sub:'#다큐 | Making Film | NICHIYA 2020년 12월 20일 방송', date:'2020.12.20'},
+                {id:'hY7m5jjJ9mM', title:'# 영상제목 7', sub:'#캠페인 | Denim Line | NICHIYA 2021년 02월 10일 방송', date:'2021.02.10'},
+                {id:'oHg5SJYRHA0', title:'# 영상제목 8', sub:'#에디토리얼 | Night City | NICHIYA 2017년 04월 10일 방송', date:'2017.04.10'},
+                {id:'CevxZvSJLk8', title:'# 영상제목 9', sub:'#런웨이 | Capsule | NICHIYA 2015년 09월 19일 방송', date:'2015.09.19'},
+                ];
 
-                <input type="button" value="1" style="border:none; background-color: #ffffff; color:#c72c2c; height: 32px; width: 34px; margin-right:7px; font-weight: 800; line-height:1;">
-                <input type="button" value="2" style="border:none; background-color: #ffffff;color: gray; height: 32px; width: 34px; margin-right:7px; ">
-                <input type="button" value="3" style="border:none; background-color: #ffffff; color: gray; height: 32px; width: 34px;">
+                const list = document.getElementById('mediaList');
+                const more = document.getElementById('mediaMore');
+                let shown = 6; // 6개씩
 
-                <input type="button" class="next-page" value="다음 >">
-            </form>
-            <style>
-                /* 페이지네이션 */
-                /* 게시판 아래버튼 부분 */
-                .prev-page{
-                    background-color: white;
-                    border: none;
-                    margin-right: 15px;
-                    width: 50px;
-                    height: 30px;
+                function cardHTML(v){
+                    const url = `https://www.youtube.com/watch?v=${v.id}`;
+                    return `
+                    <article class="media-card">
+                        <a class="media-thumb" href="${url}" target="_blank" rel="noopener">
+                        <img loading="lazy" src="${ytThumb(v.id,'hq')}"
+                            onerror="this.onerror=null;this.src='${ytThumb(v.id,'hq')}'" alt="">
+                        </a>
+                        <div>
+                        <div class="media-title">${v.title}</div>
+                        <div class="media-meta">${v.date}</div>
+                        <div class="media-sub">${v.sub}</div>
+                        </div>
+                    </article>`;
                 }
-                .next-page{
-                    background-color: white;
-                    border: none;
-                    margin-left: 15px;
-                    width: 50px;
-                    height: 30px;
-                    margin-right:3px;
+
+                function render(reset=false){
+                    const slice = MEDIA.slice(0, shown);
+                    list.innerHTML = slice.map(cardHTML).join('');
+                    more.style.display = (shown >= MEDIA.length) ? 'none' : 'inline-block';
                 }
-                
-                /* 게시판 아래버튼 부분 끝 */
-            </style>
-        </div>
+
+                more.addEventListener('click', () => {
+                    shown += 6;            // 6개씩 추가
+                    render();
+                });
+
+                render(true);
+        </script>
     </main>
 
     <footer>
