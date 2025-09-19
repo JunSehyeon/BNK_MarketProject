@@ -241,3 +241,46 @@ table th {
     border-radius: 5px;
     font-weight: bold;
 }
+
+
+.cs_sub_nav {
+  width: 100%;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.cs_sub_nav ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.cs_sub_nav ul li {
+  flex: 1; /* ← 화면 가로를 각 항목이 1/n 로 균등 분할 */
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+
+.cs_sub_nav ul li:last-child {
+  border-right: none;
+}
+
+.cs_sub_nav ul li a {
+  display: block;
+  padding: 15px 0;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  background-color: #fff;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.cs_sub_nav ul li.on a,
+.cs_sub_nav ul li a:hover {
+  background-color: gray;
+  color: white;
+}
+
