@@ -34,7 +34,7 @@
     /* 상단 바 */
     .modal-header {
       background: #2f7ee6; color:#fff;
-      padding: 12px 16px; font-weight: 700;
+      padding: 4px 16px; font-weight: 700;
       display: flex; align-items: center; justify-content: space-between;
     }
     .modal-header .date { font-weight: 400; opacity:.9; margin-left: 12px; }
@@ -162,7 +162,7 @@
                                         </div>
                                         <div style="padding-left:30px; letter-spacing: -1px;">
                                             <div style="margin-bottom:5px;"><a href="#" class="order-link" data-order-id="1012211341" style="color:gray;">주문번호 : 1012211341</a></div>
-                                            <div style="margin-bottom:5px;"><a href="#" style="color:gray;">(주) 상호명</a></div>
+                                            <div style="margin-bottom:5px;"><a href="#" class="seller-link" style="color:gray;">(주) 상호명</a></div>
                                             <div style="margin-bottom:5px;"><a href="#" style="color:gray;">상품명</a></div>
                                             <div style="margin-bottom:7px;">수량 : 1개</div>
                                             <div style="margin-bottom:5px; font-size: 20px; font-weight: 800;">34,000원</div>
@@ -171,8 +171,8 @@
                                 </td>
                                 <td>배송완료</td>
                                 <td>
-                                    <div><button style="background-color: black; color: white; font-weight: 300; width:97px; height:34px; margin-bottom:5px;">구매확정</button></div>
-                                    <div><button style="background-color: black; color: white; font-weight: 300; width:97px; height:34px; margin-bottom:5px;">상품명쓰기</button></div>
+                                    <div><button class="confirm-purchase" style="background-color: black; color: white; font-weight: 300; width:97px; height:34px; margin-bottom:5px; border:none;">구매확정</button></div>
+                                    <div><button style="background-color: black; color: white; font-weight: 300; width:97px; height:34px; margin-bottom:5px; border:none;">상품명쓰기</button></div>
                                     <div><button style="background-color: white; color: black; border:1px solid #dddddd; font-weight: 300; width:97px; height:34px; margin-bottom:5px;">반품신청</button></div>
                                     <div><button style="background-color: white; color: black; border:1px solid #dddddd; font-weight: 300; width:97px; height:34px; margin-bottom:5px;">교환신청</button></div>
                                 </td>
@@ -186,6 +186,7 @@
         <div style="margin-top:100px;"></div>
         <div id="footer"></div>
     </main>
+    <!-- 주문 상세 마이페이지_메인#2-->
     <!-- ===== 모달 마크업 ===== -->
   <div class="modal-backdrop" id="orderModalBackdrop" aria-hidden="true"></div>
   <div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle" aria-hidden="true">
@@ -340,5 +341,342 @@
     });
     sentinel.addEventListener('focus', () => modal.querySelector('.modal-close').focus());
   </script>
+  <!-- 주문 상세 마이페이지_메인#2-->
+  <!-- 주문 상세 마이페이지_메인#3-->
+   <!-- ===== 판매자정보 모달 ===== -->
+<div class="modal-backdrop" id="sellerModalBackdrop" aria-hidden="true"></div>
+<div class="modal" id="sellerModal" role="dialog" aria-modal="true" aria-labelledby="sellerModalTitle" aria-hidden="true">
+  <div class="modal-dialog" tabindex="-1" style="border-radius:0 !important;">
+    <div class="modal-header" style="border-radius:0 !important;">
+      <div>
+        <span id="sellerModalTitle">판매자정보</span>
+      </div>
+      <button class="modal-close" type="button" aria-label="닫기" id="sellerModalClose">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="section" style="padding:25px;">
+        <table class="kv" style="border-top:1px solid #eee;">
+          <tr><td>판매자 등급</td><td>파워딜러</td></tr>
+          <tr><td>상호</td><td id="s-name"></td></tr>
+          <tr><td>대표자</td><td id="s-rep"></td></tr>
+          <tr><td>전화번호</td><td id="s-tel"></td></tr>
+          <tr><td>FAX</td><td id="s-fax"></td></tr>
+          <tr><td>Email</td><td id="s-email"></td></tr>
+          <tr><td>사업자번호</td><td id="s-bizno"></td></tr>
+          <tr><td>영업소재지</td><td id="s-addr"></td></tr>
+        </table>
+        <div style="font-size:12px; color:#666; margin-top:10px;">
+          ※ 위 정보는 전자상거래법 제20조 제2항 및 시행령 제25조 제2항에 의거하여 소비자보호에 의거 공개합니다.
+        </div>
+        <div style="display:flex; justify-content:center; margin-top:14px;">
+          <button type="button" id="openInquiryBtn" style="width:120px; height:36px; border:0; background:#2f7ee6; color:#fff; font-weight:300;">문의하기</button>
+        </div>
+      </div>
+    </div>
+    <button class="sr-only" id="sellerSentinel"></button>
+  </div>
+</div>
+<script>
+  // ====== 판매자 모달 제어 ======
+  const sModal     = document.getElementById('sellerModal');
+  const sBackdrop  = document.getElementById('sellerModalBackdrop');
+  const sBtnClose  = document.getElementById('sellerModalClose');
+  const sSentinel  = document.getElementById('sellerSentinel');
+
+  // 판매자모달 재오픈을 위해 마지막 데이터와 플래그 저장
+  let __lastSellerData = null;
+  let __sellerWasOpenBeforeInquiry = false;
+
+  function sSet(id, v){ const el=document.getElementById(id); if(el) el.textContent = v || ''; }
+
+  function openSellerModal(data){
+    __lastSellerData = data; // 마지막 판매자정보 기억
+    sSet('s-name',  data.name);
+    sSet('s-rep',   data.rep);
+    sSet('s-tel',   data.tel);
+    sSet('s-fax',   data.fax);
+    sSet('s-email', data.email);
+    sSet('s-bizno', data.bizno);
+    sSet('s-addr',  data.addr);
+
+    sModal.classList.add('is-open');
+    sBackdrop.classList.add('is-open');
+    sModal.querySelector('.modal-dialog').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSellerModal(){
+    sModal.classList.remove('is-open');
+    sBackdrop.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  // “(주) 상호명” 클릭 → 판매자 모달 오픈
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('.seller-link');
+    if(!a) return;
+
+    e.preventDefault();
+    openSellerModal({
+      name:  a.dataset.sellerName  || '(주) 상호명',
+      rep:   a.dataset.sellerRep   || '홍길동',
+      tel:   a.dataset.sellerTel   || '051-123-1000',
+      fax:   a.dataset.sellerFax   || '051-123-1001',
+      email: a.dataset.sellerEmail || 'company@abc.com',
+      bizno: a.dataset.sellerBizno || '123-12-123457',
+      addr:  a.dataset.sellerAddr  || '[210**] 부산광역시 부산진구 대연동 121 10층 1004호'
+    });
+  });
+
+  // 닫기(버튼/배경/Esc) + 포커스 트랩
+  sBtnClose.addEventListener('click', closeSellerModal);
+  sBackdrop.addEventListener('click', closeSellerModal);
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape' && sModal.classList.contains('is-open')) closeSellerModal();
+
+    if(e.key==='Tab' && sModal.classList.contains('is-open')){
+      const focusables = sModal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+      const first = focusables[0], last = focusables[focusables.length-1];
+      if(e.shiftKey && document.activeElement===first){ last.focus(); e.preventDefault(); }
+      else if(!e.shiftKey && document.activeElement===last){ first.focus(); e.preventDefault(); }
+    }
+  });
+  sSentinel.addEventListener('focus', ()=> sModal.querySelector('.modal-close').focus());
+</script>
+
+  <!-- 주문 상세 마이페이지_메인#3-->
+  <!-- 주문 상세 마이페이지_메인#4-->
+   <!-- ===== 문의하기 모달 ===== -->
+<div class="modal-backdrop" id="inquiryModalBackdrop" aria-hidden="true"></div>
+<div class="modal" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle" aria-hidden="true">
+  <div class="modal-dialog" tabindex="-1" style="border-radius:0 !important; width:720px; max-width:calc(100% - 40px);">
+    <div class="modal-header" style="border-radius:0 !important;">
+      <div><span id="inquiryModalTitle">문의하기</span></div>
+      <button class="modal-close" type="button" aria-label="닫기" id="inquiryModalClose">✕</button>
+    </div>
+
+    <form id="inquiryForm" class="modal-body" style="padding:18px;">
+      <!-- 문의유형 -->
+      <div class="section" style="padding:0; margin-bottom:12px;">
+        <table class="kv" style="border-top:1px solid #eee;">
+          <tr>
+            <td style="width:100px; text-align:center; background:#f2f2f2;">문의종류</td>
+            <td>
+              <label style="margin-right:14px;"><input type="radio" name="qtype" value="상품" checked> 상품</label>
+              <label style="margin-right:14px;"><input type="radio" name="qtype" value="배송"> 배송</label>
+              <label style="margin-right:14px;"><input type="radio" name="qtype" value="반품/취소"> 반품/취소</label>
+              <label style="margin-right:14px;"><input type="radio" name="qtype" value="교환"> 교환</label>
+              <label><input type="radio" name="qtype" value="기타"> 기타</label>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align:center; background:#f2f2f2;">Email</td>
+            <td><input id="inqEmail" name="email" type="email" placeholder="you@example.com"
+                       style="border: none; border-bottom: 1px solid gray;width:270px; outline: none; height:34px; padding:6px 8px; box-sizing:border-box;"></td>
+          </tr>
+          <tr>
+            <td style="text-align:center; background:#f2f2f2;">제목</td>
+            <td><input id="inqSubject" name="subject" type="text"
+                       style="border: none; border-bottom: 1px solid gray; width:270px; outline: none; height:34px; padding:6px 8px; box-sizing:border-box;"></td>
+          </tr>
+          <tr>
+            <td style="text-align:center; background:#f2f2f2;">내용</td>
+            <td>
+              <textarea id="inqBody" name="body" rows="12"
+                        style="outline: none; width:100%; resize: none; padding:8px; box-sizing:border-box;"></textarea>
+            </td>
+          </tr>
+        </table>
+
+        <div style="display:flex; justify-content:center; gap:10px; margin-top:16px;">
+          <button type="submit"
+                  style="min-width:120px; height:38px; border:0; background:#2f7ee6; color:#fff; font-weight:300;">
+            등록하기
+          </button>
+          <button type="button" id="inquiryCancelBtn"
+                  style="min-width:120px; height:38px; border:0; background:#ccc; color:#fff;">
+            취소
+          </button>
+        </div>
+      </div>
+      <button class="sr-only" id="inquirySentinel">끝</button>
+    </form>
+  </div>
+</div>
+<script>
+  // ===== 문의하기 모달 제어 =====
+  const iModal     = document.getElementById('inquiryModal');
+  const iBackdrop  = document.getElementById('inquiryModalBackdrop');
+  const iBtnClose  = document.getElementById('inquiryModalClose');
+  const iCancel    = document.getElementById('inquiryCancelBtn');
+  const iForm      = document.getElementById('inquiryForm');
+  const iSentinel  = document.getElementById('inquirySentinel');
+
+  function openInquiryModal(prefill){
+    // 이메일 자동 채움(판매자모달의 Email 셀에서 가져옴)
+    const emailInput = document.getElementById('inqEmail');
+    emailInput.value = (prefill && prefill.email) || document.getElementById('s-email')?.textContent?.trim() || '';
+
+    iModal.classList.add('is-open');
+    iBackdrop.classList.add('is-open');
+    iModal.querySelector('.modal-dialog').focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInquiryModal(){
+    iModal.classList.remove('is-open');
+    iBackdrop.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  // 판매자모달의 [문의하기] 클릭 → 문의작성 모달 오픈
+  document.getElementById('openInquiryBtn')?.addEventListener('click', () => {
+    __sellerWasOpenBeforeInquiry = true;   // 문의창을 띄우기 직전 판매자모달이 열려있었음
+    // (선택) 판매자모달은 닫고 문의모달만 띄우고 싶다면 아래 두 줄을 유지
+    closeSellerModal && closeSellerModal();
+    openInquiryModal({});
+  });
+
+  // 닫기/취소/Esc/백드롭
+  iBtnClose.addEventListener('click', closeInquiryModal);
+  iCancel.addEventListener('click', () => {
+    closeInquiryModal();
+    // 바로 이전에 판매자모달에서 넘어온 경우에만 다시 열기
+    if (__sellerWasOpenBeforeInquiry && __lastSellerData) {
+      openSellerModal(__lastSellerData);
+    }
+    __sellerWasOpenBeforeInquiry = false; // 플래그 초기화
+  });
+  iBackdrop.addEventListener('click', closeInquiryModal);
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape' && iModal.classList.contains('is-open')) closeInquiryModal();
+
+    // 포커스 트랩
+    if(e.key==='Tab' && iModal.classList.contains('is-open')){
+      const focusables = iModal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+      const first = focusables[0], last = focusables[focusables.length-1];
+      if(e.shiftKey && document.activeElement===first){ last.focus(); e.preventDefault(); }
+      else if(!e.shiftKey && document.activeElement===last){ first.focus(); e.preventDefault(); }
+    }
+  });
+  iSentinel.addEventListener('focus', ()=> iModal.querySelector('.modal-close').focus());
+
+  // 제출(데모) — 실제 연동 시 fetch로 서버에 전송
+  iForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const data = {
+      qtype:   iForm.qtype.value,
+      email:   iForm.email.value.trim(),
+      subject: iForm.subject.value.trim(),
+      body:    iForm.body.value.trim(),
+    };
+    console.log('문의 등록:', data); // TODO: fetch('/api/inquiry', {method:'POST', body:JSON.stringify(data)})
+    alert('문의가 등록되었습니다. (데모)');
+    closeInquiryModal();
+  });
+</script>
+  <!-- 주문 상세 마이페이지_메인#4-->
+  <!-- 주문 상세 마이페이지_메인#5-->
+  <!-- ===== 구매확정 모달 ===== -->
+  <div class="modal-backdrop" id="buyModalBackdrop" aria-hidden="true"></div>
+  <div class="modal" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="buyModalTitle" aria-hidden="true">
+    <div class="modal-dialog" tabindex="-1" style="border-radius:0 !important; width:420px; max-width:calc(100% - 40px);">
+      <div class="modal-header" style="border-radius:0 !important;">
+        <div><span id="buyModalTitle">구매확정</span></div>
+        <button class="modal-close" type="button" aria-label="닫기" id="buyClose">✕</button>
+      </div>
+
+      <div class="modal-body" style="padding:57px 37px 30px">
+        <p style="margin:0 0 3px 0; font-size:16px; line-height:1.6;">상품을 받으셨나요?</p>
+        <p style="margin:0 0 55px 0; color:#555; line-height:1.6;">상품을 받으신 분만 구매확정을 해주세요.</p>
+
+        <div style="display:flex; justify-content:center; gap:10px; margin-top:18px;">
+          <button type="button" id="buyOk"
+                  style="min-width:120px; height:38px; border:0; background:#2f7ee6; color:#fff; font-weight:300;">
+            확인
+          </button>
+          <button type="button" id="buyCancel"
+                  style="min-width:120px; height:38px; border:0; background:#ccc; color:#fff;">
+            취소
+          </button>
+        </div>
+        <button class="sr-only" id="buySentinel"></button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // ===== 구매확정 모달 제어 =====
+    const buyModal     = document.getElementById('buyModal');
+    const buyBackdrop  = document.getElementById('buyModalBackdrop');
+    const buyCloseBtn  = document.getElementById('buyClose');
+    const buyOk        = document.getElementById('buyOk');
+    const buyCancel    = document.getElementById('buyCancel');
+    const buySentinel  = document.getElementById('buySentinel');
+
+    let __currentOrderId = null;   // 어떤 주문을 확정하는지 보관
+
+    function openBuyModal(orderId){
+      __currentOrderId = orderId || null;
+      buyModal.classList.add('is-open');
+      buyBackdrop.classList.add('is-open');
+      buyModal.querySelector('.modal-dialog').focus();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBuyModal(){
+      buyModal.classList.remove('is-open');
+      buyBackdrop.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    // “구매확정” 버튼 클릭 → 모달 오픈 (이벤트 위임)
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.confirm-purchase');
+      if(!btn) return;
+
+      // 같은 행의 주문번호(주문번호 : xxxx)에서 id를 찾아봄
+      const row = btn.closest('tr');
+      const orderLink = row?.querySelector('.order-link');
+      const orderId = orderLink?.dataset.orderId || null;
+
+      e.preventDefault();
+      openBuyModal(orderId);
+    });
+
+    // 확인/취소/닫기/백드롭/Esc
+    buyOk.addEventListener('click', ()=>{
+      // TODO: 실제 구매확정 API 호출(fetch) 위치
+      console.log('구매확정 처리 - 주문번호:', __currentOrderId);
+
+      // 데모로 버튼 상태만 변경
+      if (__currentOrderId){
+        const btn = document.querySelector(`.order-link[data-order-id="${__currentOrderId}"]`)
+                    ?.closest('tr')?.querySelector('.confirm-purchase');
+        if (btn){
+          btn.style.border = 'none';
+          btn.textContent = '구매확정완료';
+          btn.disabled = true;
+          btn.style.background = '#ccc';
+          btn.style.color = '#fff';
+          btn.style.cursor = 'default';
+        }
+      }
+      closeBuyModal();
+    });
+    buyCancel.addEventListener('click', closeBuyModal);
+    buyCloseBtn.addEventListener('click', closeBuyModal);
+    buyBackdrop.addEventListener('click', closeBuyModal);
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape' && buyModal.classList.contains('is-open')) closeBuyModal();
+
+      // 포커스 트랩
+      if (e.key === 'Tab' && buyModal.classList.contains('is-open')){
+        const focusables = buyModal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+        const first = focusables[0], last = focusables[focusables.length-1];
+        if (e.shiftKey && document.activeElement===first) { last.focus(); e.preventDefault(); }
+        else if (!e.shiftKey && document.activeElement===last) { first.focus(); e.preventDefault(); }
+      }
+    });
+    buySentinel.addEventListener('focus', ()=> buyModal.querySelector('.modal-close').focus());
+  </script>
+  <!-- 주문 상세 마이페이지_메인#5-->
 </body>
 </html>
