@@ -398,9 +398,10 @@
                                 applyBtn.style.opacity = '1';
                                 applyBtn.style.cursor  = 'pointer';
                                 applyBtn.addEventListener('click', ()=>{
-                                    const rng = validateRange();
-                                    if(!rng) return;
-                                    filter(rng.s, rng.e);
+                                  const rng = validateRange();
+                                  if(!rng) return;
+                                  clearActive();          // ← 조회 시 왼쪽 버튼 활성표시 초기화
+                                  filter(rng.s, rng.e);
                                 });
 
                                 showAll();
