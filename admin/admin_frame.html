@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin_product</title>
+    <title>admin_frame</title>
 </head>
 <body>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -195,6 +195,18 @@
   }
 
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const activeItem = document.querySelector('.euro-nav__item.is-active');
+        if (!activeItem) return;
+
+        const group = activeItem.closest('.euro-nav__group');
+        const list  = group.querySelector('.euro-nav__list');
+
+        group.classList.add('open');
+        list.style.maxHeight = 'none';  // 애니메이션 없이 항상 펼쳐진 상태 유지
+        });
+    </script>
     <header class="site-header">
         <div style="margin-left:2%; width:98%; box-sizing: border-box; margin-top:2%; display:flex; height:230px;">
             <button style="border:none;" id="menuBtn" class="icon-btn" aria-controls="menuOverlay" aria-expanded="false" aria-label="메뉴 열기">
