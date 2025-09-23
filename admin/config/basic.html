@@ -25,13 +25,33 @@
             border-left: none;
             border-right: none;
             padding: 10px;
-            font-weight: normal;  
-            
+            font-weight: normal;              
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본 설정(basic)</title>
+    <style>
+        .title-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 7.6%;
+        }
+        .title-line h3 { font-size: 18px; }
+
+        table {
+            border-collapse: collapse;
+            width: 85%;
+            margin-bottom: 10px;
+            margin-left: 7.6%;
+        }        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
         }
         .th-blue {
             background-color: #dde6f3;
             text-align: left;
-              
+            width: 200px;
         }
         .th-gray {
             background-color: #f2f2f2;
@@ -47,6 +67,11 @@
         }
         .status-gap {
             height: 10px;
+            margin-left: 7.6%;
+        }
+
+        .status-gap {
+            height: 15px;
             border: none;
         }
         .btn {
@@ -57,12 +82,23 @@
             cursor: pointer;
             float: right; 
             margin-right: 25%; 
-        }        
-        
+        }       
     </style>
 </head>
 <body>    
-
+            float: right; /* 오른쪽 정렬 */
+            margin-right: 7.6%; /* 표 정렬 맞추기 */
+        }
+        .btn:hover {
+            background-color: #5a97b5;
+        }
+        input[type="text"], input[type="file"] {
+            width: 95%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
     <div class="title-line" style="border-bottom: 2px solid #ccc;">
         <h3 style="padding-bottom: 5px;">기본설정</h3>
         <div>HOME > 환경설정 > <b>기본 설정</b></div>
@@ -77,6 +113,7 @@
         <tr class="status-gap"></tr>
         <tr>
             <th class="th-blue" style="width: 100px;">사이트 버전</th>
+            <th class="th-blue">사이트 버전</th>
             <td>1.0.1-RELEASE</td>
         </tr>
     </table>
@@ -95,6 +132,13 @@
         <tr>
             <th class="th-blue">부제</th>
             <td><input type="text" value=" 더나은쇼핑환경선택" style="width: 250px; padding: 5px; border: 3px solid #ced4da;"></td>
+        <tr>
+            <th style="background-color: #dde6f3; text-align: left;">제목</th>
+            <td><input type="text" value="케이마켓"></td>
+        </tr>
+        <tr>
+            <th style="background-color: #dde6f3; text-align: left;" >부제</th>
+            <td><input type="text" value="더나은쇼핑환경선택"></td>
         </tr>
     </table>
     <button class="btn">수정하기</button>
@@ -195,6 +239,20 @@
     </table>
     <button class="btn">수정하기</button>
     
+        <tr>
+            <th>헤더 로고</th>
+            <td><input type="file"> (370 × 76 권장)</td>
+        </tr>
+        <tr>
+            <th>푸터 로고</th>
+            <td><input type="file"> (155 × 36 권장)</td>
+        </tr>
+        <tr>
+            <th>파비콘</th>
+            <td><input type="file"> (32 × 32 권장)</td>
+        </tr>
+    </table>
+    <button class="btn">수정하기</button>
 
 </body>
 </html>
