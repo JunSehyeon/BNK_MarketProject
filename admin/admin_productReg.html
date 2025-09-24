@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin_productList</title>
+    <title>admin_productReg</title>
 </head>
 <body>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,7 +141,6 @@
     margin: 0;
     letter-spacing:0em;
     text-transform:uppercase;
-    color:var(--z-black);
     border-bottom:1px solid var(--z-line);
     background-color: black; color:white;
     font-weight:600;
@@ -441,7 +440,7 @@
 
         group.classList.add('open');
         list.style.maxHeight = 'none';  // 애니메이션 없이 항상 펼쳐진 상태 유지
-    });
+   class });
     </script>
 
     <main style="border-top:1px solid #e2e2e2; display: flex; justify-content: center; ">
@@ -477,8 +476,8 @@
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">상품관리</h4>
             <ul class="euro-nav__list">
-                <li class="euro-nav__item is-active"><a href="#">상품목록</a></li>
-                <li class="euro-nav__item"><a href="#">상품등록</a></li>
+                <li class="euro-nav__item"><a href="#">상품목록</a></li>
+                <li class="euro-nav__item is-active"><a href="#">상품등록</a></li>
             </ul>
             </section>
 
@@ -511,211 +510,245 @@
         </div>
         <div style="width:940px; margin-left:60px;">
             <div style="display: flex;">
-                <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">상품목록</div>
+                <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">상품등록</div>
                 <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 상품관리 > <span style="font-weight: 800;">상품목록</span></div>
             </div>
             <hr style="border:none; border-top:1px solid gray; margin-top:0px;">
-            <div style="display: flex; align-items: center; margin-top: 25px; margin-bottom:20px; ">
-                <form action="" method="post" style="display: flex; ">
-                    <select name="select" id="" style="width:82px; height:28px; padding-left:5px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
-                        <option value="name">상품명</option>
-                        <option value="code">상품코드</option>
-                        <option value="seller">판매자</option>
-                    </select>
-                    <input type="text" placeholder="키워드입력" style="width:140px; height:28px; padding-left:10px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
-                    <input type="submit" value="검색" style="width:50px; height:28px; color:white; background-color: black; border:none; font-size: 12px !important;">
-                </form>
+            <div style="padding-left:10px; margin-top:15px;">
+                <div style="font-weight: 800; margin-bottom:5px;">상품분류</div>
+                <div style="font-size: 13px;">
+                    <div style="padding:10px; background-color: #f3f3f3; height:40px;">1차, 2차 카테고리 기본분류는 반드시 선택하셔야 합니다.</div>
+                    <table style="margin-top:6px; width:100%; border-collapse: collapse; border:none; border-top:1px solid #e2e2e2;">
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3; width:100px;">1차 분류</td>
+                            <td>
+                                <select name="firSel" id="" style="margin-left:6px; padding-left:5px; height: 30px; width:115px; font-size: 12px; border:1px solid #e2e2e2; outline: none;">
+                                    <option value="select">1차분류 선택</option>
+                                    <option value="fashion">패션</option>
+                                    <option value="beauty">뷰티</option>
+                                    <option value="electronics">전자제품</option>
+                                    <option value="home">홈</option>
+                                    <option value="leisure">레저</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">2차 분류</td>
+                            <td>
+                                <select name="secSel" id="" style="margin-left:6px; padding-left:5px; height: 30px; width:115px; font-size: 12px; border:1px solid #e2e2e2; outline: none;">
+                                    <option value="select">2차분류 선택</option>
+                                    <option value="woman">여성의류</option>
+                                    <option value="man">남성의류</option>
+                                    <option value="kids">키즈의류</option>
+                                    <option value="sport">스포츠의류</option>
+                                    <option value="cosmetics">화장품</option>
+                                    <option value="perfume">향수</option>
+                                    <option value="sound">음향기기</option>
+                                    <option value="life">생활기기</option>
+                                    <option value="bigFur">대가구</option>
+                                    <option value="smallFur">소가구</option>
+                                    <option value="vehicle">자동차/오토바이</option>
+                                    <option value="leisure">레저용품</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                        // 1차→2차 매핑
+                        const subMap = {
+                            fashion: [
+                            { value: 'woman', text: '여성의류' },
+                            { value: 'man', text: '남성의류' },
+                            { value: 'kids', text: '키즈의류' },
+                            { value: 'sport', text: '스포츠의류' },
+                            ],
+                            beauty: [
+                            { value: 'cosmetics', text: '화장품' },
+                            { value: 'perfume', text: '향수' },
+                            ],
+                            electronics: [
+                            { value: 'sound', text: '음향기기' },
+                            { value: 'life', text: '생활기기' },
+                            ],
+                            home: [
+                            { value: 'bigFur', text: '대가구' },
+                            { value: 'smallFur', text: '소가구' },
+                            ],
+                            leisure: [
+                            { value: 'vehicle', text: '자동차/오토바이' },
+                            { value: 'leisure', text: '레저용품' },
+                            ],
+                        };
+
+                        const first = document.querySelector('select[name="firSel"]');
+                        const second = document.querySelector('select[name="secSel"]');
+
+                        // 2차 기본 상태 세팅
+                        function resetSecond() {
+                            second.innerHTML = '<option value="select">2차분류 선택</option>';
+                            second.disabled = true;
+                        }
+
+                        // 2차 옵션 채우기
+                        function fillSecond(list) {
+                            resetSecond();
+                            list.forEach(opt => {
+                            const o = document.createElement('option');
+                            o.value = opt.value;
+                            o.textContent = opt.text;
+                            second.appendChild(o);
+                            });
+                            second.disabled = false;
+                        }
+
+                        // 처음 로드 시 2차 비활성화(원하면 유지)
+                        resetSecond();
+
+                        // 1차 변경 시 2차 갱신
+                        first.addEventListener('change', () => {
+                            const key = first.value;
+                            if (subMap[key]) {
+                            fillSecond(subMap[key]);
+                            } else {
+                            resetSecond();
+                            }
+                        });
+                        });
+                        </script>
+                </div>
+                <div style="font-weight: 800; margin-bottom:5px; margin-top:15px;">기본정보</div>
+                <div style="font-size: 13px;">
+                    <div style="padding:10px; background-color: #f3f3f3; height:40px;">기본정보는 반드시 입력하셔야 합니다.</div>
+                    <table style="margin-top:6px; width:100%; border-collapse: collapse; border:none; border-top:1px solid #e2e2e2;">
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3; width:170px;">상품명</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"></td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">기본설명</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"></td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">제조사</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"></td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">상품금액</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">할인율</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> %</td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">포인트</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">재고수량</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 개</td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">배송비</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
+                        </tr>
+                        <tr style="height:120px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">상품이미지</td>
+                            <td>
+                                <div style="display: flex; flex-direction: column; margin-top:5px;">
+                                    <div style="display: flex;">
+                                        <div class="file-like" style="margin-bottom:5px; border:1px solid #e2e2e2; width:220px; height:35px; padding:5px; margin-left:5px;">
+                                            <input type="file" id="file1">
+                                            <label for="file1" class="btn-like">파일 선택</label>
+                                            <span class="file-name">선택된 파일 없음</span>
+                                        </div>
+                                        <div style="margin-left:10px; margin-top:9px;">크기 190 x 190, 상품 목록에 출력될 이미지입니다.</div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="file-like" style="margin-bottom:5px; border:1px solid #e2e2e2; width:220px; height:35px; padding:5px; margin-left:5px;">
+                                            <input type="file" id="file2">
+                                            <label for="file2" class="btn-like">파일 선택</label>
+                                            <span class="file-name">선택된 파일 없음</span>
+                                        </div>
+                                        <div style="margin-left:10px; margin-top:9px;">크기 230 x 230, 상품 메인에 출력될 이미지입니다.</div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="file-like" style="margin-bottom:5px; border:1px solid #e2e2e2; width:220px; height:35px; padding:5px; margin-left:5px;">
+                                            <input type="file" id="file3">
+                                            <label for="file3" class="btn-like">파일 선택</label>
+                                            <span class="file-name">선택된 파일 없음</span>
+                                        </div>
+                                        <div style="margin-left:10px; margin-top:9px;">크기 456 x 456, 상품 상세에 출력될 이미지입니다.</div>
+                                    </div>
+                                </div>
+                                
+                            </td>
+                        </tr> 
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">상품 상세정보</td>
+                            <td>
+                                <div style="display: flex; flex-direction: column; margin-top:5px;">
+                                <div style="display: flex;">
+                                    <div class="file-like" style="margin-bottom:5px; border:1px solid #e2e2e2; width:220px; height:35px; padding:5px; margin-left:5px;">
+                                    <input type="file" id="img4" name="img4" accept="image/*">
+                                    <label for="img4" class="btn-like">파일 선택</label>
+                                    <span class="file-name">선택된 파일 없음</span>
+                                    </div>
+                                    <div style="margin-left:10px; margin-top:9px;">크기 가로 940px, 높이 제약없음, 최대 1MB</div>
+                                </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <script>
+                        document.querySelectorAll('.file-like input[type="file"]').forEach(input=>{
+                            input.addEventListener('change', () => {
+                                const nameBox = input.parentElement.querySelector('.file-name');
+                                const names = (input.files && input.files.length)
+                                ? Array.from(input.files).map(f => f.name).join(', ')
+                                : '선택된 파일 없음';
+                                if (nameBox) nameBox.textContent = names;
+                            });
+                        });
+                    </script>
+                    <style>
+                        /* 등록하기 버튼과 동일 스타일 */
+                        .btn-like {
+                            display:inline-block;
+                            width:62px; height:25px;
+                            background:#000; color:#fff;
+                            font-size:10px; font-weight:300;
+                            border:none; line-height:25px; text-align:center;
+                            cursor:pointer; user-select:none;
+                        }
+
+                        .btn-like:hover { opacity:.9; }
+                        .btn-like:active { opacity:.8; }
+
+                            /* 기본 파일 input 숨기기 */
+                        .file-like input[type="file"]{
+                            position:absolute; width:1px; height:1px;
+                            padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0);
+                            border:0;
+                        }
+                        .file-like{ display:inline-flex; align-items:center; gap:8px; }
+
+                        /* 파일명(“선택된 파일 없음” 포함) 표시 영역 */
+                        .file-like .file-name{
+                            display:inline-block;
+                            max-width:240px;                /* 표/레이아웃에 맞춰 조절 */
+                            font-size:12px; color:#333;
+                            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+                            line-height:1.2;
+                        }
+                    </style>
+                </div>
             </div>
-            <table style="border-collapse: collapse; width:100%; font-size:12px; text-align: center; ">
-                <tr style="border-top:1px solid gray; height:50px; border-bottom:1px solid #e2e2e2;">
-                    <th style="width:37px;"><input type="checkbox"></th>
-                    <th style="width:72px;">사진</th>
-                    <th style="width:105px;">상품코드</th>
-                    <th style="width:96px;">상품명</th>
-                    <th style="width:85px;">판매가격</th>
-                    <th style="width:65px;">할인율</th>
-                    <th style="width:65px;">포인트</th>
-                    <th style="width:53px;">재고</th>
-                    <th style="width:98px;">판매자</th>
-                    <th style="width:45px;">조회</th>
-                    <th style="width:119px;">관리</th>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                    <td><input type="checkbox"></td>
-                    <td style=""><img src="/images/product_list1.jpg" alt="" style="height:60px;vertical-align: middle;"></td>
-                    <td>201603292</td>
-                    <td>상품명 #1</td>
-                    <td>32,000</td>
-                    <td>10%</td>
-                    <td>320</td>
-                    <td>1,000</td>
-                    <td>(주)다파라</td>
-                    <td>120</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-            </table>
             <div style="display: flex; margin-top:25px;">
-                <button style="border:none; background-color: #760c0c; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">선택삭제</button>
-                <button style="margin-left:auto; border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">상품등록</button>
+                <button style="margin-left:auto; border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">등록하기</button>
             </div>
-            <div style=" height: 100px; margin-top:40px; display: flex; justify-content: center;">
-                <form action="" method="" style="">
-                    <input type="button" class="prev-page" value="< 이전">
-
-                    <input type="button" value="1" style="border:1px solid #333; background-color: #333; color: white; height: 30px; width: 30px; margin-right:2px; line-height:1;">
-                    <input type="button" value="2" style="cursor: pointer; border:1px solid #ddd; color: #555; height: 30px; width: 30px; margin-right:2px; line-height:1;">
-                    <input type="button" value="3" style="cursor: pointer; border:1px solid #ddd; color: #555; height: 30px; width: 30px; line-height:1;">
-
-                    <input type="button" class="next-page" value="다음 >" style="">
-                </form>
-            </div>
+            
         </div>
     </main>
 
