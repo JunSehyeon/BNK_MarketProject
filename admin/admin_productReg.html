@@ -440,7 +440,7 @@
 
         group.classList.add('open');
         list.style.maxHeight = 'none';  // 애니메이션 없이 항상 펼쳐진 상태 유지
-   class });
+    });
     </script>
 
     <main style="border-top:1px solid #e2e2e2; display: flex; justify-content: center; ">
@@ -508,10 +508,11 @@
             </section>
         </aside>
         </div>
-        <div style="width:940px; margin-left:60px;">
+        <div style="width:940px; border-left:1px solid #e2e2e2; ">
+            <div style="margin-left:60px;">
             <div style="display: flex;">
                 <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">상품등록</div>
-                <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 상품관리 > <span style="font-weight: 800;">상품목록</span></div>
+                <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 상품관리 > <span style="font-weight: 800;">상품등록</span></div>
             </div>
             <hr style="border:none; border-top:1px solid gray; margin-top:0px;">
             <div style="padding-left:10px; margin-top:15px;">
@@ -635,7 +636,7 @@
                         </tr>
                         <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
                             <td style="text-align: center; background-color: #dde6f3;">상품금액</td>
-                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
+                            <td><input type="text" id="priceInput" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
                         </tr>
                         <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
                             <td style="text-align: center; background-color: #dde6f3;">할인율</td>
@@ -643,15 +644,15 @@
                         </tr>
                         <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
                             <td style="text-align: center; background-color: #dde6f3;">포인트</td>
-                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
+                            <td><input type="text" id="pointInput" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
                         </tr>
                         <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
                             <td style="text-align: center; background-color: #dde6f3;">재고수량</td>
-                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 개</td>
+                            <td><input type="text" id="stockInput" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 개</td>
                         </tr>
                         <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
                             <td style="text-align: center; background-color: #dde6f3;">배송비</td>
-                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
+                            <td><input type="text" id="shippingInput" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none;"> 원</td>
                         </tr>
                         <tr style="height:120px; border-bottom:1px solid #e2e2e2;">
                             <td style="text-align: center; background-color: #dde6f3;">상품이미지</td>
@@ -744,11 +745,84 @@
                         }
                     </style>
                 </div>
+                <div style="font-weight: 800; margin-bottom:5px; margin-top:15px;">상품 선택정보</div>
+                <div style="font-size: 13px;">
+                    <div>
+                        <div style="padding-left:10px;padding-top:10px;background-color: #f3f3f3; height:33px;">상품별 선택정보(옵션) 입력입니다.</div>
+                        <div style="padding-left:10px; background-color: #f3f3f3; height:30px;">예시) 옵션1: 사이즈, 옵션1 항목 : XXL, XL, L, M, S (, 콤마로 구분)</div>
+                    </div>
+                    <table id="optionsTable" style="margin-top:6px; width:100%; border-collapse: collapse; border:none; border-top:1px solid #e2e2e2; font-size: 12px;">
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="width:100px;text-align: center; background-color: #dde6f3; width:100px;">옵션1</td>
+                            <td style="width:365px;">
+                                <input type="text" style="margin-left:5px; width:353px;height:30px; border:1px solid #e2e2e2; outline: none;">
+                            </td>
+                            <td style="width:100px;text-align: center; background-color: #dde6f3; width:100px;">옵션1 항목</td>
+                            <td style="width:365px;">
+                                <input type="text" style="margin-left:5px; width:353px;height:30px; border:1px solid #e2e2e2; outline: none;">
+                            </td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="width:100px;text-align: center; background-color: #dde6f3; width:100px;">옵션2</td>
+                            <td style="width:365px;">
+                                <input type="text" style="margin-left:5px; width:353px;height:30px; border:1px solid #e2e2e2; outline: none;">
+                            </td>
+                            <td style="width:100px;text-align: center; background-color: #dde6f3; width:100px;">옵션2 항목</td>
+                            <td style="width:365px;">
+                                <input type="text" style="margin-left:5px; width:353px;height:30px; border:1px solid #e2e2e2; outline: none;">
+                            </td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="width:100px;text-align: center; background-color: #dde6f3; width:100px;">옵션3</td>
+                            <td style="width:365px;">
+                                <input type="text" style="margin-left:5px; width:353px;height:30px; border:1px solid #e2e2e2; outline: none;">
+                            </td>
+                            <td style="width:100px;text-align: center; background-color: #dde6f3; width:100px;">옵션3 항목</td>
+                            <td style="width:365px;">
+                                <input type="text" style="margin-left:5px; width:353px;height:30px; border:1px solid #e2e2e2; outline: none;">
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="display: flex; margin-top:5px;">
+                        <button id="addOptionBtn" style="margin-left:auto; border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px; cursor: pointer;">옵션 추가</button>
+                    </div>
+                </div>
+                <div style="font-weight: 800; margin-bottom:5px; margin-top:15px;">상품정보 제공고시</div>
+                <div style="font-size: 13px;">
+                    <div>
+                        <div style="padding:10px; background-color: #f3f3f3; height:40px;">[전자상거래에 관한 상품정보 제공에 관한 고시] 항목에 의거 등록하는 정보입니다.</div>
+                    </div>
+                    <table style="margin-top:6px; width:100%; border-collapse: collapse; border:none; border-top:1px solid #e2e2e2;">
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3; width:170px;">상품상태</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none; font-size: 12px; padding-left:10px;" placeholder="새상품"></td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">부가세 면세여부</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none; font-size: 12px; padding-left:10px;" placeholder="과세상품"></td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">영수증 발행</td>
+                            <td><input type="text" style="margin-left:5px; width:320px;height:30px; border:1px solid #e2e2e2; outline: none; font-size: 12px; padding-left:10px;" placeholder="발행가능 - 신용카드전표, 온라인현금영수증"></td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">사업자구분</td>
+                            <td><input type="text" style="margin-left:5px; width:320px;height:30px; border:1px solid #e2e2e2; outline: none; font-size: 12px; padding-left:10px;" placeholder="사업자판매자"></td>
+                        </tr>
+                        <tr style="height:40px; border-bottom:1px solid #e2e2e2;">
+                            <td style="text-align: center; background-color: #dde6f3;">원산지</td>
+                            <td><input type="text" style="margin-left:5px; width:220px;height:30px; border:1px solid #e2e2e2; outline: none; font-size: 12px; padding-left:10px;" placeholder="국내산"></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top:20px;">
+                        <div style="padding-left:10px;padding-top:10px;background-color: #feffca; color:gray; height:33px;">전자상거래 등에서의 상품 등의 정보 제공에 관한 고시에 따라 총 35개 상품군에 대해 상품 특성 등을 양식에 따라</div>
+                        <div style="padding-left:10px; background-color: #feffca; height:30px; color:gray;">입력할 수 있습니다.</div>
+                    </div>
+                </div>
+            <div style="display: flex; margin-top:15px;">
+                <button onclick="location.href='./admin_productReg.html'" style="margin-left:auto; border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px; cursor: pointer;">등록하기</button>
             </div>
-            <div style="display: flex; margin-top:25px;">
-                <button style="margin-left:auto; border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">등록하기</button>
-            </div>
-            
+            <div style="margin-top:300px;"></div>
         </div>
     </main>
 
@@ -811,9 +885,89 @@
       });
     }, {capture:true});
   });
-  
+  // placeholder 값을 초기 입력값으로 채우기
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('input[placeholder]').forEach((el) => {
+      if (!el.value) el.value = el.getAttribute('placeholder');
+    });
+  });
+  // 옵션 추가 버튼: 새 행(옵션N, 옵션N 항목) 생성
+  document.addEventListener('DOMContentLoaded', () => {
+    const addBtn = document.getElementById('addOptionBtn');
+    const table  = document.getElementById('optionsTable');
+
+    addBtn.addEventListener('click', () => {
+      // 현재 옵션 행 개수(=다음 번호 N 계산)
+      const rows = table.querySelectorAll('tr');
+      const next = rows.length + 1; // 처음 3개면 다음은 4
+
+      // 마지막 행 복제 → 스타일 유지
+      const lastRow = rows[rows.length - 1];
+      const newRow  = lastRow.cloneNode(true);
+
+      // TD 텍스트 업데이트(옵션N / 옵션N 항목)
+      const tds = newRow.querySelectorAll('td');
+      tds[0].textContent = `옵션${next}`;
+      tds[2].textContent = `옵션${next} 항목`;
+
+      // 입력값은 비우기
+      newRow.querySelectorAll('input').forEach(inp => {
+        inp.value = '';
+      });
+
+      // 표에 추가
+      table.appendChild(newRow);
+    });
+  });
+  // 숫자만 추출해서 Number로 변환 (쉼표/문자 제거)
+  function toNumber(str){
+    const n = Number(String(str).replace(/[^\d.-]/g, ''));
+    return isNaN(n) ? 0 : n;
+  }
+
+  const priceEl = document.getElementById('priceInput');
+  const pointEl = document.getElementById('pointInput');
+
+  function updatePoint(){
+    // 입력이 비었으면 포인트도 비움
+    if(!priceEl.value.trim()){ pointEl.value = ''; return; }
+
+    const price = toNumber(priceEl.value);
+    const point = Math.floor(price * 0.01); // 1% (내림)
+    pointEl.value = point.toLocaleString(); // 보기 좋게 천단위 콤마
+  }
+
+  // 금액 입력 중 실시간 반영
+  priceEl.addEventListener('input', updatePoint);
+
+  // 포커스가 빠질 때 금액 칸도 천단위 포맷 적용
+  priceEl.addEventListener('blur', () => {
+    const n = toNumber(priceEl.value);
+    priceEl.value = n ? n.toLocaleString() : '';
+    updatePoint();
+  });
+  // 입력 중엔 숫자만 남기고, 포커스 빠질 때 콤마 붙이기
+  function attachCommaFormat(el){
+    if(!el) return;
+
+    el.addEventListener('input', () => {
+      // 사용자가 타이핑할 땐 숫자 외 제거 (마이너스/소수 안 쓰면 \D로 단순화 가능)
+      const onlyDigits = el.value.replace(/[^\d]/g, '');
+      el.value = onlyDigits;
+    });
+
+    el.addEventListener('blur', () => {
+      const n = toNumber(el.value);
+      el.value = n ? n.toLocaleString() : '';
+    });
+  }
+
+  // 재고수량·배송비에 적용
+  attachCommaFormat(document.getElementById('stockInput'));
+  attachCommaFormat(document.getElementById('shippingInput'));
     </script>
-    <footer style="padding:20px; background-color: #808080; width:100%; height:62px; color:white;">
+    </div>
+    <footer style=" padding:20px; background-color: #808080; width:100%; height:62px; color:white;">
         Copyright ©NICHIYA.co.kr All rights reserved. NICHIYA ADMINISTRATOR Version 5.4.1.2
     </footer>
 </body>
