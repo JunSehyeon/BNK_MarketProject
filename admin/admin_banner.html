@@ -21,7 +21,8 @@
         }
 
         .tabbar { 
-            border: 1px solid #bbb; 
+            border: 1px solid #bbb;
+            background-color: #e9ecef;
             display: flex; 
             flex-wrap: wrap;
             margin-left: 20px;
@@ -30,21 +31,17 @@
         .tabbar a { 
             display: inline-block; 
             padding: 10px 14px; 
-            background: #c8c8c8;        
+            background: #c8c8c8;             
             border: 1px solid #bbb;
-            border-bottom: 1px solid #bbb;
             text-decoration: none; 
             color: #333; 
             font-size: 14px;   
             margin-top: 10px;       
             margin-left: 5px;     
-        }
-        .tabbar a:last-child { 
-            border-right: 0; 
-        }
-        .tabbar a.active { 
-            background: #ffffff; 
-            border-bottom: none;
+        }        
+        .tabbar a.active {             
+            background-color: #ffff;
+            border-bottom: none;            
         }
         .tabbar a:hover:not(.active) {
             background: #bfbfbf;
@@ -541,9 +538,9 @@
         </div>
         <div style="width:900px; height:1000px; border-left:1px solid #e2e2e2; ">
 
-        <!-- ///////////// 작업 공간 ///////////// -->        
-        <!-- 베너관리 -->
-        <div class="title-line" style="border-bottom: 2px solid #ccc;">
+        <!-- ///////////// 배너 작업 공간 ///////////// -->        
+        <!-- 배너관리 -->
+        <div class="title-line" style="border-bottom: 3px solid #ccc;">
             <div style="padding-top: 10px; padding-bottom: 5px; font-size: 22px;"><b>배너관리</b></div>
             <div>HOME > 환경설정 > <b>배너관리</b></div>
         </div>
@@ -554,7 +551,11 @@
             <a href="#">상품 상세배너</a>
             <a href="#">회원로그인 배너</a>
             <a href="#">마이페이지 배너</a>
-        </div>    
+        </div>
+
+        <div class="title-line" style="border-bottom: 2px solid #ccc;">
+            <div style="padding-top: 10px; padding-bottom: 5px; font-size: 20px;"><b>메인 상단배너</b></div>            
+        </div>
 
         
     </main>
