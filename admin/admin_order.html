@@ -523,7 +523,6 @@
                             <option value="num">주문번호</option>
                             <option value="who">주문자</option>
                             <option value="name">주문자명</option>
-                            <option value="pay">결제수단</option>
                         </select>
                         <input type="text" placeholder="검색어입력" style="width:140px; height:28px; padding-left:10px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
                         <input type="submit" value="검색" style="width:50px; height:28px; color:white; background-color: black; border:none; font-size: 12px !important;">
@@ -551,7 +550,14 @@
                         <td style="color:#8bd8a7">결제완료</td>
                         <td>0000-00-00 00:00:00</td>
                         <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;">배송하기</button>
+                            <button style="height:30px; border: 1px solid #e2e2e2;"
+                            class="ship-btn" 
+                            data-order-no="10121211341"
+                            data-recipient="김유신"
+                            data-zip="12345"
+                            data-addr1="부산광역시 부산진구 부전동 123"
+                            data-addr2="OO 빌딩 3층 301호"
+                            data-etc="문 앞에 놓아주세요">배송하기</button>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
@@ -564,7 +570,14 @@
                         <td style="color:#bde18d;">결제대기</td>
                         <td>0000-00-00 00:00:00</td>
                         <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;">배송하기</button>
+                            <button style="height:30px; border: 1px solid #e2e2e2;"
+                            class="ship-btn" 
+                            data-order-no="10121211341"
+                            data-recipient="김유신"
+                            data-zip="12345"
+                            data-addr1="부산광역시 부산진구 부전동 123"
+                            data-addr2="OO 빌딩 3층 301호"
+                            data-etc="문 앞에 놓아주세요">배송하기</button>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
@@ -599,7 +612,14 @@
                         <td style="color:#bde18d;">결제대기</td>
                         <td>0000-00-00 00:00:00</td>
                         <td style="">
-                            <button style="height:30px; border: 1px solid #e2e2e2;">배송하기</button>
+                            <button style="height:30px; border: 1px solid #e2e2e2;"
+                            class="ship-btn" 
+                            data-order-no="10121211341"
+                            data-recipient="김유신"
+                            data-zip="12345"
+                            data-addr1="부산광역시 부산진구 부전동 123"
+                            data-addr2="OO 빌딩 3층 301호"
+                            data-etc="문 앞에 놓아주세요">배송하기</button> <!-- 실제값 채우기 -->
                         </td>
                     </tr><tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                         <td><a href="#" style="font-weight: 800;">10121211341</a></td>
@@ -611,7 +631,14 @@
                         <td style="color:#8bd8a7">결제완료</td>
                         <td>0000-00-00 00:00:00</td>
                         <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;">배송하기</button>
+                            <button style="height:30px; border: 1px solid #e2e2e2;"
+                            class="ship-btn" 
+                            data-order-no="10121211341"
+                            data-recipient="김유신"
+                            data-zip="12345"
+                            data-addr1="부산광역시 부산진구 부전동 123"
+                            data-addr2="OO 빌딩 3층 301호"
+                            data-etc="문 앞에 놓아주세요">배송하기</button>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
@@ -624,7 +651,14 @@
                         <td style="color:#bde18d;">결제대기</td>
                         <td>0000-00-00 00:00:00</td>
                         <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;">배송하기</button>
+                            <button style="height:30px; border: 1px solid #e2e2e2;"
+                            class="ship-btn"
+                            data-order-no="10121211341"
+                            data-recipient="김유신"
+                            data-zip="12345"
+                            data-addr1="부산광역시 부산진구 부전동 123"
+                            data-addr2="OO 빌딩 3층 301호"
+                            data-etc="문 앞에 놓아주세요">배송하기</button> <!-- 실제값 채우기 -->
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
@@ -659,7 +693,14 @@
                         <td style="color:#bde18d;">결제대기</td>
                         <td>0000-00-00 00:00:00</td>
                         <td style="">
-                            <button style="height:30px; border: 1px solid #e2e2e2;">배송하기</button>
+                            <button style="height:30px; border: 1px solid #e2e2e2;"
+                            class="ship-btn" 
+                            data-order-no="10121211341"
+                            data-recipient="김유신"
+                            data-zip="12345"
+                            data-addr1="부산광역시 부산진구 부전동 123"
+                            data-addr2="OO 빌딩 3층 301호"
+                            data-etc="문 앞에 놓아주세요">배송하기</button>
                         </td>
                     </tr>
                     
@@ -810,29 +851,29 @@
         </colgroup>
         <tbody>
           <tr>
-            <th>주문번호</th>
-            <td><input type="text" class="ipt" id="sf-orderNo" readonly></td>
+            <th style="font-size: 14px;">주문번호</th>
+            <td><input type="text" class="ipt" id="sf-orderNo" readonly style=""></td>
           </tr>
           <tr>
-            <th>수령인</th>
-            <td><input type="text" class="ipt" placeholder="홍길동"></td>
+            <th style="font-size: 14px;">수령인</th>
+            <td><input type="text" class="ipt" id="sf-recipient" placeholder="홍길동" style="outline: none;"></td>
           </tr>
           <tr>
-            <th>우편번호</th>
-            <td><input type="text" class="ipt" placeholder="12345"></td>
+            <th style="font-size: 14px;">우편번호</th>
+            <td><input type="text" class="ipt" id="sf-zip" placeholder="12345" style="outline: none;"></td>
           </tr>
           <tr>
-            <th>기본주소</th>
-            <td><input type="text" class="ipt" placeholder="부산광역시 부산진구 부전동 123"></td>
+            <th style="font-size: 14px;">기본주소</th>
+            <td><input type="text" class="ipt" id="sf-addr1" placeholder="부산광역시 부산진구 부전동 123" style="outline: none;"></td>
           </tr>
           <tr>
-            <th>상세주소</th>
-            <td><input type="text" class="ipt" placeholder="OO 빌딩 3층 301호"></td>
+            <th style="font-size: 14px;">상세주소</th>
+            <td><input type="text" class="ipt"id="sf-addr2" placeholder="OO 빌딩 3층 301호" style="outline: none;"></td>
           </tr>
           <tr>
-            <th>택배사</th>
+            <th style="font-size: 14px;">택배사</th>
             <td>
-              <select class="sel">
+              <select class="sel" style="padding-left:6px; outline: none;">
                 <option>택배사선택</option>
                 <option>대한통운</option>
                 <option>한진택배</option>
@@ -841,12 +882,12 @@
             </td>
           </tr>
           <tr>
-            <th>운송장번호</th>
-            <td><input type="text" class="ipt" placeholder="발급받은 택배 송장번호 입력"></td>
+            <th style="font-size: 14px;">운송장번호</th>
+            <td><input type="text" class="ipt" placeholder="발급받은 택배 송장번호 입력" style="outline: none;"></td>
           </tr>
           <tr>
-            <th>기타</th>
-            <td><textarea class="txt" placeholder="기타정보입력"></textarea></td>
+            <th style="font-size: 14px;">기타</th>
+            <td><textarea class="txt" id="sf-etc" placeholder="기타정보입력" style="resize:none; outline: none;" ></textarea></td>
           </tr>
         </tbody>
       </table>
@@ -862,7 +903,7 @@
     <!-- 세번째 이미지 스타일의 머리 -->
     <div class="ship-modal__head">
       <div class="ship-head__title">
-        <span id="shipModalTitle">배송입력</span>
+        <span id="shipModalTitle" style="font-size: 20px">배송입력</span>
         <span id="shipModalOrderNo" class="ship-head__order"></span>
       </div>
       <button type="button" class="order-modal__close" id="shipModalClose" aria-label="닫기"></button>
@@ -995,7 +1036,7 @@
   padding:14px 18px; border-bottom:1px solid #e5e5e5; font-weight:700;
 }
 .ship-head__title{ display:flex; align-items:center; gap:16px; }
-.ship-head__order{ font-weight:600; color:#111; letter-spacing:0.02em; }
+.ship-head__order{ margin-left:10px; font-weight:600; color:#111; letter-spacing:0.02em; }
 
 /* 주문상세에서 썼던 공통 헤더와 충돌 없도록 유지 */
 
@@ -1097,8 +1138,7 @@ const shipModalBody    = document.getElementById('shipModalBody');
 const shipModalClose   = document.getElementById('shipModalClose');
 const shipTpl          = document.getElementById('shipFormTemplate');
 
-function openShipModal(orderNo){
-  // 헤더 텍스트(세번째 이미지처럼 '배송입력' + 주문번호)
+function openShipModal(orderNo, prefill){
   document.getElementById('shipModalTitle').textContent = '배송입력';
   document.getElementById('shipModalOrderNo').textContent = orderNo ? orderNo : '';
 
@@ -1107,14 +1147,22 @@ function openShipModal(orderNo){
   if (shipTpl){
     const node = shipTpl.content.cloneNode(true);
     shipModalBody.appendChild(node);
-    // 템플릿 안의 주문번호 input 채우기
-    const iptOrder = shipModalBody.querySelector('#sf-orderNo');
-    if (iptOrder) iptOrder.value = orderNo || '';
+
+    // 폼 채우기
+    const $ = sel => shipModalBody.querySelector(sel);
+    $('#sf-orderNo').value   = orderNo || '';
+    $('#sf-recipient').value = prefill?.recipient || '';
+    $('#sf-zip').value       = prefill?.zip || '';
+    $('#sf-addr1').value     = prefill?.addr1 || '';
+    $('#sf-addr2').value     = prefill?.addr2 || '';
+    $('#sf-etc').value       = prefill?.etc || '';
   }
+
   shipModalOverlay.classList.add('show');
   shipModalOverlay.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
 }
+
 function closeShipModal(){
   shipModalOverlay.classList.remove('show');
   shipModalOverlay.setAttribute('aria-hidden','true');
@@ -1126,22 +1174,27 @@ window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && shipModalOver
 
 // ▼ “결제완료” 행에서만 ‘배송하기’ 클릭 시 배송입력 모달 열기
 document.querySelectorAll('table tr').forEach(tr=>{
-  const btn = tr.querySelector('button');
-  if(!btn) return; // 버튼 없는 행 스킵
+  const btn = tr.querySelector('button.ship-btn'); // class 선택자 사용 권장
+  if(!btn) return;
 
   btn.addEventListener('click', (e)=>{
     e.preventDefault();
 
     const tds = tr.querySelectorAll('td');
-    if(tds.length < 7) return;
-    const orderNo = (tds[0].textContent || tds[0].innerText || '').trim();
-    const status  = (tds[6].textContent || tds[6].innerText || '').trim();
+    if (tds.length < 7) return;
+
+    const orderNo = btn.dataset.orderNo || (tds[0].textContent || '').trim();
+    const status  = (tds[6].textContent || '').trim();
 
     if(status === '결제완료'){
-      openShipModal(orderNo);
-    } else {
-      // 결제완료가 아니면 무시하거나 안내
-      // alert('결제완료 주문만 배송입력 가능합니다.');
+      const prefill = {
+        recipient: btn.dataset.recipient || '',
+        zip:       btn.dataset.zip || '',
+        addr1:     btn.dataset.addr1 || '',
+        addr2:     btn.dataset.addr2 || '',
+        etc:       btn.dataset.etc || ''
+      };
+      openShipModal(orderNo, prefill);
     }
   });
 });
