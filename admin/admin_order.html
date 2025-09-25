@@ -678,31 +678,49 @@
                 <!-- 주문상세 콘텐츠 템플릿: '첫번째 사진' 영역 그대로 -->
 <template id="orderDetailTemplate">
   <!-- ↓↓↓ 여기부터 기존 “첫번째 사진” 영역 전체를 그대로 붙여넣기 ↓↓↓ -->
-
+  <div style="font-size:18px; margin-bottom:10px; font-weight: 800;">상품정보</div>
   <table style="border-collapse: collapse; border:none; width:1270px; text-align: center; ">
     <form action="" method="">
       <tr style="height:50px;border-top: 4px solid black; border-bottom: 1px solid #dddddd;">
-        <td style="width:50px;"><input type="checkbox"></td>
-        <td style="width:450px;">상품명</td>
-        <td style="width:92px;">상품금액</td>
-        <td style="width:136px;">할인금액</td>
-        <td style="width:92px;">수량</td>
-        <td style="width:136px;">주문금액</td>
+        <td style="width:60px;"></td>
+        <td style="">상품번호</td>
+        <td style="">상품명</td>
+        <td style="">판매자</td>
+        <td style="">가격</td>
+        <td style="">할인</td>
+        <td style="">수량</td>
+        <td style="">배송비</td>
+        <td style="">결제금액</td>
       </tr>
       <tr style=" border-bottom: 1px solid #dddddd;">
-        <td><input type="checkbox"></td>
-        <td style="  display: flex;">
+        <td style="display: flex;">
           <div style="margin:10px;width:80px; height:75px; background-color: #dddddd;">
             <img src="#" alt="이미지">
           </div>
-          <div style="padding-left:18px; display:flex; font-size:14px; align-items: flex-start; justify-content: center; flex-direction: column;">
-            <div style="margin-bottom:6px;">상품명</div><div style="color: gray; font-size:12px;">상품설명</div>
+        </td>
+        <td style="">120120021</td>
+        <td>OOO</td>
+        <td>(주)상호명</td>
+        <td style="">24,000</td>
+        <td style="">-1,200</td>
+        <td style="">3</td>
+        <td style="">0</td>
+        <td style="">68,400</td>
+      </tr>
+      <tr style=" border-bottom: 1px solid #dddddd;">
+        <td style="display: flex;">
+          <div style="margin:10px;width:80px; height:75px; background-color: #dddddd;">
+            <img src="#" alt="이미지">
           </div>
         </td>
-        <td>27,000</td>
-        <td>-1,350</td>
-        <td>1</td>
-        <td style="color:red;">25,650</td>
+        <td style="">114514328</td>
+        <td>OOO</td>
+        <td>(주)상호명</td>
+        <td style="">35,000</td>
+        <td style="">-3,500</td>
+        <td style="">1</td>
+        <td style="">3,000</td>
+        <td style="">34,500</td>
       </tr>
     </form>
   </table>
@@ -710,38 +728,40 @@
   <div style="border:1px solid #f2f2f2; width:300px;margin-left:970px; height:148px; padding:20px; background-color: #f2f2f2;">
     <div style="padding-left:7px;padding-right:7px;">
       <div style="margin-bottom:6px;">
-        <div>총 상품금액<span style="float:right;">27,000 원</span></div>
+        <div>총 상품금액<span style="float:right;">107,000 원</span></div>
       </div>
       <div style="margin-bottom:6px;">
-        <div>총 할인금액<span style="float:right;">-1,350 원</span></div>
+        <div>총 할인금액<span style="float:right;">-7,100 원</span></div>
       </div>
       <div style="margin-bottom:6px;">
-        <div>배송비<span style="float:right;">0 원</span></div>
+        <div>배송비<span style="float:right;">3,000 원</span></div>
       </div>
       <div style="margin-bottom:6px;">
-        <div>총 결제금액<span style="float:right; color:red;">25,650 원</span></div>
+        <div>총 결제금액<span style="float:right; color:red;">102,900 원</span></div>
       </div>
     </div>
   </div>
 
   <div style="display: flex; margin-top:14px; margin-bottom:10px;">
-    <div style="font-size:18px; "><b>주문정보</b></div>
+    <div style="font-size:18px; "><b>결제정보</b></div>
   </div>
   <div style="border-top:4px solid; width:1270px;  display: flex; border-bottom: 1px solid #dddddd;">
     <div style=" width:150px; padding:17px; background-color: #f2f2f2;">
       <div style="margin-bottom:6px;">주문정보</div>
       <div style="margin-bottom:6px;">결제방법</div>
       <div style="margin-bottom:6px;">주문자</div>
-      <div style="">연락처</div>
+      <div style="margin-bottom: 6px;">연락처</div>
+      <div style="">결제상태</div>
     </div>
     <div style="padding-left:19px;  display: flex; justify-content: center; flex-direction:column;">
-      <div style="margin-bottom:7px;">1000121121</div>
-      <div style="margin-bottom:7px;">신용카드</div>
-      <div style="margin-bottom:7px;">홍길동</div>
+      <div style="margin-bottom:7px;">10121211341</div>
+      <div style="margin-bottom:7px;">신용카드 / 1234 **** **** 4432</div>
+      <div style="margin-bottom:7px;">김유신</div>
       <div style="margin-bottom:4px;">010-1234-1234</div>
+      <div style="margin-bottom:4px; color:#4cbf6e;">결제완료</div>
     </div>
     <div style="display: flex; align-items: end; margin-left: auto;">
-      <div style="width:210px; margin-right:45px; margin-bottom:8px;"><span>총 결제금액</span><span style="float:right;">원</span><span style="color:red; float:right;">24,650</span></div>
+      <div style="width:210px; margin-right:45px; margin-bottom:8px;"><span>총 결제금액</span><span style="float:right;">원</span><span style="color:red; float:right;">102,900</span></div>
     </div>
   </div>
 
@@ -755,9 +775,9 @@
       <div>배송지 주소</div>
     </div>
     <div style="padding-left:19px;  display: flex; justify-content: center; flex-direction:column;">
-      <div style="margin-bottom:7px;">홍길동</div>
+      <div style="margin-bottom:7px;">김유신</div>
       <div style="margin-bottom:7px;">010-1234-1234</div>
-      <div>부산 금정구 123-11 10층</div>
+      <div>부산 부산진구 123-11 10층</div>
     </div>
   </div>
 
@@ -770,13 +790,88 @@
         <div id="orderDetailModal" class="order-modal__overlay" aria-hidden="true">
   <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
     <div class="order-modal__head">
-      <span id="orderModalTitle">주문상세</span>
-      <button type="button" class="order-modal__close" id="orderModalClose" aria-label="닫기"></button>
-    </div>
+  <span id="orderModalTitle" style="font-size: 20px;">주문상세</span>
+  <span id="orderModalNo" class="order-id"></span>
+  <button type="button" class="order-modal__close" id="orderModalClose" aria-label="닫기"></button>
+</div>
     <div class="order-modal__body" id="orderModalBody">
     </div>
   </div>
 </div>
+<!-- ▼ 배송입력 모달 콘텐츠 템플릿 -->
+<template id="shipFormTemplate">
+  <div class="ship-form__wrap">
+    <!-- 제목 라인은 모달 헤더에서 렌더링하므로 여기엔 폼만 -->
+    <form>
+      <table class="ship-form__table">
+        <colgroup>
+          <col style="width:140px">
+          <col style="width:9">
+        </colgroup>
+        <tbody>
+          <tr>
+            <th>주문번호</th>
+            <td><input type="text" class="ipt" id="sf-orderNo" readonly></td>
+          </tr>
+          <tr>
+            <th>수령인</th>
+            <td><input type="text" class="ipt" placeholder="홍길동"></td>
+          </tr>
+          <tr>
+            <th>우편번호</th>
+            <td><input type="text" class="ipt" placeholder="12345"></td>
+          </tr>
+          <tr>
+            <th>기본주소</th>
+            <td><input type="text" class="ipt" placeholder="부산광역시 부산진구 부전동 123"></td>
+          </tr>
+          <tr>
+            <th>상세주소</th>
+            <td><input type="text" class="ipt" placeholder="OO 빌딩 3층 301호"></td>
+          </tr>
+          <tr>
+            <th>택배사</th>
+            <td>
+              <select class="sel">
+                <option>택배사선택</option>
+                <option>대한통운</option>
+                <option>한진택배</option>
+                <option>롯데택배</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>운송장번호</th>
+            <td><input type="text" class="ipt" placeholder="발급받은 택배 송장번호 입력"></td>
+          </tr>
+          <tr>
+            <th>기타</th>
+            <td><textarea class="txt" placeholder="기타정보입력"></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ship-form__actions" style="display: flex; justify-content: center;">
+        <button type="button" class="btn-primary" id="shipSubmitBtn" style="background-color: black !important; font-weight:300;">등록하기</button>
+      </div>
+    </form>
+  </div>
+</template>
+<!-- ▼ 배송입력 모달 -->
+<div id="shipModal" class="order-modal__overlay ship-modal" aria-hidden="true">
+  <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="shipModalTitle">
+    <!-- 세번째 이미지 스타일의 머리 -->
+    <div class="ship-modal__head">
+      <div class="ship-head__title">
+        <span id="shipModalTitle">배송입력</span>
+        <span id="shipModalOrderNo" class="ship-head__order"></span>
+      </div>
+      <button type="button" class="order-modal__close" id="shipModalClose" aria-label="닫기"></button>
+    </div>
+    <div class="order-modal__body" id="shipModalBody"></div>
+  </div>
+</div>
+
+
     </main>
 
     <style>
@@ -812,12 +907,16 @@
             max-height: calc(100vh - 48px);
             */
         }
+        /* ===== 배송입력(#shipModal) 전용 사이즈/레이아웃 ===== */
+        #shipModal .order-modal{
+          width: min(520px, 70vw);   /* 주문상세(700px)보다 작게 */
+        }
 
         .order-modal__head{
             display:flex; align-items:center; gap:8px;
             padding:14px 18px; border-bottom:1px solid #eee; font-weight:700;
         }
-
+        .order-id { margin-left:20px; font-weight:600; } 
         /* 내부 스크롤 제거 */
         .order-modal__body{
             padding:18px;
@@ -850,6 +949,56 @@
 
         /* 테이블은 화면 좁을 때 줄바꿈에 대비 */
         .order-modal__body table{ table-layout:auto; }
+        /* ▼ 배송입력 폼 스타일 */
+.ship-form__table{
+  width:100%;
+  border-top:1px solid #e5e5e5;
+  border-bottom:1px solid #e5e5e5;
+  border-collapse:collapse;
+  margin-top:12px;
+  background:#fff;
+}
+.ship-form__table th{
+  background:#f4f4f4;
+  text-align:left;
+  padding:12px 14px;
+  border-bottom:1px solid #e9e9e9;
+  font-weight:600;
+  color:#333;
+  vertical-align:middle;
+}
+.ship-form__table td{
+  padding:10px 12px;
+  border-bottom:1px solid #e9e9e9;
+}
+.ipt,.sel,.txt{
+  width:100%;
+  height:32px;
+  border:1px solid #d0d0d0;
+  padding:0 10px;
+  box-sizing:border-box;
+  font-size:14px;
+}
+.txt{ height:100px; padding:10px; resize:vertical; }
+.ship-form__actions{
+  display:flex; justify-content:flex-start;
+  padding-top:16px;
+}
+.btn-primary{
+  min-width:120px; height:36px; border:none; cursor:pointer;
+  background:#2ba44e; color:#fff; font-weight:600;
+}
+
+/* ▼ 배송입력 모달 헤더(세번째 이미지 느낌) */
+.ship-modal__head{
+  display:flex; align-items:center; gap:8px;
+  padding:14px 18px; border-bottom:1px solid #e5e5e5; font-weight:700;
+}
+.ship-head__title{ display:flex; align-items:center; gap:16px; }
+.ship-head__order{ font-weight:600; color:#111; letter-spacing:0.02em; }
+
+/* 주문상세에서 썼던 공통 헤더와 충돌 없도록 유지 */
+
     </style>
     <script>
         // 아코디언: 클릭 시 높이를 실제 내용 높이로 애니메이션
@@ -907,19 +1056,17 @@
   const orderTpl          = document.getElementById('orderDetailTemplate');
 
   function openOrderModal(orderNoText){
-    // 제목 업데이트
-    const title = document.getElementById('orderModalTitle');
-    title.textContent = '주문상세 ' + (orderNoText || '');
+  document.getElementById('orderModalTitle').textContent = '주문상세';
+  document.getElementById('orderModalNo').textContent = orderNoText || '';
 
-    // 내용 채우기 (템플릿 클론)
-    orderModalBody.innerHTML = '';
-    if (orderTpl){
-      const node = orderTpl.content.cloneNode(true);
-      orderModalBody.appendChild(node);
-    }
-    orderModalOverlay.classList.add('show');
-    orderModalOverlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow='hidden';
+  orderModalBody.innerHTML = '';
+  if (orderTpl){
+    const node = orderTpl.content.cloneNode(true);
+    orderModalBody.appendChild(node);
+  }
+  orderModalOverlay.classList.add('show');
+  orderModalOverlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow='hidden';
   }
   function closeOrderModal(){
     orderModalOverlay.classList.remove('show');
@@ -944,6 +1091,60 @@
       openOrderModal(a.textContent.trim());
     });
   });
+// ▼ 배송입력 모달 핸들러
+const shipModalOverlay = document.getElementById('shipModal');
+const shipModalBody    = document.getElementById('shipModalBody');
+const shipModalClose   = document.getElementById('shipModalClose');
+const shipTpl          = document.getElementById('shipFormTemplate');
+
+function openShipModal(orderNo){
+  // 헤더 텍스트(세번째 이미지처럼 '배송입력' + 주문번호)
+  document.getElementById('shipModalTitle').textContent = '배송입력';
+  document.getElementById('shipModalOrderNo').textContent = orderNo ? orderNo : '';
+
+  // 폼 붙이기
+  shipModalBody.innerHTML = '';
+  if (shipTpl){
+    const node = shipTpl.content.cloneNode(true);
+    shipModalBody.appendChild(node);
+    // 템플릿 안의 주문번호 input 채우기
+    const iptOrder = shipModalBody.querySelector('#sf-orderNo');
+    if (iptOrder) iptOrder.value = orderNo || '';
+  }
+  shipModalOverlay.classList.add('show');
+  shipModalOverlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeShipModal(){
+  shipModalOverlay.classList.remove('show');
+  shipModalOverlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+shipModalClose.addEventListener('click', closeShipModal);
+shipModalOverlay.addEventListener('click', (e)=>{ if(e.target === shipModalOverlay) closeShipModal(); });
+window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && shipModalOverlay.classList.contains('show')) closeShipModal(); });
+
+// ▼ “결제완료” 행에서만 ‘배송하기’ 클릭 시 배송입력 모달 열기
+document.querySelectorAll('table tr').forEach(tr=>{
+  const btn = tr.querySelector('button');
+  if(!btn) return; // 버튼 없는 행 스킵
+
+  btn.addEventListener('click', (e)=>{
+    e.preventDefault();
+
+    const tds = tr.querySelectorAll('td');
+    if(tds.length < 7) return;
+    const orderNo = (tds[0].textContent || tds[0].innerText || '').trim();
+    const status  = (tds[6].textContent || tds[6].innerText || '').trim();
+
+    if(status === '결제완료'){
+      openShipModal(orderNo);
+    } else {
+      // 결제완료가 아니면 무시하거나 안내
+      // alert('결제완료 주문만 배송입력 가능합니다.');
+    }
+  });
+});
   
     </script>
     <footer style="padding:20px; background-color: #808080; width:100%; height:62px; color:white;">
