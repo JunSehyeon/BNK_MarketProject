@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin_order</title>
+    <title>admin_delivery</title>
 </head>
 <body>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -485,8 +485,8 @@
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">주문관리</h4>
             <ul class="euro-nav__list">
-                <li class="euro-nav__item is-active"><a href="#">주문현황</a></li>
-                <li class="euro-nav__item"><a href="#">배송현황</a></li>
+                <li class="euro-nav__item"><a href="#">주문현황</a></li>
+                <li class="euro-nav__item is-active"><a href="#">배송현황</a></li>
             </ul>
             </section>
 
@@ -512,17 +512,17 @@
         <div style="width:940px; border-left:1px solid #e2e2e2;">
             <div style="margin-left:60px;">
                 <div style="display: flex;">
-                    <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">주문현황</div>
-                    <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 주문관리 > <span style="font-weight: 800;">주문현황</span></div>
+                    <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">배송현황</div>
+                    <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 주문관리 > <span style="font-weight: 800;">배송현황</span></div>
                 </div>
                 <hr style="border:none; border-top:1px solid gray; margin-top:0px;">
                 <div style="padding-left:10px;">
                 <div style="display: flex; align-items: center; margin-top: 25px; margin-bottom:20px;">
                     <form action="" method="post" style="display: flex; ">
                         <select name="select" id="" style="width:82px; height:28px; padding-left:5px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
+                            <option value="invoice">송장번호</option>
                             <option value="num">주문번호</option>
-                            <option value="who">주문자</option>
-                            <option value="name">주문자명</option>
+                            <option value="who">수령인</option>
                         </select>
                         <input type="text" placeholder="검색어입력" style="width:140px; height:28px; padding-left:10px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
                         <input type="submit" value="검색" style="width:50px; height:28px; color:white; background-color: black; border:none; font-size: 12px !important;">
@@ -530,180 +530,157 @@
                 </div>
                 <table style="border-collapse: collapse; width:100%; font-size:12px; text-align: center; ">
                     <tr style="border-top:1px solid gray; height:50px; border-bottom:1px solid #e2e2e2;">
-                        <th style="width:124px;">주문번호</th>
-                        <th style="width:64px;">주문자</th>
-                        <th style="width:79px;">주문자명</th>
-                        <th style="width:79px;">주문건수</th>
-                        <th style="width:79px;">주문합계</th>
-                        <th style="width:79px;">결제수단</th>
-                        <th style="width:79px;">주문상태</th>
-                        <th style="width:180px;">주문일</th>
-                        <th style="width:103px;">배송</th>
+                        <th style="">송장번호</th>
+                        <th style="">택배사</th>
+                        <th style="">주문번호</th>
+                        <th style="">수령인</th>
+                        <th style="">상품명</th>
+                        <th style="">건수</th>
+                        <th style="">물품합계</th>
+                        <th style="">배송비</th>
+                        <th style="">배송상태</th>
+                        <th style="">접수일</th>
                     </tr>
                     <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211341</a></td>
-                        <td>abc123</td>
+                        <td><a href="#" style="font-weight: 800;">10122102315</a></td>
+                        <td>로젠택배</td>
+                        <td>10121211341</td>
                         <td>김유신</td>
-                        <td>2</td>
-                        <td>102,900</td>
-                        <td>신용카드</td>
-                        <td style="color:#8bd8a7">결제완료</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;"
-                            class="ship-btn" 
-                            data-order-no="10121211341"
-                            data-recipient="김유신"
-                            data-zip="12345"
-                            data-addr1="부산광역시 부산진구 부전동 123"
-                            data-addr2="OO 빌딩 3층 301호"
-                            data-etc="문 앞에 놓아주세요">배송하기</button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211340</a></td>
-                        <td>afea123</td>
-                        <td>김춘추</td>
-                        <td>1</td>
-                        <td>36,000</td>
-                        <td>계좌이체</td>
-                        <td style="color:#bde18d;">결제대기</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;"
-                            class="ship-btn" 
-                            data-order-no="10121211341"
-                            data-recipient="김유신"
-                            data-zip="12345"
-                            data-addr1="부산광역시 부산진구 부전동 123"
-                            data-addr2="OO 빌딩 3층 301호"
-                            data-etc="문 앞에 놓아주세요">배송하기</button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211339</a></td>
-                        <td>pewoq12</td>
-                        <td>장보고</td>
-                        <td>2</td>
-                        <td>9,000</td>
-                        <td>신용카드</td>
-                        <td style="color:#8bd8a7;">결제완료</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td style="padding-right:4px;">입력완료</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211338</a></td>
-                        <td>yaouw33</td>
-                        <td>강감찬</td>
-                        <td>1</td>
-                        <td>89,000</td>
-                        <td>휴대폰</td>
-                        <td style="color:red;">주문취소</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td style="padding-right:4px;">주문취소</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211337</a></td>
-                        <td>enpop99</td>
-                        <td>이순신</td>
+                        <td>OOO</td>
                         <td>3</td>
-                        <td>260,000</td>
-                        <td>계좌이체</td>
-                        <td style="color:#bde18d;">결제대기</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td style="">
-                            <button style="height:30px; border: 1px solid #e2e2e2;"
-                            class="ship-btn" 
-                            data-order-no="10121211341"
-                            data-recipient="김유신"
-                            data-zip="12345"
-                            data-addr1="부산광역시 부산진구 부전동 123"
-                            data-addr2="OO 빌딩 3층 301호"
-                            data-etc="문 앞에 놓아주세요">배송하기</button> <!-- 실제값 채우기 -->
+                        <td style="">68,400</td>
+                        <td>무료</td>
+                        <td style="color:#4f95d1;">
+                            배송준비
                         </td>
-                    </tr><tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211341</a></td>
-                        <td>abc123</td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">30122102119</a></td>
+                        <td>한진택배</td>
+                        <td>10121211341</td>
                         <td>김유신</td>
-                        <td>2</td>
-                        <td>102,900</td>
-                        <td>신용카드</td>
-                        <td style="color:#8bd8a7">결제완료</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;"
-                            class="ship-btn" 
-                            data-order-no="10121211341"
-                            data-recipient="김유신"
-                            data-zip="12345"
-                            data-addr1="부산광역시 부산진구 부전동 123"
-                            data-addr2="OO 빌딩 3층 301호"
-                            data-etc="문 앞에 놓아주세요">배송하기</button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211340</a></td>
-                        <td>afea123</td>
-                        <td>김춘추</td>
+                        <td>OOO</td>
                         <td>1</td>
-                        <td>36,000</td>
-                        <td>계좌이체</td>
-                        <td style="color:#bde18d;">결제대기</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td>
-                            <button style="height:30px; border: 1px solid #e2e2e2;"
-                            class="ship-btn"
-                            data-order-no="10121211341"
-                            data-recipient="김유신"
-                            data-zip="12345"
-                            data-addr1="부산광역시 부산진구 부전동 123"
-                            data-addr2="OO 빌딩 3층 301호"
-                            data-etc="문 앞에 놓아주세요">배송하기</button> <!-- 실제값 채우기 -->
+                        <td style="">34,500</td>
+                        <td>3,000</td>
+                        <td style="color:#4f95d1;">
+                            배송준비
                         </td>
+                        <td>0000-00-00 00:00:00</td>
                     </tr>
                     <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211339</a></td>
-                        <td>pewoq12</td>
+                        <td><a href="#" style="font-weight: 800;">10122111517</a></td>
+                        <td>우체국</td>
+                        <td>10121211339</td>
                         <td>장보고</td>
+                        <td>OOO</td>
                         <td>2</td>
-                        <td>9,000</td>
-                        <td>신용카드</td>
-                        <td style="color:#8bd8a7;">결제완료</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td style="padding-right:4px;">입력완료</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211338</a></td>
-                        <td>yaouw33</td>
-                        <td>강감찬</td>
-                        <td>1</td>
-                        <td>89,000</td>
-                        <td>휴대폰</td>
-                        <td style="color:red;">주문취소</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td style="padding-right:4px;">주문취소</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
-                        <td><a href="#" style="font-weight: 800;">10121211337</a></td>
-                        <td>enpop99</td>
-                        <td>이순신</td>
-                        <td>3</td>
-                        <td>260,000</td>
-                        <td>계좌이체</td>
-                        <td style="color:#bde18d;">결제대기</td>
-                        <td>0000-00-00 00:00:00</td>
-                        <td style="">
-                            <button style="height:30px; border: 1px solid #e2e2e2;"
-                            class="ship-btn" 
-                            data-order-no="10121211341"
-                            data-recipient="김유신"
-                            data-zip="12345"
-                            data-addr1="부산광역시 부산진구 부전동 123"
-                            data-addr2="OO 빌딩 3층 301호"
-                            data-etc="문 앞에 놓아주세요">배송하기</button>
+                        <td style="">9,000</td>
+                        <td>3,500</td>
+                        <td style="color:#4f95d1;">
+                            배송 중
                         </td>
+                        <td>0000-00-00 00:00:00</td>
                     </tr>
-                    
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">10122102315</a></td>
+                        <td>CJ 대한통운</td>
+                        <td>10121211338</td>
+                        <td>강감찬</td>
+                        <td>OOO</td>
+                        <td>1</td>
+                        <td style="">89,000</td>
+                        <td>무료</td>
+                        <td style="color:red;">
+                            반품요청
+                        </td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">20122102515</a></td>
+                        <td>경동택배</td>
+                        <td>10121211337</td>
+                        <td>이순신</td>
+                        <td>OOO</td>
+                        <td>3</td>
+                        <td style="">260,000</td>
+                        <td>무료</td>
+                        <td style="color:#8bd8a7;">
+                            배송완료
+                        </td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">10122102315</a></td>
+                        <td>로젠택배</td>
+                        <td>10121211341</td>
+                        <td>김유신</td>
+                        <td>OOO</td>
+                        <td>3</td>
+                        <td style="">68,400</td>
+                        <td>무료</td>
+                        <td style="color:#4f95d1;">
+                            배송준비
+                        </td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">30122102119</a></td>
+                        <td>한진택배</td>
+                        <td>10121211341</td>
+                        <td>김유신</td>
+                        <td>OOO</td>
+                        <td>1</td>
+                        <td style="">34,500</td>
+                        <td>3,000</td>
+                        <td style="color:#4f95d1;">
+                            배송준비
+                        </td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">10122111517</a></td>
+                        <td>우체국</td>
+                        <td>10121211339</td>
+                        <td>장보고</td>
+                        <td>OOO</td>
+                        <td>2</td>
+                        <td style="">9,000</td>
+                        <td>3,500</td>
+                        <td style="color:#4f95d1;">
+                            배송 중
+                        </td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">10122102315</a></td>
+                        <td>CJ 대한통운</td>
+                        <td>10121211338</td>
+                        <td>강감찬</td>
+                        <td>OOO</td>
+                        <td>1</td>
+                        <td style="">89,000</td>
+                        <td>무료</td>
+                        <td style="color:red;">
+                            반품요청
+                        </td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
+                        <td><a href="#" style="font-weight: 800;">20122102515</a></td>
+                        <td>경동택배</td>
+                        <td>10121211337</td>
+                        <td>이순신</td>
+                        <td>OOO</td>
+                        <td>3</td>
+                        <td style="">260,000</td>
+                        <td>무료</td>
+                        <td style="color:#8bd8a7;">
+                            배송완료
+                        </td>
+                        <td>0000-00-00 00:00:00</td>
+                    </tr>
                 </table>
                 <div style=" height: 100px; margin-top:40px; display: flex; justify-content: center;">
                     <form action="" method="" style="">
@@ -728,7 +705,6 @@
         <td style="">상품명</td>
         <td style="">판매자</td>
         <td style="">가격</td>
-        <td style="">할인</td>
         <td style="">수량</td>
         <td style="">배송비</td>
         <td style="">결제금액</td>
@@ -743,84 +719,36 @@
         <td>OOO</td>
         <td>(주)상호명</td>
         <td style="">24,000</td>
-        <td style="">-1,200</td>
         <td style="">3</td>
         <td style="">0</td>
         <td style="">68,400</td>
       </tr>
-      <tr style=" border-bottom: 1px solid #dddddd;">
-        <td style="display: flex;">
-          <div style="margin:10px;width:80px; height:75px; background-color: #dddddd;">
-            <img src="#" alt="이미지">
-          </div>
-        </td>
-        <td style="">114514328</td>
-        <td>OOO</td>
-        <td>(주)상호명</td>
-        <td style="">35,000</td>
-        <td style="">-3,500</td>
-        <td style="">1</td>
-        <td style="">3,000</td>
-        <td style="">34,500</td>
-      </tr>
     </form>
   </table>
-
-  <div style="border:1px solid #f2f2f2; width:300px;margin-left:970px; height:148px; padding:20px; background-color: #f2f2f2;">
-    <div style="padding-left:7px;padding-right:7px;">
-      <div style="margin-bottom:6px;">
-        <div>총 상품금액<span style="float:right;">107,000 원</span></div>
-      </div>
-      <div style="margin-bottom:6px;">
-        <div>총 할인금액<span style="float:right;">-7,100 원</span></div>
-      </div>
-      <div style="margin-bottom:6px;">
-        <div>배송비<span style="float:right;">3,000 원</span></div>
-      </div>
-      <div style="margin-bottom:6px;">
-        <div>총 결제금액<span style="float:right; color:red;">102,900 원</span></div>
-      </div>
-    </div>
-  </div>
-
   <div style="display: flex; margin-top:14px; margin-bottom:10px;">
-    <div style="font-size:18px; "><b>결제정보</b></div>
+    <div style="font-size:18px; "><b>배송정보</b></div>
   </div>
   <div style="border-top:4px solid; width:1270px;  display: flex; border-bottom: 1px solid #dddddd;">
     <div style=" width:150px; padding:17px; background-color: #f2f2f2;">
-      <div style="margin-bottom:6px;">주문정보</div>
-      <div style="margin-bottom:6px;">결제방법</div>
-      <div style="margin-bottom:6px;">주문자</div>
-      <div style="margin-bottom: 6px;">연락처</div>
-      <div style="">결제상태</div>
+      <div style="margin-bottom:6px;">주문번호</div>
+      <div style="margin-bottom:6px;">수령인</div>
+      <div style="margin-bottom:6px;">연락처</div>
+      <div style="margin-bottom: 36px;">배송지 주소</div>
+      <div style="margin-bottom: 6px;">택배사</div>
+      <div style="margin-bottom:6px;">송장번호</div>
+      <div style="">기타</div>
     </div>
     <div style="padding-left:19px;  display: flex; justify-content: center; flex-direction:column;">
       <div style="margin-bottom:7px;">10121211341</div>
-      <div style="margin-bottom:7px;">신용카드 / 1234 **** **** 4432</div>
       <div style="margin-bottom:7px;">김유신</div>
-      <div style="margin-bottom:4px;">010-1234-1234</div>
-      <div style="margin-bottom:4px; color:#4cbf6e;">결제완료</div>
-    </div>
-    <div style="display: flex; align-items: end; margin-left: auto;">
-      <div style="width:210px; margin-right:45px; margin-bottom:8px;"><span>총 결제금액</span><span style="float:right;">원</span><span style="color:red; float:right;">102,900</span></div>
+      <div style="margin-bottom:7px;">010-1234-1234</div>
+      <div style="margin-bottom:37px;">부산 부산진구 123-11 10층</div>
+      <div style="margin-bottom:7px;">로젠택배</div>
+      <div style="margin-bottom:7px;">10122102315</div>
+      <div style="">감사합니다. 수고하세요.</div>
     </div>
   </div>
 
-  <div style="display: flex; margin-top:14px;margin-bottom:10px; ">
-    <div style="font-size:18px;"><b>배송정보</b></div>
-  </div>
-  <div style="border-top:4px solid; width:1270px;  display: flex; border-bottom: 1px solid #dddddd; margin-bottom:0;">
-    <div style=" width:150px; padding:17px; background-color: #f2f2f2;">
-      <div style="margin-bottom:6px;">수취인</div>
-      <div style="margin-bottom:6px;">연락처</div>
-      <div>배송지 주소</div>
-    </div>
-    <div style="padding-left:19px;  display: flex; justify-content: center; flex-direction:column;">
-      <div style="margin-bottom:7px;">김유신</div>
-      <div style="margin-bottom:7px;">010-1234-1234</div>
-      <div>부산 부산진구 123-11 10층</div>
-    </div>
-  </div>
 
   <!-- ↑↑↑ 여기까지 기존 영역 그대로 ↑↑↑ -->
 </template>
@@ -831,7 +759,7 @@
         <div id="orderDetailModal" class="order-modal__overlay" aria-hidden="true">
   <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
     <div class="order-modal__head">
-  <span id="orderModalTitle" style="font-size: 20px;">주문상세</span>
+  <span id="orderModalTitle" style="font-size: 20px;">배송상세</span>
   <span id="orderModalNo" class="order-id"></span>
   <button type="button" class="order-modal__close" id="orderModalClose" aria-label="닫기"></button>
 </div>
@@ -1097,7 +1025,7 @@
   const orderTpl          = document.getElementById('orderDetailTemplate');
 
   function openOrderModal(orderNoText){
-  document.getElementById('orderModalTitle').textContent = '주문상세';
+  document.getElementById('orderModalTitle').textContent = '배송상세';
   document.getElementById('orderModalNo').textContent = orderNoText || '';
 
   orderModalBody.innerHTML = '';
