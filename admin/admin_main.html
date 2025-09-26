@@ -25,15 +25,12 @@
     .container {
       width: 900px;
       display: flex;
-      gap: 30px;
+      gap: 150px;
       justify-content: center;      
       margin-left: 50px;
     }
-    .chart-box {
-      flex: 1;
-      min-width: 0;
-      height:400px;
-    }
+    .chart-box{ flex:0 0 320px; height:400px; }  /* 원하는 폭으로 고정 */
+    .chart-box canvas{ width:100% !important; height:100% !important; } /* 박스 채우기 */
     canvas {
       width: 300px !important;      
     }
@@ -581,8 +578,8 @@
   <!-- 집계현황 -->
   <div class="title-line" style="padding-top: 20px; padding-bottom: 5px;"><b>집계현황</b></div>
     <div class="container">
-    <div class="chart-box"><canvas id="barChart"></canvas></div>
-    <div class="chart-box"><canvas id="pieChart"></canvas></div>
+    <div class="chart-box"><canvas id="barChart" ></canvas></div>
+    <div class="chart-box"><canvas id="pieChart" ></canvas></div>
   </div>
 
   <!-- 운영현황 -->
