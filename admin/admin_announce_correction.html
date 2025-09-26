@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin_frame</title>
+    <title>admin_announce_correction</title>
 </head>
 <body>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
             width:40px; height:40px; display:grid; place-items:center;
         }
         .title-line {
-            width: 840px;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -437,6 +437,17 @@
         <div>
         <aside class="euro-nav" aria-label="관리자 사이드 메뉴" style="">
             <section class="euro-nav__group">
+            <h4 class="euro-nav__title" style="">환경설정</h4>
+            <ul class="euro-nav__list">
+                <li class="euro-nav__item"><a href="#">기본설정</a></li>
+                <li class="euro-nav__item"><a href="#">배너관리</a></li>
+                <li class="euro-nav__item"><a href="#">약관관리</a></li>
+                <li class="euro-nav__item"><a href="#">카테고리</a></li>
+                <li class="euro-nav__item"><a href="#">버전관리</a></li>
+            </ul>
+            </section>
+
+            <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">상점관리</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="/admin/store_list.html">상점목록</a></li>
@@ -479,7 +490,7 @@
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">고객센터</h4>
             <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="/admin/announcement_list.html">공지사항</a></li>
+                <li class="euro-nav__item is-active"><a href="/admin/announcement_list.html">공지사항</a></li>
                 <li class="euro-nav__item"><a href="/admin/questions_list.html">자주묻는질문</a></li>
                 <li class="euro-nav__item"><a href="#">문의하기</a></li>
                 <li class="euro-nav__item"><a href="#">채용하기</a></li>
@@ -488,55 +499,46 @@
         </aside>
         </div>
         <!-- 오른쪽 콘텐츠 영역 -->
-          <div style="width:900px; height:1000px; border:none; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
+          <div style="margin-left:40px; width:900px; height:1000px; border:none; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
 
             <!-- 제목 + 경로 -->
-            <div class="title-line" style="border-bottom: 2px solid #ccc;">
-            <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">자주묻는질문 수정</div>
-                    <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 고객센터 > <span style="font-weight: 800;">자주묻는질문</span></div>
-             </div>
-            <!-- 1. 검색 -->
-            <div style="margin-bottom:80px;">
-              <!-- 1. 검색 -->
-              
+            <div style="display: flex;">
+                    <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">공지사항 수정</div>
+                    <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 고객센터 > <span style="font-weight: 800;">공지사항</span></div>
+                </div>
+                <hr style="border:none; border-top:1px solid gray; margin-top:0px;">
+                <div style="padding-left:10px;">
+                <div style="display: flex; align-items: center; margin-top: 25px; margin-bottom:20px;">
+
             </div>
 
             <!-- 2. 테이블 -->
             <!-- 폼 박스 -->
-            <div style="width:840px; height: 500px; margin:50px auto; font-family:'맑은 고딕', sans-serif; font-size:14px; color:#333; background:#fff; border-top:2px solid #000;">
+            <div style="width:100%; height: 500px; margin:50px auto; font-family:'맑은 고딕', sans-serif; font-size:14px; color:#333; background:#fff; border-top:2px solid #000;">
 
             <!-- 유형 -->
             <div style="display:flex; align-items:center; border-bottom:1px solid #e0e0e0; padding:12px 8px;">
                 <label for="cycleBtn" style="width:100px; font-weight:bold;">유형</label>
-                <style>
-                .radio-btn {
-                display: none; /* 실제 라디오 버튼은 숨김 */
-                }
-
-                .radio-label {
-                border: 3px solid #ccc;
-                background: #fff;
-                padding: 5px 40px;
-                cursor: pointer;
-                margin-top: 5px;
-                display: inline-block;
-                }
-
-                .radio-btn:checked + .radio-label {
-                background: #ddd; /* 선택된 버튼 강조 */
-                }
-                </style>
-
-                <div>
-                <input type="radio" name="cycle" id="cycle1" class="radio-btn">
-                <label for="cycle1" class="radio-label">1차 선택</label>
-
-                <input type="radio" name="cycle" id="cycle2" class="radio-btn">
-                <label for="cycle2" class="radio-label">2차 선택</label>
-                </div>
+                
+                <select name="select" id="" style="width:82px; height:28px; padding-left:5px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
+                            <option value="name">안내</option>
+                            <option value="code">발표</option>
+                            <option value="seller">상품</option>
+                            <option value="seller">고객서비스</option>
+                            
+                        </select>
                 </div>
 
-            
+                <script>
+                const btn = document.getElementById('cycleBtn');
+                const labels = ["안내", "발표", "상품", "고객서비스"];
+                let idx = 0;
+
+                btn.addEventListener('click', () => {
+                    idx = (idx + 1) % labels.length;
+                    btn.textContent = labels[idx];
+                });
+                </script>
 
             <div style="display:flex; align-items:center; border-bottom:1px solid #e0e0e0; padding:12px 8px;">
                 <label for="title" style="width:100px; font-weight:bold;">제목</label>
@@ -554,7 +556,7 @@
 
             <!-- 버튼 영역 -->
             <div style="text-align:center; margin-top:-70px; margin-left: 650px;">
-                    <button style="border:none; background-color: #760c0c; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">취소가힉</button>
+            <button style="border:none; background-color: #760c0c; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">취소하기</button>
                     <button style="margin-left:auto; border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">수정하기</button>
             </div>
     </main>

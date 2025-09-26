@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin_frame</title>
+    <title>admin_announce_list</title>
 </head>
 <body>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
             width:40px; height:40px; display:grid; place-items:center;
         }
         .title-line {
-            width: 840px;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -437,6 +437,16 @@
         <div>
         <aside class="euro-nav" aria-label="관리자 사이드 메뉴" style="">
             <section class="euro-nav__group">
+            <h4 class="euro-nav__title" style="">환경설정</h4>
+            <ul class="euro-nav__list">
+                <li class="euro-nav__item"><a href="#">기본설정</a></li>
+                <li class="euro-nav__item"><a href="#">배너관리</a></li>
+                <li class="euro-nav__item"><a href="#">약관관리</a></li>
+                <li class="euro-nav__item"><a href="#">카테고리</a></li>
+                <li class="euro-nav__item"><a href="#">버전관리</a></li>
+            </ul>
+            </section>
+            <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">상점관리</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="/admin/store_list.html">상점목록</a></li>
@@ -479,7 +489,7 @@
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">고객센터</h4>
             <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="/admin/announcement_list.html">공지사항</a></li>
+                <li class="euro-nav__item is-active"><a href="/admin/announcement_list.html">공지사항</a></li>
                 <li class="euro-nav__item"><a href="/admin/questions_list.html">자주묻는질문</a></li>
                 <li class="euro-nav__item"><a href="#">문의하기</a></li>
                 <li class="euro-nav__item"><a href="#">채용하기</a></li>
@@ -488,10 +498,10 @@
         </aside>
         </div>
         <!-- 오른쪽 콘텐츠 영역 -->
-          <div style="width:900px; height:1000px; border:1px solid; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
+          <div style="margin-left:40px; width:900px; height:1000px; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
 
             <!-- 제목 + 경로 -->
-            <div class="title-line" style="border-bottom: 2px solid #ccc;">
+            <div class="title-line" style="border-bottom: 2px solid #ccc; width: 857px !important;">
             <div style="font-size: 20px; font-weight: 800; margin-top:16px; margin-bottom:5px;">공지사항 목록</div>
                     <div style="margin-left: auto; margin-top:auto; margin-bottom:4px;font-size: 12px;">HOME > 고객센터 > <span style="font-weight: 800;">공지사항</span></div>
              </div>
@@ -500,9 +510,9 @@
               <!-- 1. 검색 -->
             <select name="select" id="" style="width:82px; height:28px; padding-left:5px; margin-right:3px; margin-top: 20px; border:1px solid #bfbfbf; font-size: 10px !important;">
               <option value="name">유형선택</option>
-              <option value="name">상품명</option>
-              <option value="code">상품코드</option>
-              <option value="seller">판매자</option>
+              <option value="service">고객서비스</option>
+              <option value="event">이벤트 당첨</option>
+              <option value="security">안전거래</option>
             </select>
 
             
@@ -527,51 +537,51 @@
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>100</td><td>고객서비스</td><td>[안내] 해외결제 사칭문자 주의</td><td>120</td><td>00.00.00</td><td>
                     <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                    <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                    <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                   </td>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>99</td><td>이벤트 당첨</td><td>[발표] G.Live X SK스토아 (하남쭈꾸미) 이벤트 당점자</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 </tr>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>98</td><td>안전거래</td><td>[안내]로젠택배 반품 / 교환 수거지시 지연안내</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>97</td><td>고객서비스</td><td>[안내]구매회원 이용약관 개정</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 </tr>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>96</td><td>이정재</td><td>[안내] 위치정보이용 약관 개정 공지</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 </tr>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>95</td><td>고객서비스</td><td>[안내] 해외결제 사칭문자 주의</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>94</td><td>이벤트 당첨</td><td>[발표] G.Live X SK스토아 (하남쭈꾸미) 이벤트 당점자</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 </tr>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>93</td><td>안전거래</td><td>[안내]로젠택배 반품 / 교환 수거지시 지연안내</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 <tr style="border-bottom:1px solid #e2e2e2; height:70px;vertical-align: middle;">
                   <td><input type="checkbox"></td><td>92</td><td>고객서비스</td><td>[안내]구매회원 이용약관 개정</td><td>120</td><td>00.00.00</td><td>
                   <a href="#" style="text-decoration:none; margin-right:8px;">[ 수정 ]</a>
-                  <a href="#" style="text-decoration:none;">[ 중지 ]</a>
+                  <a href="#" style="text-decoration:none;">[ 삭제 ]</a>
                 </td>
                 </tr>
               </tbody>
