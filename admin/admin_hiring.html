@@ -769,6 +769,66 @@
                   </form> 
                 </div>
     </main>
+
+    <style>
+.euro-nav__list {
+    max-height: 0;                /* 기본은 접힘 */
+    overflow: hidden;             /* 안 보이게 */
+    transition: max-height 0.15s ease;
+}
+.euro-nav__group.open .euro-nav__list {
+    max-height: 500px;            /* 펼쳐졌을 때 (충분히 크게 설정) */
+}
+</style>
+
+<script>
+// 아코디언: 클릭 시 높이를 실제 내용 높이로 애니메이션
+document.querySelectorAll('.euro-nav__title').forEach(title => {
+  title.style.cursor = 'pointer'; // 클릭 가능 시각화(선택)
+  title.addEventListener('click', () => {
+    const group = title.parentElement;
+    const list  = group.querySelector('.euro-nav__list');
+
+    const isOpen = group.classList.contains('open');
+
+    if (isOpen) {
+      // 닫기: 현재 높이를 고정 -> 0으로
+      list.style.maxHeight = list.scrollHeight + 'px';
+      list.offsetHeight; 
+      list.style.maxHeight = '0px';
+      group.classList.remove('open');
+    } else {
+      // 열기: 0 -> 내용 높이
+      group.classList.add('open');
+      list.style.maxHeight = list.scrollHeight + 'px';
+
+      // 애니메이션 끝나면 inline max-height 제거(자연스런 레이아웃)
+      const onEnd = (e) => {
+        if (e.propertyName === 'max-height') {
+          list.style.maxHeight = 'none';
+          list.removeEventListener('transitionend', onEnd);
+        }
+      };
+      list.addEventListener('transitionend', onEnd);
+    }
+  });
+});
+
+const groups = document.querySelectorAll('.euro-nav__group');
+document.querySelectorAll('.euro-nav__title').forEach(title => {
+  title.addEventListener('click', () => {
+    groups.forEach(g => {
+      if (g !== title.parentElement && g.classList.contains('open')) {
+        const l = g.querySelector('.euro-nav__list');
+        l.style.maxHeight = l.scrollHeight + 'px';
+        l.offsetHeight;
+        l.style.maxHeight = '0px';
+        g.classList.remove('open');
+      }
+    });
+  }, {capture:true});
+});
+</script>
     <footer style="padding:20px; background-color: #808080; width:100%; height:62px; color:white;">
         Copyright ©NICHIYA.co.kr All rights reserved. NICHIYA ADMINISTRATOR Version 5.4.1.2
     </footer>
