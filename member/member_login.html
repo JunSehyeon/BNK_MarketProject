@@ -41,8 +41,6 @@
             width: min(620px, 90%)
         }
 
-        /* 폼 중첩 제거: div 컨테이너 */
-
         .header-logo {
             margin-bottom: 20px;
             width: 300px
@@ -62,7 +60,8 @@
             margin-top: 16px
         }
 
-        .form-field-email input,
+        /* ⬇ 이메일 -> 아이디 클래스로 교체 */
+        .form-field-id input,
         .form-field-pw input {
             box-sizing: border-box;
             width: 100%;
@@ -73,7 +72,7 @@
             transition: border-color .2s;
         }
 
-        .form-field-email input:focus,
+        .form-field-id input:focus,
         .form-field-pw input:focus {
             outline: none
         }
@@ -92,12 +91,12 @@
             font-weight: 600
         }
 
-        .form-field-email.is-invalid input,
+        .form-field-id.is-invalid input,
         .form-field-pw.is-invalid input {
             border-bottom-color: #e53935
         }
 
-        .form-field-email.is-invalid .error-msg,
+        .form-field-id.is-invalid .error-msg,
         .form-field-pw.is-invalid .error-msg {
             display: block
         }
@@ -139,15 +138,13 @@
             cursor: pointer;
         }
 
-        /* 3) 소셜 로그인 (고정 크기) */
+        /* 3) 소셜 로그인 */
         .form-field-social {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 28px;
-            /* 아이콘 간 간격 */
             margin-top: 28px;
-            /* LOGIN 버튼과 간격 */
         }
 
         .social-btn {
@@ -156,8 +153,7 @@
             justify-content: center;
             width: 64px;
             height: 64px;
-            /* ← 고정 크기 */
-            border-radius: 0%;
+            border-radius: 0;
             background: #fff;
             border: 1px solid #eaeaea;
             transition: transform .12s ease, box-shadow .12s ease;
@@ -174,7 +170,6 @@
             width: 82%;
             height: 82%;
             object-fit: contain;
-            /* 로고 비율 */
         }
 
         .btn-reg {
@@ -204,7 +199,6 @@
             margin-inline: auto
         }
 
-        /* 5) 반응형(원하면 유지/삭제 가능) */
         @media (max-width:960px) {
             .main-layout {
                 grid-template-columns: 1fr
@@ -215,7 +209,6 @@
             }
         }
 
-        /* 접근성: 화면 숨김 텍스트 */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -228,24 +221,23 @@
             border: 0;
         }
     </style>
-
 </head>
 
 <body>
     <div class="main-layout site-max">
         <!-- 좌측 로그인 -->
         <section class="login-side">
-            <!-- 바깥 컨테이너는 div (폼 중첩 방지) -->
             <div class="login-panel">
                 <div class="header-logo">
                     <img class="header-logo-img" src="../images/logo.png" alt="logo">
                 </div>
                 <div class="login-text">로그인</div>
 
-                <!-- 실제 제출되는 폼: 단 하나만 -->
+                <!-- 실제 제출되는 폼 -->
                 <form id="loginForm" class="login-form" method="post" novalidate>
-                    <div class="form-field form-field-email">
-                        <input id="email" name="email" type="email" placeholder="이메일" required />
+                    <!-- ⬇ 이메일 대신 아이디 -->
+                    <div class="form-field form-field-id">
+                        <input id="userid" name="userid" type="text" placeholder="아이디" minlength="4" required />
                         <p class="error-msg"></p>
                     </div>
 
@@ -266,9 +258,10 @@
                         </div>
                     </div>
 
-                    <button class="btn-log" type="submit">LOGIN</button>
+                    <button class="btn-log" type="submit">로그인</button>
 
-                    <!-- 소셜 로그인 (가운데 정렬/아이콘 동일 크기) -->
+                    <button class="btn-reg" type="button">회원가입</button>
+
                     <div class="form-field-social" role="group" aria-label="간편 로그인">
                         <a href="#" class="social-btn" aria-label="카카오 로그인">
                             <img src="../images/icon_sns_kakao.png" alt="">
@@ -284,8 +277,6 @@
                         </a>
                     </div>
 
-                    <button class="btn-reg" type="button">REGISTER</button>
-
                     <div class="help-link"><a href="#">도움말</a></div>
                 </form>
             </div>
@@ -298,7 +289,7 @@
     <script>
         const form = document.getElementById('loginForm');
         const groups = [
-            document.querySelector('.form-field-email'),
+            document.querySelector('.form-field-id'),
             document.querySelector('.form-field-pw')
         ];
 
@@ -317,12 +308,12 @@
             group.classList.add('is-invalid');
             group.classList.remove('is-valid');
 
-            if (input.type === "email") {
-                if (v.valueMissing) text = "이메일 필드는 필수 항목입니다.";
-                else if (v.typeMismatch) text = "유효하지 않은 이메일. 예: user@example.com";
-                else text = "이메일 형식이 올바르지 않습니다.";
+            if (input.id === "userid") {
+                if (v.valueMissing) text = "아이디를 입력하세요.";
+                else if (v.tooShort) text = "아이디는 최소 4자 이상 입력해야 합니다.";
+                else text = "";
             } else if (input.type === "password") {
-                if (v.valueMissing) text = "비밀번호 필드는 필수 항목입니다.";
+                if (v.valueMissing) text = "비밀번호를 입력하세요.";
                 else if (v.tooShort) text = "비밀번호는 최소 4자 이상 입력해야 합니다.";
                 else text = "";
             }
