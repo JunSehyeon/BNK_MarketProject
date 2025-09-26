@@ -7,6 +7,17 @@
 
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/qna.css">
+
+    <style>
+        /* 페이지네이션 스타일 */
+        .pagenation, .next-page {
+            border: none;
+            width: 50px;
+            height: 30px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
 <!--헤더푸터 연결-->
@@ -39,7 +50,7 @@
     <div id="header"></div>
 
     <div id="content" class="cs_qna_list_wrap">
-        <h1>문의하기</h1>
+        <h1>ASK NICHIYA</h1>
         <div class="cs_sub_nav">
             <ul>
                 <li class="on"><a href="#">회원</a></li>
@@ -150,14 +161,24 @@
                     </tbody>
                 </table>
             </div>
-            <div class="pagination">
-                <a href="#" class="prev">이전</a>
-                <a href="#" class="on">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#" class="next">다음</a>
+            <!-- 페이지네이션 -->
+            <div style=" height: 100px; margin-top:40px; display: flex; justify-content: center;">
+                <form action="" method="" style="">
+                    <div style="display: flex;">
+                        <div style="">
+                            <input type="button" class="prev-page" value="< 이전" style="border:1px solid #ddd;">
+                        </div>
+                        <div style="">
+                            <input type="button" value="1" style="border:1px solid #333; background-color: #333; color: white; height: 30px; width: 30px; margin-right:2px; line-height:1;">
+                            <input type="button" value="2" style="cursor: pointer; border:1px solid #ddd; color: #555; height: 30px; width: 30px; margin-right:2px; line-height:1;">
+                            <input type="button" value="3" style="cursor: pointer; border:1px solid #ddd; color: #555; height: 30px; width: 30px; line-height:1;">
+                        </div>
+                        <div>
+                            <input type="button" class="next-page" value="다음 >" style="border:1px solid #ddd;">
+                        </div>
+                    </div>
+                </form>
+                
             </div>
             <div class="btn_area">
                 <a href="qna_write.html" class="btn_write">문의하기</a>
