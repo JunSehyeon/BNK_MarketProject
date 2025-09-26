@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>약관 안내 | NICHIYA</title>
+    <style>
+        :root {
+            --black: #111;
+            --gray: #666;
+            --light: #f6f6f6;
+            --line: #e5e5e5;
+            --focus: #111;
+            --max: 1024px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+            color: var(--black);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        #wrapper{
+            margin-bottom: 100px;
+        }
+
+        /* ===== Tabs with icons ===== */
+        .tabbar {
+            max-width: 1024px;
+            margin: 0 auto 32px;
+            /* ✅ 하단에 여유 공간 (32px 정도) */
+            padding: 10px 0;
+            /* ✅ 위아래 공간 추가 */
+            border-bottom: 1px solid #e5e5e5;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 0;
+            background: #fff;
+            /* 필요하면 흰 배경으로 통일 */
+        }
+
+        .icon-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 8px;
+            color: #666;
+            cursor: pointer;
+            border: 1px solid #e5e5e5;
+            background: #f9f9f9;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .icon-tab:hover {
+            background: #eee;
+            color: #222;
+        }
+
+        .icon-tab.is-active {
+            background: #111;
+            /* ✅ 검정 배경 */
+            color: #fff;
+            /* ✅ 흰 글씨/아이콘 */
+            border-color: #111;
+            /* ✅ 테두리도 맞춤 */
+        }
+
+        .icon {
+            width: 28px;
+            height: 28px;
+        }
+
+
+        .tab-label {
+            font-size: 11px;
+            /* 라벨 더 작게 */
+            letter-spacing: .02em;
+        }
+
+        /* ===== Page title & print button ===== */
+        .toolbar {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 28px 20px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        h1.page-title {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -.01em;
+        }
+
+        .print-btn {
+            appearance: none;
+            border: 1px solid var(--black);
+            background: #fff;
+            color: var(--black);
+            padding: 10px 16px;
+            font-size: 14px;
+            border-radius: 0;
+            cursor: pointer;
+        }
+
+        .print-btn:hover {
+            background: #000;
+            color: #fff
+        }
+
+        /* ===== Content ===== */
+        .content {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 24px 20px 80px;
+        }
+
+        .terms {
+            border-top: 1px solid var(--line);
+        }
+
+        .terms section {
+            padding: 28px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .terms h2 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -.01em;
+            margin: 0 0 14px;
+        }
+
+        .terms h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 24px 0 8px;
+        }
+
+        .terms p,
+        .terms li {
+            /* color: #333 */
+            color: #888;
+            font-family: '돋움';
+            font-size: 12px;
+        }
+
+        .muted {
+            color: #777
+        }
+
+        /* Small TOC chips */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 2px;
+        }
+
+        .chip {
+            border: 1px solid var(--line);
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        /* Footer note */
+        .foot-note {
+            color: #777;
+            font-size: 12px;
+            margin-top: 28px
+        }
+
+        /* ===== Print styles ===== */
+        @media print {
+
+            .tabbar,
+            .print-btn {
+                display: none !important;
+            }
+
+            .toolbar {
+                padding: 0 0 12px 0
+            }
+
+            .content {
+                padding: 0
+            }
+
+            h1.page-title {
+                font-size: 24px;
+            }
+
+            .terms section {
+                page-break-inside: avoid;
+            }
+
+            body {
+                color: #000
+            }
+
+            /* 헤더/푸터를 직접 추가한다면, 해당 요소에 .print-skip 클래스를 붙이면 인쇄에서 숨겨집니다. */
+            .print-skip {
+                display: none !important;
+            }
+        }
+
+        .toolbar {
+            padding: 0 0 12px 0
+        }
+
+        .content {
+            padding: 0
+        }
+
+        h1.page-title {
+            font-size: 24px;
+        }
+
+        .terms section {
+            page-break-inside: avoid;
+        }
+
+        body {
+            color: #000
+        }
+    </style>
+</head>
+<script>
+    fetch("../main/header.html") //각자 주소 수정!!!
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+
+            // header.html 안의 스크립트 실행 강제
+            const scripts = document.getElementById("header").querySelectorAll("script");
+            scripts.forEach(oldScript => {
+                const newScript = document.createElement("script");
+                if (oldScript.src) {
+                    newScript.src = oldScript.src;
+                } else {
+                    newScript.textContent = oldScript.textContent;
+                }
+                document.body.appendChild(newScript);
+            });
+        });
+
+
+    fetch("../main/footer.html") //각자 주소 수정!!!
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("footer").innerHTML = data;
+        });
+</script>
+
+<body>
+    <div id="header"></div>
+
+    <div id="wrapper">
+        <nav class="tabbar" role="tablist" aria-label="약관 선택">
+            <!-- 활성화는 .is-active 로 제어됩니다. 각 버튼은 location.hash 와 동기화됩니다. -->
+            <button class="icon-tab" role="tab" aria-selected="false" data-key="buyer" id="tab-buyer">
+                <!-- 장바구니 아이콘 -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 4h2l2.6 11.2A2 2 0 0 0 9.6 17H18a2 2 0 0 0 2-1.6L21 8H6" />
+                    <circle cx="9" cy="20" r="1.5" />
+                    <circle cx="18" cy="20" r="1.5" />
+                </svg>
+                <span class="tab-label">구매회원 약관</span>
+            </button>
+
+            <button class="icon-tab" role="tab" aria-selected="false" data-key="seller" id="tab-seller">
+                <!-- 상점/스토어 아이콘 -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path
+                        d="M3 10h18M5 10l1.8-5.4A2 2 0 0 1 8.7 3h6.6a2 2 0 0 1 1.9 1.6L19 10M5 10v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9" />
+                </svg>
+                <span class="tab-label">판매회원 약관</span>
+            </button>
+
+            <button class="icon-tab" role="tab" aria-selected="false" data-key="finance" id="tab-finance">
+                <!-- 카드 아이콘 -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2.5" y="5" width="19" height="14" rx="2" ry="2" />
+                    <path d="M2.5 9.5h19" />
+                    <path d="M7.5 14.5h4" />
+                </svg>
+                <span class="tab-label">전자금융거래 약관</span>
+            </button>
+
+            <button class="icon-tab" role="tab" aria-selected="false" data-key="location" id="tab-location">
+                <!-- 위치 핀 아이콘 -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z" />
+                    <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <span class="tab-label">위치정보 약관</span>
+            </button>
+
+            <button class="icon-tab" role="tab" aria-selected="false" data-key="privacy" id="tab-privacy">
+                <!-- 방패(개인정보) 아이콘 -->
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3l7 3v6c0 5-3.5 7.8-7 9-3.5-1.2-7-4-7-9V6l7-3z" />
+                    <path d="M9.5 12l2 2 3-3" />
+                </svg>
+                <span class="tab-label">개인정보 처리방침</span>
+            </button>
+        </nav>
+
+        <div class="toolbar">
+            <h1 class="page-title" id="pageTitle">구매회원 약관</h1>
+            <button class="print-btn" type="button" aria-label="약관 인쇄" onclick="window.print()">인쇄</button>
+        </div>
+
+        <main class="content" id="content" role="region" aria-labelledby="pageTitle">
+            <div class="terms" id="terms"></div>
+        </main>
+    </div>
+
+    <script>
+        // ===== 약관 더미 데이터 (원하는 내용으로 교체하세요) =====
+        const termsData = {
+            buyer: {
+                title: '구매회원 이용약관',
+                sections: [
+                    {
+                        h2: '제 1 장 총칙',
+                        body: `
+              <h3>제 1 조 (목적)</h3>
+              <p>이 약관은 회사가 운영하는 온라인 몰(이하 "서비스")에서 제공하는 구매 관련 서비스의 이용조건 및 절차, 회사와 이용자의 권리·의무와 책임사항 등을 규정함을 목적으로 합니다.</p>
+              <h3>제 2 조 (약관의 효력 및 변경)</h3>
+              <ol>
+                <li>약관은 서비스 초기 화면에 게시함으로써 효력이 발생합니다.</li>
+                <li>관련 법령의 개정이나 회사 정책 변화에 따라 약관을 변경할 수 있습니다. 변경 시 7일 이전 공지합니다.</li>
+              </ol>
+            `
+                    },
+                    {
+                        h2: '제 2 장 회원가입과 이용',
+                        body: `
+              <h3>제 3 조 (회원가입)</h3>
+              <p>이용자는 회사가 정한 가입 양식에 따라 회원정보를 기입하고 본 약관에 동의함으로써 회원가입을 신청합니다.</p>
+              <h3>제 4 조 (회원의 의무)</h3>
+              <ul>
+                <li>회원은 관계 법령 및 약관을 준수하여야 합니다.</li>
+                <li>아이디와 비밀번호의 관리 책임은 회원에게 있습니다.</li>
+              </ul>
+            `
+                    },
+                    {
+                        h2: '제 3 장 주문 및 결제',
+                        body: `
+              <h3>제 5 조 (주문 절차)</h3>
+              <p>서비스 화면에서 제공하는 장바구니 및 주문 양식을 통해 구매를 신청합니다.</p>
+              <h3>제 6 조 (결제 방법)</h3>
+              <p>신용카드, 계좌이체, 간편결제 등 회사가 정하는 방법으로 결제할 수 있습니다.</p>
+            `
+                    }
+                ]
+            },
+            seller: {
+                title: '판매회원 이용약관',
+                sections: [
+                    { h2: '제 1 장 총칙', body: '<p>판매회원(입점사)의 서비스 이용에 관한 기본 사항을 규정합니다.</p>' },
+                    { h2: '제 2 장 입점, 상품 등록', body: '<p>입점 절차, 상품 등록 기준, 금지행위 등을 정의합니다.</p>' },
+                    { h2: '제 3 장 정산 및 수수료', body: '<p>정산 주기, 수수료율, 공제 항목 등을 명시합니다.</p>' },
+                ]
+            },
+            finance: {
+                title: '전자금융거래 이용약관',
+                sections: [
+                    { h2: '제 1 장 총칙', body: '<p>전자지급결제대행, 선불전자지급수단 등 전자금융거래에 관한 기본 사항을 규정합니다.</p>' },
+                    { h2: '제 2 장 거래의 효력', body: '<p>거래지시, 철회, 오류정정, 접근매체 관리에 관한 사항을 포함합니다.</p>' },
+                    { h2: '제 3 장 피해보상', body: '<p>사고 시 책임과 보상 절차를 명시합니다.</p>' },
+                ]
+            },
+            location: {
+                title: '위치정보 이용약관',
+                sections: [
+                    { h2: '제 1 장 총칙', body: '<p>위치기반서비스 제공 및 보호에 관한 사항을 규정합니다.</p>' },
+                    { h2: '제 2 장 이용자의 권리', body: '<p>개인위치정보 제공·이용 현황 열람, 정정, 동의 철회 방법 등을 안내합니다.</p>' },
+                    { h2: '제 3 장 기타', body: '<p>보유기간, 제3자 제공, 손해배상 등에 대하여 규정합니다.</p>' },
+                ]
+            },
+            privacy: {
+                title: '개인정보 처리방침',
+                sections: [
+                    { h2: '1. 수집하는 개인정보 항목 및 방법', body: '<p>회원가입, 주문/결제, 고객문의 처리 등에서 수집되는 항목을 예시로 기재합니다.</p>' },
+                    { h2: '2. 개인정보의 이용목적', body: '<p>서비스 제공, 계약 이행, 고객 지원, 마케팅(선택 동의) 등 목적을 기재합니다.</p>' },
+                    { h2: '3. 보관 및 파기', body: '<p>보관 기간, 파기 절차와 방법을 안내합니다.</p>' },
+                    { h2: '4. 이용자 권리', body: '<p>열람·정정·삭제·처리정지 요구, 개인정보 보호책임자 연락처 등을 기재합니다.</p>' },
+                ]
+            }
+        };
+
+        // ===== 렌더링 유틸 =====
+        const $ = (sel, ctx = document) => ctx.querySelector(sel);
+        const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+        function render(key) {
+            const data = termsData[key] || termsData.buyer;
+            $('#pageTitle').textContent = data.title;
+
+            const frag = document.createDocumentFragment();
+            data.sections.forEach(sec => {
+                const s = document.createElement('section');
+                s.innerHTML = `<h2>${sec.h2}</h2>${sec.body}`;
+                frag.appendChild(s);
+            });
+            const wrap = document.getElementById('terms');
+            wrap.innerHTML = '';
+            wrap.appendChild(frag);
+
+            // 탭 하이라이트
+            $$('.icon-tab').forEach(btn => {
+                const active = btn.dataset.key === key;
+                btn.classList.toggle('is-active', active);
+                btn.setAttribute('aria-selected', active);
+            });
+        }
+
+        // 탭 클릭 핸들러
+        $$('.icon-tab').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const key = btn.dataset.key;
+                location.hash = key; // URL에 반영 (북마크/새로고침 유지)
+            });
+        });
+
+        // 해시 기반 라우팅
+        function onHashChange() {
+            const key = (location.hash || '#buyer').replace('#', '');
+            render(key);
+        }
+        window.addEventListener('hashchange', onHashChange);
+
+        // 초기 렌더
+        onHashChange();
+    </script>
+    <div id="footer"></div>
+</body>
+
+</html>
