@@ -83,7 +83,6 @@
             cursor: pointer;
         }
 
-
         .btn-cancel {
             background: #fff;
             border: 1px solid #333;
@@ -96,7 +95,7 @@
             outline: none;
             border: none;
             box-shadow: none;
-            padding: 4px;
+            padding: 4px 12px;
             cursor: pointer;
         }
 
@@ -104,6 +103,14 @@
             background: #333;
             color: #fff;
             border: none;
+        }
+
+        /* 비활성화 시 스타일 */
+        .btn-submit:disabled {
+            background: #bbb;
+            cursor: not-allowed;
+            color: #fff;
+            opacity: 0.9;
         }
 
         .success {
@@ -119,40 +126,14 @@
         }
     </style>
 </head>
-<script>
-    fetch("../main/header.html") //각자 주소 수정!!!
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("header").innerHTML = data;
-
-            // header.html 안의 스크립트 실행 강제
-            const scripts = document.getElementById("header").querySelectorAll("script");
-            scripts.forEach(oldScript => {
-                const newScript = document.createElement("script");
-                if (oldScript.src) {
-                    newScript.src = oldScript.src;
-                } else {
-                    newScript.textContent = oldScript.textContent;
-                }
-                document.body.appendChild(newScript);
-            });
-        });
-
-
-    fetch("../main/footer.html") //각자 주소 수정!!!
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("footer").innerHTML = data;
-        });
-</script>
-
 
 <body>
     <div id="header"></div>
+
     <div class="container">
         <h2>회원가입</h2>
-        <form id="signupForm">
 
+        <form id="signupForm" novalidate>
             <!-- 회원구분 -->
             <label>회원구분 *</label>
             <div class="radio-group">
@@ -162,32 +143,33 @@
             <!-- 회원인증 -->
             <label>회원인증 *</label>
             <div class="radio-group">
-                <label><input type="radio" name="authType" value="phone" checked> 휴대폰 인증</label>
-                <label><input type="radio" name="authType" value="email"> 이메일 인증</label>
+                <label><input type="radio" name="authType" value="email" checked> 이메일 인증</label>
             </div>
             <div class="btn-verify-area">
-                <button type="button" onclick="verifyAuth()" class="btn-verify">인증하기</button>
+                <button type="button" id="btnAuth" class="btn-verify">인증하기</button>
             </div>
-            <p id="authResult" class=""></p>
+            <p id="authResult" class="error">이메일 인증이 필요합니다.</p>
 
             <!-- 아이디 -->
             <label for="userid">아이디 *</label>
-            <input type="text" id="userid" name="userid" placeholder="영문/숫자 4~16자">
+            <input type="text" id="userid" name="userid" placeholder="영문/숫자 4~16자" required>
             <div class="btn-verify-area">
-                <button type="button" onclick="checkUserId()" class="btn-verify">중복확인</button>
+                <button type="button" id="btnCheckId" class="btn-verify">중복확인</button>
             </div>
-            <p id="idResult"></p>
+            <p id="idResult" class=""></p>
 
             <!-- 비밀번호 -->
             <label for="password">비밀번호 *</label>
-            <input type="password" id="password" name="password" placeholder="영문/숫자/특수문자 2가지 이상, 10~16자">
+            <input type="password" id="password" name="password" placeholder="영문/숫자/특수문자 2가지 이상, 10~16자" required>
+
             <label for="confirmPassword">비밀번호 확인 *</label>
-            <input type="password" id="confirmPassword" name="confirmPassword">
-            <p id="pwResult"></p>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <p id="pwResult" class=""></p>
 
             <!-- 이름 -->
             <label for="name">이름 *</label>
-            <input type="text" id="name" name="name" placeholder="이름 입력">
+            <input type="text" id="name" name="name" placeholder="이름 입력" required>
+            <p id="nameResult" class=""></p>
 
             <!-- 성별 -->
             <label>성별</label>
@@ -198,62 +180,198 @@
 
             <!-- 생년월일 -->
             <label for="birth">생년월일 *</label>
-            <input type="date" id="birth" name="birth">
+            <input type="date" id="birth" name="birth" required>
+            <p id="birthResult" class=""></p>
 
             <!-- 주소 -->
-            <label>주소 *</label>
+            <label>주소</label>
             <div class="address-box">
-                <input type="text" id="postcode" placeholder="우편번호" readonly>
-                <button type="button" onclick="execDaumPostcode()">주소찾기</button>
+                <input type="text" id="postcode" placeholder="우편번호" readonly required>
+                <button type="button" id="btnFindAddr" onclick="execDaumPostcode()">주소찾기</button>
             </div>
-            <input type="text" id="address" placeholder="기본주소" readonly>
+            <input type="text" id="address" placeholder="기본주소" readonly required>
             <input type="text" id="detailAddress" placeholder="상세주소">
 
             <!-- 버튼 -->
             <div class="btn-area">
                 <button type="button" class="btn-cancel" onclick="location.href='/'">취소</button>
-                <button type="submit" class="btn-submit">가입하기</button>
+                <!-- 초기에는 비활성화 -->
+                <button type="submit" id="btnSubmit" class="btn-submit" disabled>가입하기</button>
             </div>
         </form>
     </div>
 
+    <div id="footer"></div>
+
     <!-- Daum 주소 API -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <script>
-        // 인증하기 (간단 표시)
-        function verifyAuth() {
-            document.getElementById("authResult").textContent = "인증 완료되었습니다 ✅";
-            document.getElementById("authResult").className = "success";
-        }
+        // ---------- 헤더/푸터 삽입(페이지 로드 후) ----------
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch("../main/header.html")
+                .then(res => res.text())
+                .then(data => {
+                    const header = document.getElementById("header");
+                    if (!header) return;
+                    header.innerHTML = data;
+                    // header.html 내부 스크립트 실행
+                    header.querySelectorAll("script").forEach(oldScript => {
+                        const s = document.createElement("script");
+                        if (oldScript.src) s.src = oldScript.src; else s.textContent = oldScript.textContent;
+                        document.body.appendChild(s);
+                    });
+                });
 
-        // 아이디 중복체크 (임시)
-        function checkUserId() {
-            const userid = document.getElementById("userid").value;
-            const result = document.getElementById("idResult");
-            if (userid.length < 4 || userid.length > 16) {
-                result.textContent = "아이디는 4~16자여야 합니다.";
-                result.className = "error";
-            } else {
-                result.textContent = "사용 가능한 아이디입니다 ✅";
-                result.className = "success";
-            }
-        }
-
-        // 비밀번호 확인
-        document.getElementById("confirmPassword").addEventListener("input", () => {
-            const pw = document.getElementById("password").value;
-            const confirm = document.getElementById("confirmPassword").value;
-            const result = document.getElementById("pwResult");
-            if (pw !== confirm) {
-                result.textContent = "비밀번호가 일치하지 않습니다.";
-                result.className = "error";
-            } else {
-                result.textContent = "비밀번호가 일치합니다 ✅";
-                result.className = "success";
-            }
+            fetch("../main/footer.html")
+                .then(res => res.text())
+                .then(data => {
+                    const footer = document.getElementById("footer");
+                    if (!footer) return;
+                    footer.innerHTML = data;
+                });
         });
 
-        // Daum 주소 API 실행
+        // ---------- 상태 플래그 ----------
+        let emailVerified = false;
+
+        // ---------- DOM 참조 ----------
+        const form = document.getElementById("signupForm");
+        const btnSubmit = document.getElementById("btnSubmit");
+        const authResult = document.getElementById("authResult");
+
+        const elUserId = document.getElementById("userid");
+        const elPw = document.getElementById("password");
+        const elPw2 = document.getElementById("confirmPassword");
+        const elName = document.getElementById("name");
+        const elBirth = document.getElementById("birth");
+
+        const idResult = document.getElementById("idResult");
+        const pwResult = document.getElementById("pwResult");
+        const nameResult = document.getElementById("nameResult");
+        const birthResult = document.getElementById("birthResult");
+
+        // ---------- 유틸: 유효성 검사 ----------
+        function validateUserId() {
+            const v = elUserId.value.trim();
+            const ok = /^[A-Za-z0-9]{4,16}$/.test(v);
+            if (!v) {
+                idResult.textContent = "아이디는 필수입니다.";
+                idResult.className = "error";
+            } else if (!ok) {
+                idResult.textContent = "아이디는 영문/숫자 4~16자여야 합니다.";
+                idResult.className = "error";
+            } else {
+                idResult.textContent = "사용 가능한 형식입니다.";
+                idResult.className = "success";
+            }
+            return ok;
+        }
+
+        function validatePassword() {
+            const p1 = elPw.value;
+            const p2 = elPw2.value;
+
+            const lenOK = /^.{10,16}$/.test(p1);
+            const types = [/[A-Za-z]/.test(p1), /[0-9]/.test(p1), /[^A-Za-z0-9]/.test(p1)];
+            const typeOK = (types.filter(Boolean).length >= 2);
+
+            let ok = lenOK && typeOK;
+            if (!p1) {
+                pwResult.textContent = "비밀번호는 필수입니다.";
+                pwResult.className = "error";
+                return false;
+            }
+            if (!ok) {
+                pwResult.textContent = "영문/숫자/특수문자 중 2가지 이상 포함, 10~16자";
+                pwResult.className = "error";
+            } else if (p2 && p1 !== p2) {
+                pwResult.textContent = "비밀번호가 일치하지 않습니다.";
+                pwResult.className = "error";
+                ok = false;
+            } else if (p2 && p1 === p2) {
+                pwResult.textContent = "비밀번호가 일치합니다 ✅";
+                pwResult.className = "success";
+            } else {
+                pwResult.textContent = "";
+                pwResult.className = "";
+            }
+            return ok;
+        }
+
+        function validateName() {
+            const v = elName.value.trim();
+            const ok = v.length > 0;
+            if (!ok) {
+                nameResult.textContent = "이름은 필수입니다.";
+                nameResult.className = "error";
+            } else {
+                nameResult.textContent = "";
+                nameResult.className = "";
+            }
+            return ok;
+        }
+
+        function validateBirth() {
+            const v = elBirth.value;
+            let ok = !!v;
+            if (!ok) {
+                birthResult.textContent = "생년월일은 필수입니다.";
+                birthResult.className = "error";
+                return false;
+            }
+            // 미래 날짜 방지(선택)
+            const today = new Date();
+            const b = new Date(v + "T00:00:00");
+            if (b > today) {
+                birthResult.textContent = "생년월일은 오늘 이후일 수 없습니다.";
+                birthResult.className = "error";
+                ok = false;
+            } else {
+                birthResult.textContent = "";
+                birthResult.className = "";
+            }
+            return ok;
+        }
+
+        function updateSubmitState() {
+            const allValid =
+                emailVerified &&
+                validateUserId() &&
+                validatePassword() &&
+                validateName() &&
+                validateBirth();
+
+            btnSubmit.disabled = !allValid;
+        }
+
+        // ---------- 이벤트 바인딩 ----------
+        document.getElementById("btnAuth").addEventListener("click", () => {
+            // 실제 구현에서는 이메일 OTP 발송/확인 로직 필요
+            emailVerified = true;
+            authResult.textContent = "이메일 인증이 완료되었습니다.";
+            authResult.className = "success";
+            updateSubmitState();
+        });
+
+        document.getElementById("btnCheckId").addEventListener("click", () => {
+            // 실제 구현에서는 서버에 중복체크 API 호출
+            if (validateUserId()) {
+                idResult.textContent = "사용 가능한 아이디입니다. (중복확인: 임시 통과)";
+                idResult.className = "success";
+            }
+            updateSubmitState();
+        });
+
+        elUserId.addEventListener("input", updateSubmitState);
+        elPw.addEventListener("input", updateSubmitState);
+        elPw2.addEventListener("input", updateSubmitState);
+        elName.addEventListener("input", updateSubmitState);
+        elBirth.addEventListener("change", updateSubmitState);
+
+        // 주소는 필수 여부 요구가 없어서 버튼 활성화 조건에는 미반영(원하면 추가 가능)
+
+        // ---------- Daum 주소 API ----------
         function execDaumPostcode() {
             new daum.Postcode({
                 oncomplete: function (data) {
@@ -262,15 +380,31 @@
                 }
             }).open();
         }
+        window.execDaumPostcode = execDaumPostcode; // onclick에서 접근 가능하도록 노출
 
-        // 폼 제출
-        document.getElementById("signupForm").addEventListener("submit", function (e) {
+        // ---------- 제출 처리 ----------
+        form.addEventListener("submit", function (e) {
+            // 버튼이 활성화 상태라도 한번 더 검증(보안상 안전)
+            const okNow =
+                emailVerified &&
+                validateUserId() &&
+                validatePassword() &&
+                validateName() &&
+                validateBirth();
+
+            if (!okNow) {
+                e.preventDefault();
+                alert("필수 인증/입력 항목을 완료해주세요.");
+                updateSubmitState();
+                return;
+            }
+
+            // 실제로는 fetch POST로 서버에 전송
             e.preventDefault();
             alert("회원가입 데이터가 전송됩니다 (DB 연동 예정).");
             location.href = "/welcome"; // 가입완료 페이지 예시
         });
     </script>
-    <div id="footer"></div>
 </body>
 
 </html>
