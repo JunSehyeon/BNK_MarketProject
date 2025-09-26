@@ -17,6 +17,13 @@
             background:none; border:1px solid #000; cursor:pointer;
             width:40px; height:40px; display:grid; place-items:center;
         }
+        .title-line {
+            width: 840px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 1px;
+        }
 
         /* 1) 스크림(배경) - 화면 전체 덮음 + 블러 */
         .overlay {
@@ -143,7 +150,7 @@
     text-transform:uppercase;
     color:var(--z-black);
     border-bottom:1px solid var(--z-line);
-    background:var(--z-white);
+    background-color: black; color:white;
     font-weight:600;
   }
 
@@ -430,7 +437,7 @@
         <div>
         <aside class="euro-nav" aria-label="관리자 사이드 메뉴" style="">
             <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="background-color: #e2e2e2;">환경설정</h4>
+            <h4 class="euro-nav__title" style="">환경설정</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item is-active"><a href="#">기본설정</a></li>
                 <li class="euro-nav__item"><a href="#">배너관리</a></li>
@@ -440,24 +447,24 @@
             </ul>
             </section>
 
-                <section class="euro-nav__group">
-                <h4 class="euro-nav__title" style="background-color: #e2e2e2;">상점관리</h4>
-                <ul class="euro-nav__list">
-                    <li class="euro-nav__item"><a href="/admin/store_list.html">상점목록</a></li>
-                    <li class="euro-nav__item"><a href="/admin/sale_status.html">매출현황</a></li>
-                </ul>
-                </section>
-
-                <section class="euro-nav__group">
-                <h4 class="euro-nav__title" style="background-color: #e2e2e2;">회원관리</h4>
-                <ul class="euro-nav__list">
-                    <li class="euro-nav__item"><a href="/admin/member_list.html">회원목록</a></li>
-                    <li class="euro-nav__item"><a href="/admin/point_management.html">포인트관리</a></li>
-                </ul>
-                </section>
+            <section class="euro-nav__group">
+            <h4 class="euro-nav__title" style="">상점관리</h4>
+            <ul class="euro-nav__list">
+                <li class="euro-nav__item"><a href="#">상점목록</a></li>
+                <li class="euro-nav__item"><a href="#">매출현황</a></li>
+            </ul>
+            </section>
 
             <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="background-color: #e2e2e2;">상품관리</h4>
+            <h4 class="euro-nav__title" style="">회원관리</h4>
+            <ul class="euro-nav__list">
+                <li class="euro-nav__item"><a href="#">회원목록</a></li>
+                <li class="euro-nav__item"><a href="#">포인트관리</a></li>
+            </ul>
+            </section>
+
+            <section class="euro-nav__group">
+            <h4 class="euro-nav__title" style="">상품관리</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="#">상품목록</a></li>
                 <li class="euro-nav__item"><a href="#">상품등록</a></li>
@@ -465,7 +472,7 @@
             </section>
 
             <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="background-color: #e2e2e2;">주문관리</h4>
+            <h4 class="euro-nav__title" style="">주문관리</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="#">주문현황</a></li>
                 <li class="euro-nav__item"><a href="#">배송현황</a></li>
@@ -473,7 +480,7 @@
             </section>
 
             <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="background-color: #e2e2e2;">쿠폰관리</h4>
+            <h4 class="euro-nav__title" style="">쿠폰관리</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="#">쿠폰목록</a></li>
                 <li class="euro-nav__item"><a href="#">쿠폰발급현황</a></li>
@@ -481,7 +488,7 @@
             </section>
 
             <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="background-color: #e2e2e2;">고객센터</h4>
+            <h4 class="euro-nav__title" style="">고객센터</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="#">공지사항</a></li>
                 <li class="euro-nav__item"><a href="#">자주묻는질문</a></li>
@@ -494,8 +501,10 @@
             <div style="width:900px; height:1000px; border:1px solid; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
 
             <!-- 제목 + 경로 -->
-            <div style="padding-top: 10px; padding-bottom: 5px; font-size: 22px;"><b>배너관리</b></div>
+            <div class="title-line" style="border-bottom: 2px solid #ccc;">
+            <div style="padding-top: 10px; padding-bottom: 5px; font-size: 22px;"><b>매출현황</b></div>
             <div>HOME > 상점관리 > <b>매출현황</b></div>
+            </div>
             <button id="cycleBtn" style="border:1px solid #aaa; padding:6px 14px; cursor:pointer; margin-bottom: 20px;">
             일별
             </button>

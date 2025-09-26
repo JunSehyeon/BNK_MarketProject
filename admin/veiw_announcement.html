@@ -124,7 +124,7 @@
     --z-black:#111;
     --z-white:#fff;
     --z-line:#e9e9e9;     /* 헤어라인 그레이 */
-    --z-muted:#6f6f6f;
+    --z-muted:#ffffff;
   }
 
   /* 사이드 네비 카드 */
@@ -503,82 +503,54 @@
 
             <!-- 제목 + 경로 -->
             <div class="title-line" style="border-bottom: 2px solid #ccc;">
-            <div style="padding-top: 10px; padding-bottom: 5px; font-size: 22px;"><b>포인트관리</b></div>
-            <div>HOME > 회원관리 > <b>포인트관리</b></div>
+            <div style="padding-top: 10px; padding-bottom: 5px; font-size: 22px;"><b>공지사항 보기</b></div>
+            <div>HOME > 고객센터 > <b>공지사항 </b></div>
              </div>
             <!-- 1. 검색 -->
-            <div style="margin-bottom:20px;">
+            <div style="margin-bottom:80px;">
               <!-- 1. 검색 -->
-            <button id="cycleBtn" style="border:1px solid #aaa; padding:6px 14px; cursor:pointer; margin-bottom: 20px;">
-            아이디
-            </button>
-
-            <script>
-            const btn = document.getElementById('cycleBtn');
-            const labels = ["아이디", "이름", "이메일", "휴대폰"];
-            let idx = 0; // 0=일별
-
-            btn.addEventListener('click', ()=>{
-            idx = (idx+1) % labels.length; // 0→1→2→0 순환
-            btn.textContent = labels[idx];
-            });
-            </script>
-              <input type="text" id="search" placeholder="검색어입력"
-                    style="padding:6px 10px; border:1px solid #aaa; width:200px; font-size:14px;">
-              <button style="padding:6px 14px; margin-left:6px; background:#777; color:#fff; border:none; cursor:pointer;">검색</button>
+              
             </div>
 
             <!-- 2. 테이블 -->
-            <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
-              <thead>
-                <tr style="border-top:2px solid #000; border-bottom:1px solid #ccc; background:#fafafa;">
-                  <th style="padding:8px;"><input type="checkbox"></th>
-                  <th>번호</th>
-                  <th>아이디</th>
-                  <th>이름</th>
-                  <th>지급 포인트</th>
-                  <th>잔여 포인트</th>
-                  <th>지급 내용</th>
-                  <th>지급 날짜</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="border-bottom:1px solid #e0e0e0;">
-                  <td><input type="checkbox"></td><td>5</td><td>abc1234</td><td>정우성</td><td>1,000</td><td>15,000</td><td>구매확정 포인트 지급</td><td>0000-00-00 00:00:00</td>
-                </tr>
-                <tr style="border-bottom:1px solid #e0e0e0;">
-                  <td><input type="checkbox"></td><td>4</td><td>abc1234</td><td>정우성</td><td>1,000</td><td>14,000</td><td>이벤트 참여</td><td>0000-00-00 00:00:00</td>
-                </tr>
-                <tr style="border-bottom:1px solid #e0e0e0;">
-                  <td><input type="checkbox"></td><td>3</td><td>kang771</td><td>강동원</td><td>-17,000</td><td>100</td><td>주문 결제 사용</td><td>0000-00-00 00:00:00</td>
-                </tr>
-                <tr style="border-bottom:1px solid #e0e0e0;">
-                  <td><input type="checkbox"></td><td>2</td><td>eqkac112</td><td>한예슬</td><td>1,000</td><td>3,500</td><td>상품 리뷰 작성</td><td>0000-00-00 00:00:00</td>
-                </tr>
-                <tr style="border-bottom:1px solid #e0e0e0;">
-                  <td><input type="checkbox"></td><td>1</td><td>qeimn3</td><td>이정재</td><td>1,000</td><td>2,700</td><td>회원가입 축하</td><td>0000-00-00 00:00:00</td>
-                </tr>
-              </tbody>
-            </table>
+            <table style="width:845px; /* 700px → 2% 증가 */ 
+             border-collapse:collapse; 
+             margin:30px auto; 
+             font-family:'맑은 고딕', sans-serif; 
+             font-size:14px; 
+             color:#333;">
+            <tr style="height:60px;"> <!-- 기본 약 40px → 10% 증가 -->
+              <th style="width:100px; text-align:left; padding:8px; 
+                        border-top:2px solid #999; /* 맨 위 굵게 */ 
+                        border-bottom:1px solid #eee; /* 중간 연한 선 */
+                        background:#fff;">유형</th>
+              <td style="padding:8px; 
+                        border-top:2px solid #999; 
+                        border-bottom:1px solid #eee;">고객서비스</td>
+            </tr>
+            <tr style="height:44px;">
+              <th style="text-align:left; padding:8px; 
+                        border-bottom:1px solid #eee; /* 중간 연한 선 */ 
+                        background: #fff;">제목</th>
+              <td style="padding:8px; border-bottom:1px solid #eee;">[안내] 해외결제 사칭 문자 주의</td>
+            </tr>
+            <tr style="height:66px;"> <!-- 내용 부분은 기본보다 커서 약간 더 늘려줌 -->
+              <th style="text-align:left; padding:8px; 
+                        border-bottom:1px solid #ccc; /* 맨 아래 조금 얇게 */ 
+                        background:#fff;">내용</th>
+              <td style="padding:20px; line-height:1.6; border-bottom:1px solid #ccc;">
+                안녕하세요. 케이뱅크입니다.<br><br>
+                케이뱅크 해외직구를 사칭하는 피싱 문자거래신고고객이 있어 안내드립니다.<br><br>
+                아래와 같이 해외직구 승인관련 피싱 문자 또는 발신번호
+                <strong>006, 002</strong> 등으로 시작하는 피싱 문자 수신시 즉시 삭제 및 차단 등록을 해주시기 바랍니다.
+              </td>
+            </tr>
+          </table>
 
-            <!-- 3. 하단 버튼 영역 -->
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
-              <!-- 선택삭제 -->
-              <button style="padding:6px 14px; background:#ccc; border:none; cursor:pointer;">선택삭제</button>
-
-              <!-- 페이지네이션 -->
-              <div style="text-align:center; font-size:14px;">
-                <a href="#" style="margin:0 6px; text-decoration:none; color:#000;">이전</a>
-                <a href="#" style="margin:0 6px; text-decoration:none; color:#000;">1</a>
-                <a href="#" style="margin:0 6px; text-decoration:none; color:#000;">2</a>
-                <a href="#" style="margin:0 6px; text-decoration:none; color:#000;">3</a>
-                <a href="#" style="margin:0 6px; text-decoration:none; color:#000;">4</a>
-                <a href="#" style="margin:0 6px; text-decoration:none; color:#000;">5</a>
-                <a href="#" style="margin:0 6px; text-decoration:none; color:#000;">다음</a>
-              </div>
-
-              <!-- 상점등록 -->
-              <button style="padding:6px 14px; background:#fff; color:#fff; border:none; cursor:pointer;"></button>
+            <div style="text-align:center; margin-left: 500px;">
+              <button style="padding:10px 40px; margin:20px 5px; background:#999; border:none; color:#fff; cursor:pointer;">삭제</button>
+              <button style="padding:10px 40px; margin:20px 5px; background:#999; border:none; color:#fff; cursor:pointer;">수정</button>
+              <button style="padding:10px 40px; margin:20px 5px; background:#529ff7; border:none; color:#fff; cursor:pointer;">목록</button>
             </div>
           </div>
     </main>
