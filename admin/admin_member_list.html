@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin_frame</title>
+    <title>admin_member_list</title>
 </head>
 <body>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -201,6 +201,27 @@
     outline-offset:2px;
   }
 
+  /* 페이지네이션 */
+        /* 게시판 아래버튼 부분 */
+        .prev-page{
+            background-color: white;
+            border: none;
+            margin-right: 15px;
+            width: 50px;
+            height: 30px;
+            cursor: pointer;
+        }
+        .next-page{
+            background-color: white;
+            border: none;
+            margin-left: 15px;
+            width: 50px;
+            height: 30px;
+            margin-right:3px;
+            cursor: pointer;
+        }
+        
+        /* 게시판 아래버튼 부분 끝 */
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -440,12 +461,13 @@
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">환경설정</h4>
             <ul class="euro-nav__list">
-                <li class="euro-nav__item is-active"><a href="#">기본설정</a></li>
+                <li class="euro-nav__item"><a href="#">기본설정</a></li>
                 <li class="euro-nav__item"><a href="#">배너관리</a></li>
                 <li class="euro-nav__item"><a href="#">약관관리</a></li>
                 <li class="euro-nav__item"><a href="#">카테고리</a></li>
                 <li class="euro-nav__item"><a href="#">버전관리</a></li>
             </ul>
+            </section>
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">상점관리</h4>
             <ul class="euro-nav__list">
@@ -457,7 +479,7 @@
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">회원관리</h4>
             <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="/admin/member_list.html">회원목록</a></li>
+                <li class="euro-nav__item is-active"><a href="/admin/member_list.html">회원목록</a></li>
                 <li class="euro-nav__item"><a href="/admin/point_management.html">포인트관리</a></li>
             </ul>
             </section>
@@ -498,7 +520,7 @@
         </aside>
                 </div>
                 <!-- 오른쪽 콘텐츠 영역 -->
-          <div style="width:900px; height:1000px; border:none; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
+          <div style="margin-left:40px; width:900px; height:1000px; border:none; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
 
             <!-- 제목 + 경로 -->
             <div style="display: flex;">
@@ -799,29 +821,6 @@
         }
       </style>
 
-    <script>
-      // ===== 상점등록 모달 =====
-      const modal = document.getElementById("shopModal");
-      const openModalBtn = document.getElementById("openModalBtn");
-      const closeModalBtn = document.querySelector(".modal .close");
-
-      // 열기
-      openModalBtn.addEventListener("click", () => {
-        modal.style.display = "flex";
-      });
-
-      // 닫기(X)
-      closeModalBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-      });
-
-      // 배경 클릭 시 닫기
-      window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    </script>
 
     <style>
         .euro-nav__list {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin_frame</title>
+    <title>admin_announce_write</title>
 </head>
 <body>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
             width:40px; height:40px; display:grid; place-items:center;
         }
         .title-line {
-            width: 840px;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -437,6 +437,16 @@
         <div>
         <aside class="euro-nav" aria-label="관리자 사이드 메뉴" style="">
             <section class="euro-nav__group">
+            <h4 class="euro-nav__title" style="">환경설정</h4>
+            <ul class="euro-nav__list">
+                <li class="euro-nav__item"><a href="#">기본설정</a></li>
+                <li class="euro-nav__item"><a href="#">배너관리</a></li>
+                <li class="euro-nav__item"><a href="#">약관관리</a></li>
+                <li class="euro-nav__item"><a href="#">카테고리</a></li>
+                <li class="euro-nav__item"><a href="#">버전관리</a></li>
+            </ul>
+            </section>
+            <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">상점관리</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="/admin/store_list.html">상점목록</a></li>
@@ -479,7 +489,7 @@
             <section class="euro-nav__group">
             <h4 class="euro-nav__title" style="">고객센터</h4>
             <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="/admin/announcement_list.html">공지사항</a></li>
+                <li class="euro-nav__item is-active"><a href="/admin/announcement_list.html">공지사항</a></li>
                 <li class="euro-nav__item"><a href="/admin/questions_list.html">자주묻는질문</a></li>
                 <li class="euro-nav__item"><a href="#">문의하기</a></li>
                 <li class="euro-nav__item"><a href="#">채용하기</a></li>
@@ -488,7 +498,7 @@
         </aside>
         </div>
         <!-- 오른쪽 콘텐츠 영역 -->
-          <div style="width:900px; height:1000px; border:none; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
+          <div style="margin-left:40px;width:900px; height:1000px; border:none; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
 
             <!-- 제목 + 경로 -->
             <div class="title-line" style="border-bottom: 2px solid #ccc;">
@@ -503,7 +513,7 @@
 
             <!-- 2. 테이블 -->
             <!-- 폼 박스 -->
-            <div style="width:840px; height: 500px; margin:50px auto; font-family:'맑은 고딕', sans-serif; font-size:14px; color:#333; background:#fff; border-top:2px solid #000;">
+            <div style="width:100%; height: 500px; margin:50px auto; font-family:'맑은 고딕', sans-serif; font-size:14px; color:#333; background:#fff; border-top:2px solid #000;">
 
             <!-- 유형 -->
             <div style="display:flex; align-items:center; border-bottom:1px solid #e0e0e0; padding:12px 8px;">
