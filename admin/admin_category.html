@@ -39,7 +39,7 @@
             margin-bottom: 16px;
         }
         .panel {          
-            border: 1px solid #e5e7eb;
+            border: none;         
             padding: 12px;
         }
         .panel-head {
@@ -56,20 +56,16 @@
             padding: 0;
         }
         .level-2 {
-            padding-left: 20px;
-            margin-top: 4px;
+            padding-left: 40px;            
         }
         .level-2 .leaf {
             border: none !important;
-        }
-        .node, .leaf {
-            border: 1px solid #e5e7eb;
-            margin-bottom : 6px;
-        }
+        }        
         .node > .row {
+            border: 1px solid #cfcfcf;
+            border-top: none;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            align-items: center;            
             padding: 8px 10px;
         }        
         .leaf > .row {
@@ -79,20 +75,9 @@
             padding: 8px 10px;
             justify-content: flex-start; 
         }
-        
         .node > .row:hover, .leaf > .row:hover {
             background: #f5f7fa;
-        }
-        .toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            display: grid;
-            place-items: center;
-            font-size: 14px;
-        }
+        }        
         .name[contenteditable="true"] {
             flex: 1;
             padding: 2px 4px;            
@@ -101,28 +86,24 @@
         .name[contenteditable="true"]:focus {
             background: #fff;
             outline-color: #c7d2fe;
-        }        
-        .droppable {
-            min-height: 4px;
-        }
-        .btn-add, .btn-danger, .btn-primary {
+        }         
+        .btn-add {            
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            color: #555;
+            display: inline-block;
             font-size: 12px;
             cursor: pointer;
             padding: 6px 10px;
         }
-        .btn-add {
-            margin: 4px 0 6px 0;
-            border: 1px dashed #cbd5e1;
+        .btn-red {
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px 4px;
+            border: 1px solid red;
             background: #fff;
-            color: #555;
-            display: inline-block;
-        }
-        .btn-danger {
-            border: 1px solid #ef4444;
-            background: #fff;
-            color: #ef4444;
-        }
-        .btn-danger:hover { background: #fff1f1; }        
+            color: red;
+        }               
         .icon-btn {
             background: none;
             border: 1px solid #000;
@@ -135,12 +116,6 @@
             background:none; border:1px solid #000; cursor:pointer;
             width:40px; height:40px; display:grid; place-items:center;
         }        
-        .actions {
-            display: flex;
-            justify-content: flex-end;
-            padding-top: 10px;
-            border-top: 1px solid #f0f0f0;
-        }
         .save-hint {
             font-size: 12px;
             color: #2563eb;
@@ -150,14 +125,18 @@
         .ghost { opacity: .45; }
 
         html{ scrollbar-gutter: stable; }
-        
+
+        .actions {
+            display: flex;
+            justify-content: flex-end; 
+            margin-top: 12px;
+        }       
         .btn {            
             padding: 8px 12px;
             background-color: #6FADCF;
             color: #fff;
             border: none;
-            cursor: pointer;
-            float: right;                
+            cursor: pointer;            
         }
         .page-head {
             width: 880px;
@@ -170,11 +149,20 @@
             font-size: 18px;
             margin: 0;
         }
-
         .breadcrumbs {
             font-size: 12px;
             color: #666;
         }        
+        .drag-handle {
+            background: none;
+            border: none;
+            cursor: grab;
+            user-select: none;
+            font-size: 14px;            
+        }
+        .drag-handle:active {
+           cursor: grabbing; /* 드래그 중일 때 손 움켜쥔 모양 */
+        }
 
         /* ///////////////////// */
 
@@ -559,11 +547,6 @@
         catLinks.forEach(a => a.classList.remove('is-active'));
         if(target) target.classList.add('is-active');
     }
-
-    function showPanel(key){
-        panels.forEach(p => p.classList.toggle('show', p.dataset.key === key));
-    }
-
     catLinks.forEach(link => {
     link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -578,196 +561,190 @@
     showPanel('fashion');
     </script>
 
-    <main style="display: flex; justify-content: center; border-top:1px solid #e2e2e2;">
-        <div>
-        <aside class="euro-nav" aria-label="관리자 사이드 메뉴" style="">
-            <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="">환경설정</h4>
-            <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="#">기본설정</a></li>
-                <li class="euro-nav__item"><a href="#">배너관리</a></li>
-                <li class="euro-nav__item"><a href="#">약관관리</a></li>
-                <li class="euro-nav__item is-active"><a href="#">카테고리</a></li>
-                <li class="euro-nav__item"><a href="#">버전관리</a></li>
-            </ul>
-            </section>
+<main style="display: flex; justify-content: center; border-top:1px solid #e2e2e2;">
+  <div>
+    <aside class="euro-nav" aria-label="관리자 사이드 메뉴">
+      <section class="euro-nav__group">
+        <h4 class="euro-nav__title">환경설정</h4>
+        <ul class="euro-nav__list">
+          <li class="euro-nav__item"><a href="#">기본설정</a></li>
+          <li class="euro-nav__item"><a href="#">배너관리</a></li>
+          <li class="euro-nav__item"><a href="#">약관관리</a></li>
+          <li class="euro-nav__item is-active"><a href="#">카테고리</a></li>
+          <li class="euro-nav__item"><a href="#">버전관리</a></li>
+        </ul>
+      </section>
 
-            <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="">상점관리</h4>
-            <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="#">상점목록</a></li>
-                <li class="euro-nav__item"><a href="#">매출현황</a></li>
-            </ul>
-            </section>
+      <section class="euro-nav__group">
+        <h4 class="euro-nav__title">상점관리</h4>
+        <ul class="euro-nav__list">
+          <li class="euro-nav__item"><a href="#">상점목록</a></li>
+          <li class="euro-nav__item"><a href="#">매출현황</a></li>
+        </ul>
+      </section>
 
-            <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="">회원관리</h4>
-            <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="#">회원목록</a></li>
-                <li class="euro-nav__item"><a href="#">포인트관리</a></li>
-            </ul>
-            </section>
+      <section class="euro-nav__group">
+        <h4 class="euro-nav__title">회원관리</h4>
+        <ul class="euro-nav__list">
+          <li class="euro-nav__item"><a href="#">회원목록</a></li>
+          <li class="euro-nav__item"><a href="#">포인트관리</a></li>
+        </ul>
+      </section>
 
-            <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="">상품관리</h4>
-            <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="#">상품목록</a></li>
-                <li class="euro-nav__item"><a href="#">상품등록</a></li>
-            </ul>
-            </section>
+      <section class="euro-nav__group">
+        <h4 class="euro-nav__title">상품관리</h4>
+        <ul class="euro-nav__list">
+          <li class="euro-nav__item"><a href="#">상품목록</a></li>
+          <li class="euro-nav__item"><a href="#">상품등록</a></li>
+        </ul>
+      </section>
 
-            <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="">주문관리</h4>
-            <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="#">주문현황</a></li>
-                <li class="euro-nav__item"><a href="#">배송현황</a></li>
-            </ul>
-            </section>
+      <section class="euro-nav__group">
+        <h4 class="euro-nav__title">주문관리</h4>
+        <ul class="euro-nav__list">
+          <li class="euro-nav__item"><a href="#">주문현황</a></li>
+          <li class="euro-nav__item"><a href="#">배송현황</a></li>
+        </ul>
+      </section>
 
-            <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="">쿠폰관리</h4>
-            <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="#">쿠폰목록</a></li>
-                <li class="euro-nav__item"><a href="#">쿠폰발급현황</a></li>
-            </ul>
-            </section>
+      <section class="euro-nav__group">
+        <h4 class="euro-nav__title">쿠폰관리</h4>
+        <ul class="euro-nav__list">
+          <li class="euro-nav__item"><a href="#">쿠폰목록</a></li>
+          <li class="euro-nav__item"><a href="#">쿠폰발급현황</a></li>
+        </ul>
+      </section>
 
-            <section class="euro-nav__group">
-            <h4 class="euro-nav__title" style="">고객센터</h4>
-            <ul class="euro-nav__list">
-                <li class="euro-nav__item"><a href="#">공지사항</a></li>
-                <li class="euro-nav__item"><a href="#">자주묻는질문</a></li>
-                <li class="euro-nav__item"><a href="#">문의하기</a></li>
-                <li class="euro-nav__item"><a href="#">채용하기</a></li>
-            </ul>
-            </section>
-        </aside>
-        </div>
-        <div style="border-left:1px solid #e2e2e2;"></div>
-        <div style="margin-left:40px; width:900px; height:1000px; ">
+      <section class="euro-nav__group">
+        <h4 class="euro-nav__title">고객센터</h4>
+        <ul class="euro-nav__list">
+          <li class="euro-nav__item"><a href="#">공지사항</a></li>
+          <li class="euro-nav__item"><a href="#">자주묻는질문</a></li>
+          <li class="euro-nav__item"><a href="#">문의하기</a></li>
+          <li class="euro-nav__item"><a href="#">채용하기</a></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
 
-            <section class="category-admin">  
-                <div class="page-head" style="border-bottom: 3px solid #cfcfcf;">
-                    <div class="title" ><b>카테고리</b></div>
-                    <div class="breadcrumbs">HOME &gt; 환경설정 &gt; <b>카테고리</b></div>
-                </div>
-                <div class="div-gray" style="margin-bottom: 10px;">쇼핑몰 메인, 상품 페이지 사이드 카테고리 메뉴 입니다</div>
-                
-                <div class="panel">
-                    <div class="panel-head">                    
-                        
-                </div>             
-                    <!-- 카테고리 트리 -->
-                    <div class="tree-wrap" aria-label="카테고리 편집">
-                    <ul class="level-1" id="level1">
-                        <!-- 1차: 여성패션 -->
-                        <li class="node" data-id="c1" draggable="true">
-                        <div class="row">
-                            <button class="toggle" aria-label="하위 항목 접기/펼치기">▸</button>
-                            <span class="name" contenteditable="true">여성패션</span>
-                            <button class="btn-danger btn-del" data-scope="l1">삭제</button>
-                        </div>
-                        <ul class="level-2 droppable">
-                            <li class="leaf" data-id="c1-1" draggable="true">
-                            <div class="row">
-                                <span class="name" contenteditable="true">의류</span>
-                                <button class="btn-danger btn-del" data-scope="l2">삭제</button>
-                            </div>
-                            </li>
-                            <li class="leaf" data-id="c1-2" draggable="true">
-                            <div class="row">
-                                <span class="name" contenteditable="true">가방</span>
-                                <button class="btn-danger btn-del" data-scope="l2">삭제</button>
-                            </div>
-                            </li>
-                            <li class="leaf" data-id="c1-3" draggable="true">
-                            <div class="row">
-                                <span class="name" contenteditable="true">신발</span>
-                                <button class="btn-danger btn-del" data-scope="l2">삭제</button>
-                            </div>
-                            </li>
-                            <li class="leaf" data-id="c1-4" draggable="true">
-                            <div class="row">
-                                <span class="name" contenteditable="true">잡화</span>
-                                <button class="btn-danger btn-del" data-scope="l2">삭제</button>
-                            </div>
-                            </li>
-                        </ul>
-                        <button class="btn-add add-l2" type="button" style="">＋ 카테고리 추가</button>
-                        </li>
+  <div style="border-left:1px solid #e2e2e2;"></div>
 
-                        <!-- 1차: 나머지 예시 -->
-                        <li class="node" data-id="c2" draggable="true">
-                        <div class="row">
-                            <button class="toggle" aria-label="하위 항목 접기/펼치기">▸</button>
-                            <span class="name" contenteditable="true">남성패션</span>
-                            <button class="btn-danger btn-del" data-scope="l1">삭제</button>
-                        </div>
-                        <ul class="level-2 droppable"></ul>
-                        <button class="btn-add add-l2" type="button">＋ 카테고리 추가</button>
-                        </li>
+  <div style="margin-left:40px; width:900px; height:1000px;">
+    <section class="category-admin">
+      <div class="page-head" style="border-bottom: 3px solid #cfcfcf;">
+        <div class="title"><b>카테고리</b></div>
+        <div class="breadcrumbs">HOME &gt; 환경설정 &gt; <b>카테고리</b></div>
+      </div>
 
-                        <li class="node" data-id="c5" draggable="true">
-                        <div class="row">
-                            <button class="toggle" aria-label="하위 항목 접기/펼치기">▸</button>
-                            <span class="name" contenteditable="true">유아동</span>
-                            <button class="btn-danger btn-del" data-scope="l1">삭제</button>
-                        </div>
-                        <ul class="level-2 droppable"></ul>
-                        <button class="btn-add add-l2" type="button">＋ 카테고리 추가</button>
-                        </li>
+      <div class="div-gray" style="margin-bottom: 10px;">
+        쇼핑몰 메인, 상품 페이지 사이드 카테고리 메뉴 입니다
+      </div>
 
-                        <li class="node" data-id="c5" draggable="true">
-                        <div class="row">
-                            <button class="toggle" aria-label="하위 항목 접기/펼치기">▸</button>
-                            <span class="name" contenteditable="true">내용뭐</span>
-                            <button class="btn-danger btn-del" data-scope="l1">삭제</button>
-                        </div>
-                        <ul class="level-2 droppable"></ul>
-                        <button class="btn-add add-l2" type="button">＋ 카테고리 추가</button>
-                        </li>
+      <div class="panel">
+        <div class="panel-head"></div>
 
-                        <li class="node" data-id="c5" draggable="true">
-                        <div class="row">
-                            <button class="toggle" aria-label="하위 항목 접기/펼치기">▸</button>
-                            <span class="name" contenteditable="true">로하지</span>
-                            <button class="btn-danger btn-del" data-scope="l1">삭제</button>
-                        </div>
-                        <ul class="level-2 droppable"></ul>
-                        <button class="btn-add add-l2" type="button">＋ 카테고리 추가</button>
-                        </li>
-                                                
-                    </ul>
-
-                    <button class="btn-add add-l1" type="button">＋ 1차 카테고리 추가</button>
+        <!-- 카테고리 트리 -->
+        <div class="tree-wrap" aria-label="카테고리 편집">
+          <ul class="level-1" id="level1">
+            <!-- 1차: 여성패션 -->
+            <li class="node" data-id="c1" draggable="true">
+              <div class="row" style="border: 1px solid #cfcfcf; border-bottom: none;">
+                <button class="drag-handle">▶</button>
+                <span class="name" contenteditable="true">여성</span>
+                <button class="btn-red btn-del" data-scope="l1">삭제</button>
+              </div>
+              <ul class="level-2 droppable" style="border-left: 1px solid #cfcfcf; border-right: 1px solid #cfcfcf;">
+                <li class="leaf" data-id="c1-1" draggable="true">
+                  <div class="row">
+                    <span class="name" contenteditable="true">원피스</span>
+                    <button class="btn-red btn-del" data-scope="l2">삭제</button>
+                  </div>
+                </li>
+                <li class="leaf" data-id="c1-2" draggable="true">
+                  <div class="row">
+                    <span class="name" contenteditable="true">티셔츠</span>
+                    <button class="btn-red btn-del" data-scope="l2">삭제</button>
+                  </div>
+                </li>
+                <li class="leaf" data-id="c1-3" draggable="true">
+                  <div class="row">
+                    <span class="name" contenteditable="true">스커트</span>
+                    <button class="btn-red btn-del" data-scope="l2">삭제</button>
+                  </div>
+                </li>
+                <li class="leaf" data-id="c1-4" draggable="true">
+                  <div class="row">
+                    <span class="name" contenteditable="true">주얼리</span>
+                    <button class="btn-red btn-del" data-scope="l2">삭제</button>
+                  </div>
+                </li>
+                <li class="leaf add-l2-row">
+                    <div class="row">
+                    <button class="btn-add add-l2" type="button">+</button>
+                    <span class="name">2차 카테고리 추가</span>                    
                     </div>
+                </li>
+              </ul>              
+            </li>
 
-                    <div class="actions">
-                    
-                    <span class="save-hint" id="saveHint" aria-live="polite"></span>
-                        </div>
-                    </div>                    
-                    <button class="btn" id="saveBtn" type="button">수정하기</button>
-            </section>
+            <!-- 1차: 나머지 예시 -->
+            <li class="node" data-id="c2" draggable="true">
+              <div class="row" style="border: 1px solid #cfcfcf;">
+                <button class="drag-handle">▶</button>                
+                <span class="name" contenteditable="true">남성</span>
+                <button class="btn-red btn-del" data-scope="l1">삭제</button>
+              </div>
+              <ul class="level-2 droppable"></ul>
+            </li>
 
+            <li class="node" data-id="c5" draggable="true">
+              <div class="row">
+                <button class="drag-handle">▶</button>
+                <span class="name" contenteditable="true">아동</span>
+                <button class="btn-red btn-del" data-scope="l1">삭제</button>
+              </div>
+              <ul class="level-2 droppable"></ul>
+            </li>
+
+            <li class="node" data-id="c5" draggable="true">
+              <div class="row">
+                <button class="drag-handle">▶</button>
+                <span class="name" contenteditable="true">향수</span>
+                <button class="btn-red btn-del" data-scope="l1">삭제</button>
+              </div>
+              <ul class="level-2 droppable"></ul>
+            </li>
+
+            <li class="node" data-id="c5" draggable="true">
+              <div class="row">
+                <button class="drag-handle">▶</button>
+                <span class="name" contenteditable="true">인기상품</span>
+                <button class="btn-red btn-del" data-scope="l1">삭제</button>
+              </div>
+              <ul class="level-2 droppable"></ul>
+            </li>
+
+            <li class="node add-l1-row">
+                <div class="row">
+                <button class="btn-add add-l1" type="button">+</button>
+                <span class="name">1차 카테고리 추가</span>
+                </div>
+            </li>     
+          </ul>
         </div>
-    </main>
+
+        <span class="save-hint" id="saveHint" aria-live="polite"></span>
+      </div>
+    </section>
+    <div class="actions">
+        <button class="btn" id="saveBtn" type="button">수정하기</button>
+      </div>
+  </div>
+</main>
 
     <script>
         (function(){
-        let idSeq = 1000;
-
-        // toggle open/close
-        document.querySelectorAll('.toggle').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-            const li = btn.closest('.node');
-            const opened = li.classList.toggle('open');
-            btn.textContent = opened ? '▾' : '▸';
-            li.querySelector('.level-2')?.classList.toggle('hidden', !opened);
-            });
-            // 기본은 펼침
-            btn.click();
-        });
+        let idSeq = 1000;        
 
         // add 1차
         document.querySelector('.add-l1').addEventListener('click', ()=>{
@@ -779,34 +756,39 @@
 
         // add 2차
         document.querySelectorAll('.add-l2').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-            const parent = btn.previousElementSibling; // .level-2
+        btn.addEventListener('click', ()=>{
+            const addRow = btn.closest('li.add-l2-row');
+            const ul = addRow.parentElement;
             const cid = 'n' + (++idSeq);
-            parent.insertAdjacentHTML('beforeend', leafTemplate(cid, '2차 카테고리'));
-            wireLeaf(parent.lastElementChild);
-            });
-        });
 
-        // 삭제
-        document.querySelectorAll('.btn-del').forEach(btn=>{
-            btn.addEventListener('click', ()=>{
-            const scope = btn.dataset.scope;
-            const li = btn.closest(scope==='l1'?'.node':'.leaf');
-            const label = li.querySelector('.name').textContent.trim() || (scope==='l1'?'1차':'2차');
-            if(confirm(`‘${label}’ ${scope==='l1'?'1차':'2차'} 카테고리를 삭제할까요?`)){
-                li.remove();
-            }
-            });
+            addRow.insertAdjacentHTML(                  
+            'beforebegin', 
+            leafTemplate(cid, '새 2차 카테고리')
+            );
+            wireLeaf(addRow.previousElementSibling);    
         });
+        });       
 
         // 저장 (현재 구조 콘솔 출력 + 알림)
         document.getElementById('saveBtn').addEventListener('click', ()=>{
             const data = serialize();
-            console.clear();
-            console.log('카테고리 구조', data);
-            const hint = document.getElementById('saveHint');
-            hint.textContent = '저장할 데이터 출력(백엔드 연동 지점)';
-            setTimeout(()=> hint.textContent='', 2500);
+
+            fetch('/api/saveCategories', {   // ← 백엔드 엔드포인트 주소 맞게 수정
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(result => {
+                console.log('저장 성공:', result);
+                const hint = document.getElementById('saveHint');
+                hint.textContent = '저장이 완료되었습니다!';
+                setTimeout(()=> hint.textContent='', 2500);
+            })
+            .catch(err => {
+                console.error('저장 실패:', err);
+                alert('저장 중 오류가 발생했습니다.');
+            });
         });
 
         // --- Drag & Drop ---
@@ -835,11 +817,20 @@
 
         function onDropRow(e){
             e.preventDefault();
-            const targetLi = e.currentTarget.closest('li');
-            const isSameLevel = (dragEl.classList.contains('node') && targetLi.classList.contains('node')) ||
-                                (dragEl.classList.contains('leaf') && targetLi.classList.contains('leaf'));
-            if(!isSameLevel){ return onDragLeaveRow(e); }
-            targetLi.parentNode.insertBefore(dragEl, targetLi); // 앞에 놓기
+            const targetLi = e.currentTarget.closest('li'); // ← 현재 drop 대상 li
+
+            if (!dragEl || !targetLi || dragEl === targetLi) return;
+
+            // 노드끼리 이동
+            if (dragEl.classList.contains('node') && targetLi.classList.contains('node')) {
+                targetLi.parentNode.insertBefore(dragEl, targetLi);
+            }
+
+            // 리프끼리 이동 (같은 level-2일 때)
+            else if (dragEl.classList.contains('leaf') && targetLi.classList.contains('leaf')) {
+                targetLi.parentNode.insertBefore(dragEl, targetLi);
+            }
+
             onDragLeaveRow(e);
         }
 
@@ -850,66 +841,47 @@
         function onDragLeaveList(e){
             e.currentTarget.classList.remove('drag-over');
         }
-        function onDropList(e){
+        function onDropList(e) {
             e.preventDefault();
             const list = e.currentTarget;
-            // 2차 리스트(droppable)에만 떨어뜨리기 허용
-            if(dragEl.classList.contains('leaf') && list.classList.contains('level-2')){
-            list.appendChild(dragEl);
+
+            if (!dragEl) return;
+
+            // 2차 카테고리 이동 허용 (다른 1차 밑으로도 가능)
+            if (dragEl.classList.contains('leaf') && list.classList.contains('level-2')) {
+                const addRow = list.querySelector('.add-l2-row');
+                if (addRow) {
+                    list.insertBefore(dragEl, addRow); // 항상 "추가" 버튼 위에 들어감
+                } else {
+                    list.appendChild(dragEl);
+                }
             }
+
             onDragLeaveList(e);
         }
 
-        // 템플릿 & 바인딩
-        function nodeTemplate(id, text){
-            return `
-            <li class="node" data-id="${id}" draggable="true">
-                <div class="row">
-                <button class="toggle" aria-label="하위 항목 접기/펼치기">▾</button>
-                <span class="name" contenteditable="true">${text}</span>
-                <button class="btn-danger btn-del" data-scope="l1">삭제</button>
-                </div>
-                <ul class="level-2 droppable"></ul>
-                <button class="btn-add add-l2" type="button">＋ 2차 카테고리 추가</button>
-            </li>`;
-        }
+        // 템플릿 & 바인딩        
         function leafTemplate(id, text){
             return `
             <li class="leaf" data-id="${id}" draggable="true">
                 <div class="row">
                 <span class="name" contenteditable="true">${text}</span>
-                <button class="btn-danger btn-del" data-scope="l2">삭제</button>
+                <button class="btn-red btn-del" data-scope="l2">삭제</button>
                 </div>
             </li>`;
         }
-
         function wireNode(li){
             // drag
             li.addEventListener('dragstart', onDragStart);
             li.addEventListener('dragend', onDragEnd);
             li.querySelector('.row').addEventListener('dragover', onDragOverRow);
             li.querySelector('.row').addEventListener('dragleave', onDragLeaveRow);
-            li.querySelector('.row').addEventListener('drop', onDropRow);
-            // toggle
-            const tgl = li.querySelector('.toggle');
-            tgl.addEventListener('click', ()=>{
-            const opened = li.classList.toggle('open');
-            tgl.textContent = opened ? '▾' : '▸';
-            li.querySelector('.level-2').classList.toggle('hidden', !opened);
-            });
-            li.classList.add('open'); // 기본 펼침
-            // add-l2
-            const add = li.querySelector('.add-l2');
-            add.addEventListener('click', ()=>{
-            const parent = li.querySelector('.level-2');
-            const cid = 'n' + (++idSeq);
-            parent.insertAdjacentHTML('beforeend', leafTemplate(cid, '새 2차 카테고리'));
-            wireLeaf(parent.lastElementChild);
-            });
+            li.querySelector('.row').addEventListener('drop', onDropRow);            
+            
             // delete
             li.querySelector('.btn-del').addEventListener('click', ()=>{
             const label = li.querySelector('.name').textContent.trim();
-            if(confirm(`‘${label}’ 1차 카테고리를 삭제할까요?`)){ li.remove(); }
+            if(confirm(`‘${label}’를 삭제할까요?`)){ li.remove(); } // 1차 카테고리 삭제
             });
             // drop into level-2
             const l2 = li.querySelector('.level-2');
@@ -917,7 +889,7 @@
             l2.addEventListener('dragleave', onDragLeaveList);
             l2.addEventListener('drop', onDropList);
         }
-
+        
         function wireLeaf(li){
             li.addEventListener('dragstart', onDragStart);
             li.addEventListener('dragend', onDragEnd);
@@ -926,7 +898,7 @@
             li.querySelector('.row').addEventListener('drop', onDropRow);
             li.querySelector('.btn-del').addEventListener('click', ()=>{
             const label = li.querySelector('.name').textContent.trim();
-            if(confirm(`‘${label}’ 2차 카테고리를 삭제할까요?`)){ li.remove(); }
+            if(confirm(`‘${label}’를 삭제할까요?`)){ li.remove(); } // 2차 카테고리 삭제
             });
         }
 
@@ -945,8 +917,8 @@
             };
             node.querySelectorAll('.level-2 > .leaf').forEach(leaf=>{
                 item.children.push({
-                id: leaf.dataset.id,
-                name: leaf.querySelector('.name').textContent.trim()
+                    id: leaf.dataset.id,
+                    name: leaf.querySelector('.name').textContent.trim()
                 });
             });
             l1.push(item);
