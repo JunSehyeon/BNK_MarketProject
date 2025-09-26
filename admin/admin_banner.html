@@ -10,6 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const activeItem = document.querySelector('.euro-nav__item.is-active');
+          if (!activeItem) return;
+          const group = activeItem.closest('.euro-nav__group');
+          const list  = group.querySelector('.euro-nav__list');
+          group.classList.add('open');
+          list.style.maxHeight = 'none';
+        });
+    </script>
 
     <style>
         .title-line {
@@ -20,31 +30,30 @@
             margin-left: 20px;
         }
 
-        .tabbar { 
-            border: 1px solid #bbb; 
+        .tabbar {
+            border: 1px solid #bbb;
+            background-color: #e9ecef;
             display: flex; 
             flex-wrap: wrap;
             margin-left: 20px;
             margin-top: 20px;
         }
         .tabbar a { 
-            display: inline-block; 
-            padding: 10px 14px; 
-            background: #c8c8c8;        
+            text-align: center;
+            width: 140px;
+            display: block; 
+            padding: 10px 7px; 
+            background: #c8c8c8;             
             border: 1px solid #bbb;
-            border-bottom: 1px solid #bbb;
             text-decoration: none; 
             color: #333; 
             font-size: 14px;   
             margin-top: 10px;       
-            margin-left: 5px;     
-        }
-        .tabbar a:last-child { 
-            border-right: 0; 
-        }
-        .tabbar a.active { 
-            background: #ffffff; 
-            border-bottom: none;
+            margin-left: 10px;     
+        }        
+        .tabbar a.active {             
+            background-color: #ffff;
+            border-bottom: none;            
         }
         .tabbar a:hover:not(.active) {
             background: #bfbfbf;
@@ -55,9 +64,57 @@
             margin-left: 20px;
             padding: 12px;
             min-height: 60px;
-        }        
+        }
+        body { font-family: Arial, sans-serif; font-size: 14px; }
 
-      
+        table {
+            width: 880px;
+            height: 600px;
+            margin-top: 20px;
+            margin-left: 20px;
+            border-collapse: collapse;
+            text-align: center;
+            border-top: #f5f5f5;
+        }        
+        th{        
+            padding: 10px;            
+        }    
+        td {        
+            padding: 8px;            
+            border-bottom: 1px solid #ccc;
+        }        
+        .thumb {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-info {
+            padding-left: 10px;
+            text-align: left;
+            line-height: 2;
+        }
+        .btnrow {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn {            
+            padding: 8px 20px;            
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            float: right;                       
+        }            
 
         /* ///////////////////////////////////// */
         html{ scrollbar-gutter: stable; }
@@ -240,6 +297,121 @@
         .euro-nav__item a:focus-visible{
             outline:2px solid var(--z-black);
             outline-offset:2px;
+        }
+    </style>
+    <!-- 배너 모듈 스타일 (재사용용) -->
+    <style>
+        .bnr-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 2000;
+        }
+        .bnr-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 700px;
+            background: #fff;
+            border: 1px solid #bbb;
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+            z-index: 2100;
+        }
+        .bnr-modal__head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #333;
+            color: #fff;
+            padding: 10px 12px;
+            font-weight: 700;
+        }
+        .bnr-modal__close {
+            background: none;
+            border: 0;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .bnr-modal__body {
+            padding: 14px 16px;
+        }
+        .bnr-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .bnr-field:last-of-type {
+            border-bottom: 0;
+        }
+        .bnr-field label {
+            width: 88px;
+            font-weight: 700;
+        }
+        .bnr-field input[type="text"]{
+            width: 300px;
+            height: 30px;
+            padding: 4px 6px;
+            border: 1px solid #cfcfcf;
+        }
+        .bnr-field select{
+            width: 100px;
+            height: 30px;
+            padding: 4px 6px;
+            border: 1px solid #cfcfcf;
+        }
+        .bnr-field input[type="date"],        
+        .bnr-field input[type="time"]{
+            flex: 1 1 auto;
+            height: 30px;
+            padding: 4px 6px;
+            border: 1px solid #cfcfcf;
+        }
+        .bnr-col {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .bnr-hint {
+            font-size: 12px;
+            color: #666;
+            margin: 6px 0 0 98px;
+        }
+        .bnr-actions {
+            display: flex;
+            justify-content: center;
+            padding: 16px 0 6px;
+        }
+        .bnr-submit {
+            min-width: 140px;
+            height: 36px;
+            background: #17a34a;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+            font-weight: 700;
+            border-radius: 3px;
+        }
+        .btnrow {
+            margin: 16px 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn {
+            padding: 8px 20px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .btn[disabled] {
+            opacity: .5;
+            cursor: not-allowed;
         }
 
     </style>
@@ -481,7 +653,7 @@
             <h4 class="euro-nav__title" style="">환경설정</h4>
             <ul class="euro-nav__list">
                 <li class="euro-nav__item"><a href="#">기본설정</a></li>
-                <li class="euro-nav__item is-active"><a href="#">배너관리</a></li>
+                <li class="euro-nav__item is-active"><a href="admin_banner.html">배너관리</a></li>
                 <li class="euro-nav__item"><a href="#">약관관리</a></li>
                 <li class="euro-nav__item"><a href="#">카테고리</a></li>
                 <li class="euro-nav__item"><a href="#">버전관리</a></li>
@@ -541,23 +713,213 @@
         </div>
         <div style="width:900px; height:1000px; border-left:1px solid #e2e2e2; ">
 
-        <!-- ///////////// 작업 공간 ///////////// -->        
-        <!-- 베너관리 -->
-        <div class="title-line" style="border-bottom: 2px solid #ccc;">
+        <!-- ///////////// 배너 작업 공간 ///////////// -->        
+        <!-- 배너관리 -->
+        <div class="title-line" style="border-bottom: 3px solid #ccc;">
             <div style="padding-top: 10px; padding-bottom: 5px; font-size: 22px;"><b>배너관리</b></div>
             <div>HOME > 환경설정 > <b>배너관리</b></div>
         </div>
 
         <div class="tabbar">
-            <a href="#" class="active">메인상단배너</a>
-            <a href="#">예약관련배너</a>
-            <a href="#">상품 상세배너</a>
+            <a href="#" class="active">메인상단 배너</a>
+            <a href="#">메인슬라이더 배너</a>
+            <a href="#">상품 상세보기 배너</a>
             <a href="#">회원로그인 배너</a>
             <a href="#">마이페이지 배너</a>
-        </div>    
+        </div>
 
-        
+        <div class="title-line">
+            <div style="padding-top: 10px; font-size: 20px;"><b>메인 상단배너</b></div>            
+        </div>
+
+        <table>
+            <tr style="border-top: 2px solid #ccc;">
+                <th><input type="checkbox"></th>
+                <th>번호</th>
+                <th>이미지</th>
+                <th>배너정보</th>
+                <th>배너위치</th>
+                <th>시작일</th>
+                <th>종료일</th>
+                <th>시작시간</th>
+                <th>종료시간</th>
+                <th>관리</th>
+            </tr>            
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>1</td>
+                <td>
+                <div class="thumb">
+                    <img src="#" alt="사진">
+                </div>
+                </td>
+                <td class="banner-info">
+                배너명<br>
+                크기 : 1200 × 80<br>
+                배경색 : #ffffff<br>
+                배너링크
+                </td>
+                <td>MAIN1</td>
+                <td>2023/01/01</td>
+                <td>2023/01/07</td>
+                <td>13:00</td>
+                <td>15:00</td>
+                <td>[활성] [비활성]</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>2</td>
+                <td>
+                <div class="thumb">
+                    <img src="#" alt="사진">
+                </div>
+                </td>
+                <td class="banner-info" >
+                배너명<br>
+                크기 : 1200 × 80<br>
+                배경색 : #ffffff<br>
+                배너링크
+                </td>
+                <td>MAIN1</td>
+                <td>2023/01/01</td>
+                <td>2023/01/07</td>
+                <td>13:00</td>
+                <td>15:00</td>
+                <td>[활성] [비활성]</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>3</td>
+                <td>
+                <div class="thumb">
+                    <img src="#" alt="사진">
+                </div>
+                </td>
+                <td class="banner-info">
+                배너명<br>
+                크기 : 1200 × 80<br>
+                배경색 : #ffffff<br>
+                배너링크
+                </td>
+                <td>MAIN1</td>
+                <td>2023/01/01</td>
+                <td>2023/01/07</td>
+                <td>13:00</td>
+                <td>15:00</td>
+                <td>[활성] [비활성]</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>4</td>
+                <td>
+                <div class="thumb">
+                    <img src="#" alt="사진">
+                </div>
+                </td>
+                <td class="banner-info">
+                배너명<br>
+                크기 : 1200 × 80<br>
+                배경색 : #ffffff<br>
+                배너링크
+                </td>
+                <td>MAIN1</td>
+                <td>2023/01/01</td>
+                <td>2023/01/07</td>
+                <td>13:00</td>
+                <td>15:00</td>
+                <td>[활성] [비활성]</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="btnrow">
+            <button id="bnrDeleteBtn" class="btn" style="margin-left: 20px; background-color: #ccc">선택삭제</button>
+            <button id="bnrOpenModalBtn" class="btn" style="background-color: #6FADCF">배너등록</button>
+
+        </div>
     </main>
+    
+     <!-- ===== 배너등록 모달(추가) : body 하단에 위치 ===== -->
+    <div class="bnr-overlay" id="bnrOverlay"></div>
+    <div class="bnr-modal" id="bnrModal" role="dialog" aria-modal="true" aria-labelledby="bnrModalTitle">
+      <div class="bnr-modal__head">
+        <div id="bnrModalTitle">배너등록</div>
+        <button class="bnr-modal__close" id="bnrCloseBtn" aria-label="닫기">×</button>
+      </div>
+      <div class="bnr-modal__body">
+        <form id="bnrForm" autocomplete="off">
+          <div class="bnr-field"><label>배너이름</label><input type="text" name="name" placeholder="배너명 입력" required></div>
+          <div class="bnr-field"><label>배너크기</label><input type="text" name="size" placeholder="배너크기입력" required></div>
+          <div class="bnr-field"><label>배경색</label><input type="text" name="bg" placeholder="배너배경색입력" required></div>
+          <div class="bnr-field"><label>배너링크</label><input type="text" name="link" placeholder="배너링크입력"></div>
+          <div class="bnr-field">
+            <label>배너위치</label>
+            <select name="pos" required>
+              <option value="">선택</option>
+              <option value="MAIN1">MAIN1 : 메인 최상단</option>
+              <option value="MAIN2">MAIN2 : 메인 슬라이더</option>
+              <option value="PRODUCT1">PRODUCT1 : 상품보기</option>
+              <option value="MEMBER1">MEMBER1 : 로그인</option>
+              <option value="MYPAGE1">MYPAGE1 : 마이페이지</option>
+            </select>
+          </div>
+          <div class="bnr-field">
+            <label>노출일</label>
+            <div class="bnr-col">
+              <input type="date" name="date_from" required> ~
+              <input type="date" name="date_to" required>
+            </div>
+          </div>
+          <div class="bnr-field">
+            <label>노출시간</label>
+            <div class="bnr-col">
+              <input type="time" name="time_from" required> ~
+              <input type="time" name="time_to" required>
+            </div>
+          </div>
+          <div class="bnr-field">
+            <label>배너파일</label>
+            <div class="bnr-col">
+              <input type="file" name="file" accept="image/*">
+                <div>노출 위치에 맞는 크기 권장</div>
+            </div>
+          </div>
+          
+          <div class="bnr-actions"><button type="submit" class="bnr-submit">등록하기</button></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== 모달/버튼 스크립트 (추가) ===== -->
+    <script>     
+
+      // 배너 버튼 연결
+      const bnrOverlay = document.getElementById('bnrOverlay');
+      const bnrModal   = document.getElementById('bnrModal');
+      const bnrOpenBtn = document.getElementById('bnrOpenModalBtn');
+      const bnrCloseBtn= document.getElementById('bnrCloseBtn');
+      const bnrDelete  = document.getElementById('bnrDeleteBtn');
+
+      function bnrOpen(){ bnrOverlay.style.display='block'; bnrModal.style.display='block'; }
+      function bnrClose(){ bnrOverlay.style.display='none'; bnrModal.style.display='none'; }
+
+      bnrOpenBtn?.addEventListener('click', bnrOpen);
+      bnrCloseBtn?.addEventListener('click', bnrClose);
+      bnrOverlay?.addEventListener('click', bnrClose);
+
+      // 선택삭제(지금 페이지엔 리스트가 없으므로 안내만)
+      bnrDelete?.addEventListener('click', ()=> alert('배너 선택삭제'));
+
+      // 등록하기(백엔드 연결 전: 가짜 처리)
+      document.getElementById('bnrForm')?.addEventListener('submit', function(e){
+        e.preventDefault();
+        // TODO: fetch('/api/banners', { method:'POST', body: new FormData(this) })
+        alert('등록하기 클릭됨 (데이터 연동 시 저장 처리)');
+        bnrClose();
+        this.reset();
+      });
+    </script>
 
     <!-- class tabbar script -->
     <script>
@@ -594,7 +956,6 @@
             overflow: hidden;             /* 안 보이게 */
             transition: max-height 0.15s ease;
         }
-
             .euro-nav__group.open .euro-nav__list {
             max-height: 500px;            /* 펼쳐졌을 때 (충분히 크게 설정) */
         }

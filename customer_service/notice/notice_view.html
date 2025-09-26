@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 보기</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div id="content" class="cs_notice_view_wrap">
+        <h1>공지사항</h1>
+        <div class="cs_sub_nav">
+            <ul>
+                <li class="on"><a href="notice_list.html?category=전체">전체</a></li>
+                <li><a href="notice_list.html?category=고객서비스">고객서비스</a></li>
+                <li><a href="notice_list.html?category=안전거래">안전거래</a></li>
+                <li><a href="notice_list.html?category=위해상품">위해상품</a></li>
+                <li><a href="notice_list.html?category=이벤트당첨">이벤트당첨</a></li>
+            </ul>
+        </div>
+
+        <div class="cs_view_content">
+            <div class="title_area">
+                <h3 id="notice-title">공지사항 제목</h3>
+                <p class="date" id="notice-date">날짜</p>
+            </div>
+            <br class="view_area">
+            <p id="notice-content">공지사항 내용을 불러오는 중입니다.</p>
+        </div>
+
+        <div class="btn_area">
+            <a href="notice_list.html" class="btn_list">목록</a>
+        </div>
+    </div>
+
+    <script>
+        // 샘플 데이터 (실제 데이터는 서버에서 받아와야 함)
+        const notices = [
+            { id:1, category: "안내", title: "해외결제사 정기점검주의", date: "2025.09.20", content: `안녕하세요. NICHITA입니다.<br>NICHITA 해외직구 결제 시 일부 해외카드 결제가 지연되고 있어 이용하실 때 이 점 양해 부탁드립니다.<br><br><strong><span style="color:red;">※피싱 관련 피해신고</span></strong><br>▶ 경찰청 사이버범죄수사 국 (국번없이) 1182<br>▶ KISA 인터넷침해대응센터 (국번없이) 1118<br>감사합니다.` },
+            { id:2, category: "고객서비스", title: "고객센터 운영시간 변경", date: "2025.09.22", content: "고객센터 운영시간이 변경되었습니다. 자세한 내용은 고객센터로 문의 바랍니다." },
+            { id:3, category: "안전거래", title: "안전거래 정책 안내", date: "2025.09.23", content: "안전거래 정책에 대한 안내입니다." },
+            { id:4, category: "위해상품", title: "리콜 공지사항", date: "2025.09.24", content: "위해상품 리콜 공지사항입니다." },
+            { id:5, category: "이벤트당첨", title: "이벤트 당첨자 발표", date: "2025.09.25", content: "이벤트 당첨자 명단이 발표되었습니다." },
+        ];
+
+        // URL에서 id, category 파라미터 받기
+        const urlParams = new URLSearchParams(window.location.search);
+        const noticeId = parseInt(urlParams.get('id'));
+        const category = urlParams.get('category') || '전체';
+
+        // 공지사항 찾기
+        const notice = notices.find(n => n.id === noticeId);
+
+        // 내용 채우기
+        if (notice) {
+            document.getElementById('notice-title').innerHTML = `[${notice.category}] ${notice.title}`;
+            document.getElementById('notice-date').textContent = notice.date;
+            document.getElementById('notice-content').innerHTML = notice.content;
+        } else {
+            document.getElementById('notice-title').textContent = "공지사항을 찾을 수 없습니다.";
+            document.getElementById('notice-date').textContent = "";
+            document.getElementById('notice-content').textContent = "";
+        }
+
+        // 하단 목록 버튼 링크에 카테고리 유지
+        const listBtn = document.querySelector('.btn_list');
+        listBtn.href = `notice_list.html?category=${encodeURIComponent(category)}`;
+
+        // 상단 탭에서 선택된 카테고리 표시
+        document.querySelectorAll('.cs_sub_nav ul li').forEach(li => li.classList.remove('on'));
+        document.querySelectorAll('.cs_sub_nav ul li a').forEach(a => {
+            if (a.getAttribute('href') === `notice_list.html?category=${category}`) {
+                a.parentElement.classList.add('on');
+            }
+        });
+    </script>
+</body>
+</html>
