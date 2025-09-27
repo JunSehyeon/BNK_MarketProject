@@ -3,7 +3,7 @@
 }
 
 .cs_notice_view_wrap .cs_view_content, .cs_qna_view_wrap .qna_view_area {
-    float: right;
+    
     width: 980px;
 }
 
@@ -36,4 +36,39 @@
 
 .cs_qna_view_wrap .qna_view_area .qna_section.answer {
     background-color: #e6f3ff;
+}
+
+
+/* ////////////////////////////////////
+   
+    2025-09-27  테이블 쏠림 수정사항
+
+///////////////////////////////////// */
+
+
+/* Q&A 전체 영역을 가운데 정렬 */
+.cs_qna_view_wrap .qna_view_area {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;   /* 가로 가운데 정렬 */
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.cs_qna_viwe_wrap .qna_section.question{
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: left;
+    box-sizing: border-box;
+
+}
+
+.cs_qna_view_wrap .qna_section.answer{
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: left;
+    box-sizing: border-box;
+
 }
