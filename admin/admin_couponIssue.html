@@ -1122,6 +1122,7 @@ function openShipModal(data){
   const shipModalOverlay = document.getElementById('shipModal');
   const shipModalBody    = document.getElementById('shipModalBody');
   const shipTpl          = document.getElementById('shipFormTemplate');
+  const shipModalClose   = document.getElementById('shipModalClose'); // ← X 버튼
 
   shipModalBody.innerHTML = '';
   shipModalBody.appendChild(shipTpl.content.cloneNode(true));
@@ -1161,7 +1162,28 @@ function closeShipModal(){
   shipModalOverlay.setAttribute('aria-hidden','true');
   document.body.style.overflow='';
 }
+function closeShipModal(){
+    shipModalOverlay.classList.remove('show');
+    shipModalOverlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
 
+  // ★ X 버튼으로 닫기
+  if (shipModalClose) {
+    shipModalClose.addEventListener('click', closeShipModal);
+  }
+
+  // ★ 배경 클릭으로 닫기
+  shipModalOverlay.addEventListener('click', (e) => {
+    if (e.target === shipModalOverlay) closeShipModal();
+  });
+
+  // ★ ESC 키로 닫기
+  window.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape' && shipModalOverlay.classList.contains('show')) {
+      closeShipModal();
+    }
+  });
 // 목록에서 클릭 시 해당 행의 값 수집
 document.addEventListener('click', function (e) {
   const a = e.target.closest('a.coupon-link');
