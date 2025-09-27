@@ -519,6 +519,7 @@
             </section>
         </aside>
                 </div>
+                <div style="border-left:1px solid #e2e2e2;"></div>
                 <!-- 오른쪽 콘텐츠 영역 -->
           <div style="margin-left:40px; width:900px; height:1000px; border:none; padding:20px; box-sizing:border-box; font-family:'Noto Sans KR', sans-serif;">
 
@@ -532,9 +533,10 @@
                 <div style="display: flex; align-items: center; margin-top: 25px; margin-bottom:20px;">
                     <form action="" method="post" style="display: flex; ">
                         <select name="select" id="" style="width:82px; height:28px; padding-left:5px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
-                            <option value="name">상품명</option>
-                            <option value="code">상품코드</option>
-                            <option value="seller">판매자</option>
+                            <option value="id">아이디</option>
+                            <option value="name">이름</option>
+                            <option value="email">이메일</option>
+                            <option value="phone">휴대폰</option>
                         </select>
                         <input type="text" placeholder="키워드입력" style="width:140px; height:28px; padding-left:10px; margin-right:3px; border:1px solid #bfbfbf; font-size: 10px !important;">
                         <input type="submit" value="검색" style="width:50px; height:28px; color:white; background-color: black; border:none; font-size: 12px !important;">
@@ -544,7 +546,7 @@
             <!-- 2. 테이블 -->
             <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
               <thead>
-                <tr style="border-top:2px solid #000; border-bottom:1px solid #ccc; background:#fafafa;">
+                <tr style="border-top:2px solid #000; border-bottom:1px solid #ccc; background:#fafafa; height:60px;">
                   <th style="padding:8px;"><input type="checkbox"></th>
                   <th>번호</th>
                   <th>아이디</th>
@@ -567,7 +569,7 @@
                   <td>정우성</td>
                   <td>M</td>
                   <td>
-                    <select>
+                    <select style="height: 30px; border: 1px solid #e2e2e2;">
                       <option>VVIP</option>
                       <option>VIP</option>
                       <option>GOLD</option>
@@ -590,7 +592,7 @@
                   <td>이정재</td>
                   <td>M</td>
                   <td>
-                    <select>
+                    <select style="height: 30px; border: 1px solid #e2e2e2;">
                       <option>VIP</option>
                       <option>VVIP</option>
                       <option>GOLD</option>
@@ -613,7 +615,7 @@
                   <td>이나영</td>
                   <td>F</td>
                   <td>
-                    <select>
+                    <select style="height: 30px; border: 1px solid #e2e2e2;">
                       <option>GOLD</option>
                       <option>VVIP</option>
                       <option>VIP</option>
@@ -636,7 +638,7 @@
                   <td>한예슬</td>
                   <td>F</td>
                   <td>
-                    <select>
+                    <select style="height: 30px; border: 1px solid #e2e2e2;">
                       <option>SILVER</option>
                       <option>VVIP</option>
                       <option>VIP</option>
@@ -659,7 +661,7 @@
                   <td>강동원</td>
                   <td>M</td>
                   <td>
-                    <select>
+                    <select style="height: 30px; border: 1px solid #e2e2e2;">
                       <option>FAMILY</option>
                       <option>VVIP</option>
                       <option>VIP</option>
@@ -679,8 +681,7 @@
 
             <!-- 3. 하단 버튼 영역 -->
             <div style="display: flex; margin-top:25px;">
-                    <button style="border:none; background-color: #760c0c; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">선택삭제</button>
-                    <button style="margin-left:auto; border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">상품등록</button>
+                    <button style="border:none; background-color: black; color:white; font-size: 10px; font-weight: 300; height:25px; width:62px;">선택수정</button>
                 </div>
                 <div style=" height: 100px; margin-top:40px; display: flex; justify-content: center;">
                     <form action="" method="" style="">
