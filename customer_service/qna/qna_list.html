@@ -77,83 +77,95 @@
                             <th>유형</th>
                             <th>제목</th>
                             <th>상태</th>
+                            <th>작성자</th>
                             <th>작성일</th>
                         </tr>
                     </thead>
                     <script>
-                    const qnaData = {
-                        "회원": [
-                        { type: "[가입]", title: "가입 문의내용", status: "검토 중", date: "22.10.31" },
-                        { type: "[탈퇴]", title: "탈퇴 문의내용", status: "검토 중", date: "22.10.31" },
-                        { type: "[회원정보]", title: "회원정보 문의내용", status: "답변완료", date: "22.10.31" },
-                        ],
-                        "쿠폰/이벤트": [
-                        { type: "[쿠폰]", title: "쿠폰 사용 문의", status: "검토 중", date: "22.11.01" },
-                        { type: "[이벤트]", title: "이벤트 응모 문의", status: "답변완료", date: "22.11.02" },
-                        ],
-                        "주문/결제": [
-                        { type: "[결제]", title: "결제 오류 발생", status: "검토 중", date: "22.11.03" },
-                        { type: "[주문]", title: "주문 내역 문의", status: "답변완료", date: "22.11.04" },
-                        ],
-                        "배송": [
-                        { type: "[배송]", title: "배송 지연 문의", status: "검토 중", date: "22.11.05" },
-                        ],
-                        "취소/반품/교환": [
-                        { type: "[반품]", title: "반품 신청 방법", status: "검토 중", date: "22.11.06" },
-                        ],
-                        "여행/숙박/항공": [
-                        { type: "[숙박]", title: "숙박 예약 취소", status: "답변완료", date: "22.11.07" },
-                        ],
-                        "안전거래": [
-                        { type: "[보안]", title: "보안 관련 문의", status: "검토 중", date: "22.11.08" },
-                        ]
-                    };
+                    // ★ 원본 작성자 아이디(예: 서버에서 받아온 값)
+  const AUTHOR_ID = "chkha";
 
-                    function renderQnA(category) {
-                        const qnaList = qnaData[category] || [];
-                        const tableBody = document.querySelector(".qna_section tbody");
-                        const sectionTitle = document.querySelector(".qna_section h2");
+  // ★ 마스킹 규칙: 앞 3글자 + '**'
+  function maskId(id) {
+    if (!id) return "";
+    return id.length <= 3 ? id : id.slice(0, 3) + "**";
+  }
 
-                        // 테이블 내용 초기화
-                        tableBody.innerHTML = "";
-                        sectionTitle.textContent = category;
+  const qnaData = {
+    "회원": [
+      { type: "[가입]", title: "가입 문의내용", status: "검토 중", date: "22.10.31", author: AUTHOR_ID },
+      { type: "[탈퇴]", title: "탈퇴 문의내용", status: "검토 중", date: "22.10.31", author: AUTHOR_ID },
+      { type: "[회원정보]", title: "회원정보 문의내용", status: "답변완료", date: "22.10.31", author: AUTHOR_ID },
+    ],
+    "쿠폰/이벤트": [
+      { type: "[쿠폰]", title: "쿠폰 사용 문의", status: "검토 중", date: "22.11.01", author: AUTHOR_ID },
+      { type: "[이벤트]", title: "이벤트 응모 문의", status: "답변완료", date: "22.11.02", author: AUTHOR_ID },
+    ],
+    "주문/결제": [
+      { type: "[결제]", title: "결제 오류 발생", status: "검토 중", date: "22.11.03", author: AUTHOR_ID },
+      { type: "[주문]", title: "주문 내역 문의", status: "답변완료", date: "22.11.04", author: AUTHOR_ID },
+    ],
+    "배송": [
+      { type: "[배송]", title: "배송 지연 문의", status: "검토 중", date: "22.11.05", author: AUTHOR_ID },
+    ],
+    "취소/반품/교환": [
+      { type: "[반품]", title: "반품 신청 방법", status: "검토 중", date: "22.11.06", author: AUTHOR_ID },
+    ],
+    "여행/숙박/항공": [
+      { type: "[숙박]", title: "숙박 예약 취소", status: "답변완료", date: "22.11.07", author: AUTHOR_ID },
+    ],
+    "안전거래": [
+      { type: "[보안]", title: "보안 관련 문의", status: "검토 중", date: "22.11.08", author: AUTHOR_ID },
+    ]
+  };
 
-                        // 항목 채우기
-                        qnaList.forEach(qna => {
-                        const tr = document.createElement("tr");
-                        tr.innerHTML = `
-                            <td>${qna.type}</td>
-                            <td><a href="qna_view.html">${qna.title}</a></td>
-                            <td class="${qna.status === '답변완료' ? 'status_complete' : 'status_pending'}">${qna.status}</td>
-                            <td>${qna.date}</td>
-                        `;
-                        tableBody.appendChild(tr);
-                        });
-                    }
+  function renderQnA(category) {
+    const qnaList = qnaData[category] || [];
+    const tableBody = document.querySelector(".qna_section tbody");
+    const sectionTitle = document.querySelector(".qna_section h2");
 
-                    // 메뉴 클릭 이벤트 등록
-                    document.addEventListener("DOMContentLoaded", () => {
-                        const menuItems = document.querySelectorAll(".cs_sub_nav li");
+    // 테이블 내용 초기화
+    tableBody.innerHTML = "";
+    sectionTitle.textContent = category;
 
-                        menuItems.forEach(item => {
-                        item.addEventListener("click", e => {
-                            e.preventDefault();
+    // 항목 채우기 (thead와 td 순서 일치: 유형 | 제목 | 상태 | 작성자 | 작성일)
+    qnaList.forEach(qna => {
+      const tr = document.createElement("tr");
+      const masked = maskId(qna.author);
+      tr.innerHTML = `
+        <td>${qna.type}</td>
+        <td><a href="qna_view.html">${qna.title}</a></td>
+        <td class="${qna.status === '답변완료' ? 'status_complete' : 'status_pending'}">${qna.status}</td>
+        <td>${masked}</td>
+        <td>${qna.date}</td>
+      `;
+      tableBody.appendChild(tr);
+    });
+  }
 
-                            // 선택된 카테고리 이름
-                            const category = item.textContent.trim();
+  // 메뉴 클릭 이벤트 등록
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuItems = document.querySelectorAll(".cs_sub_nav li");
 
-                            // 메뉴 on 클래스 처리
-                            menuItems.forEach(i => i.classList.remove("on"));
-                            item.classList.add("on");
+    menuItems.forEach(item => {
+      item.addEventListener("click", e => {
+        e.preventDefault();
 
-                            // Q&A 목록 렌더링
-                            renderQnA(category);
-                        });
-                        });
+        // 선택된 카테고리 이름
+        const category = item.textContent.trim();
 
-                        // 초기 로딩 시 "회원" 항목 표시
-                        renderQnA("회원");
-                    });
+        // 메뉴 on 클래스 처리
+        menuItems.forEach(i => i.classList.remove("on"));
+        item.classList.add("on");
+
+        // Q&A 목록 렌더링
+        renderQnA(category);
+      });
+    });
+
+    // 초기 로딩 시 "회원" 항목 표시
+    renderQnA("회원");
+  });
                     </script>
 
                     <tbody>
