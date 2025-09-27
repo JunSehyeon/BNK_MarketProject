@@ -167,13 +167,24 @@
 
             <!-- 사업자등록번호 -->
             <label for="sellerNum">사업자등록번호 *</label>
-            <input type="text" id="sellerNum" name="sellerNum" placeholder="예: 123-45-67890 또는 숫자 10자리" required>
+            <input type="text" id="sellerNum" name="sellerNum" placeholder="예: 123-45-67890" required>
             <p id="bizResult"></p>
+
+            <!-- 통신판매업번호 -->
+            <label for="internet-seller-num">통신판매업번호 *</label>
+            <input type="text" id="internet-seller-num" name="internet-seller-num" placeholder="예: 2023-서울강남-1234"
+                required>
+            <p id="internetResult"></p>
 
             <!-- 연락처 -->
             <label for="hp">연락처 *</label>
             <input type="text" id="hp" name="hp" placeholder="예: 010-1234-5678" required>
             <p id="hpResult"></p>
+
+            <!-- 팩스 -->
+            <label for="fax">팩스 *</label>
+            <input type="text" id="fax" name="fax" placeholder="예: 02-1234-5678" required>
+            <p id="faxResult"></p>
 
             <!-- 주소 -->
             <label>주소 *</label>
@@ -233,7 +244,9 @@
         const elCompany = document.getElementById("companyName");
         const elCEO = document.getElementById("ceoName");
         const elBiz = document.getElementById("sellerNum");
+        const elInternet = document.getElementById("internet-seller-num");
         const elHp = document.getElementById("hp");
+        const elFax = document.getElementById("fax");
         const elPost = document.getElementById("postcode");
         const elAddr = document.getElementById("address");
 
@@ -242,7 +255,9 @@
         const companyResult = document.getElementById("companyResult");
         const ceoResult = document.getElementById("ceoResult");
         const bizResult = document.getElementById("bizResult");
+        const internetResult = document.getElementById("internetResult");
         const hpResult = document.getElementById("hpResult");
+        const faxResult = document.getElementById("faxResult");
         const addrResult = document.getElementById("addrResult");
 
         // ===== 유효성 검사 =====
@@ -290,7 +305,6 @@
         }
 
         function normalizeBiz(v) {
-            // 숫자만 → 000-00-00000 형태로 포맷팅
             const digits = v.replace(/\D/g, '').slice(0, 10);
             if (digits.length <= 3) return digits;
             if (digits.length <= 5) return digits.slice(0, 3) + '-' + digits.slice(3);
@@ -300,18 +314,22 @@
         function validateBiz() {
             const raw = elBiz.value.trim();
             const dashed = normalizeBiz(raw);
-            elBiz.value = dashed; // 입력 중 자동 포맷
+            elBiz.value = dashed;
             const ok = /^\d{3}-\d{2}-\d{5}$/.test(dashed);
             if (!raw) { bizResult.textContent = "사업자등록번호는 필수입니다."; bizResult.className = "error"; return false; }
-            if (!ok) {
-                bizResult.textContent = "형식이 올바르지 않습니다. 예: 123-45-67890";
-                bizResult.className = "error"; return false;
-            }
+            if (!ok) { bizResult.textContent = "형식이 올바르지 않습니다. 예: 123-45-67890"; bizResult.className = "error"; return false; }
             bizResult.textContent = "유효한 형식입니다."; bizResult.className = "success"; return true;
         }
 
+        function validateInternet() {
+            const v = elInternet.value.trim();
+            if (!v) { internetResult.textContent = "통신판매업번호는 필수입니다."; internetResult.className = "error"; return false; }
+            const ok = /^[A-Za-z0-9-]{5,}$/.test(v);
+            if (!ok) { internetResult.textContent = "형식이 올바르지 않습니다. (예: 2023-서울강남-1234)"; internetResult.className = "error"; return false; }
+            internetResult.textContent = "유효한 형식입니다."; internetResult.className = "success"; return true;
+        }
+
         function normalizePhone(v) {
-            // 숫자만 → 010-1234-5678 형태 보정
             const d = v.replace(/\D/g, '').slice(0, 11);
             if (d.length < 4) return d;
             if (d.length < 8) return d.slice(0, 3) + '-' + d.slice(3);
@@ -326,12 +344,17 @@
             hpResult.textContent = ""; hpResult.className = ""; return true;
         }
 
+        function validateFax() {
+            const v = elFax.value.trim();
+            if (!v) { faxResult.textContent = "팩스번호는 필수입니다."; faxResult.className = "error"; return false; }
+            const ok = /^\d{2,3}-\d{3,4}-\d{4}$/.test(v);
+            if (!ok) { faxResult.textContent = "형식이 올바르지 않습니다. (예: 02-1234-5678)"; faxResult.className = "error"; return false; }
+            faxResult.textContent = "유효한 형식입니다."; faxResult.className = "success"; return true;
+        }
+
         function validateAddress() {
             const ok = !!(elPost.value && elAddr.value);
-            if (!ok) {
-                addrResult.textContent = "우편번호와 기본주소를 입력하세요.";
-                addrResult.className = "error"; return false;
-            }
+            if (!ok) { addrResult.textContent = "우편번호와 기본주소를 입력하세요."; addrResult.className = "error"; return false; }
             addrResult.textContent = ""; addrResult.className = ""; return true;
         }
 
@@ -342,7 +365,9 @@
                 validateCompany() &&
                 validateCEO() &&
                 validateBiz() &&
+                validateInternet() &&
                 validatePhone() &&
+                validateFax() &&
                 validateAddress();
 
             btnSubmit.disabled = !allValid;
@@ -363,7 +388,9 @@
         elCompany.addEventListener("input", updateSubmitState);
         elCEO.addEventListener("input", updateSubmitState);
         elBiz.addEventListener("input", updateSubmitState);
+        elInternet.addEventListener("input", updateSubmitState);
         elHp.addEventListener("input", updateSubmitState);
+        elFax.addEventListener("input", updateSubmitState);
 
         // 주소 API
         function execDaumPostcode() {
@@ -385,7 +412,9 @@
                 validateCompany() &&
                 validateCEO() &&
                 validateBiz() &&
+                validateInternet() &&
                 validatePhone() &&
+                validateFax() &&
                 validateAddress();
 
             if (!okNow) {
